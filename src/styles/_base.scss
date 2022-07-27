@@ -8,6 +8,8 @@
   --text-color-primary-hover: #{rgba($color-blue-darkest, 0.7)};
   --text-color-secondary: #{$color-gray-dark};
 
+  --box-shadow-dark: #{0 2px 4px rgba($color-black-fade, 0.06)};
+
   //Typography
   --font-family: #{$font-primary};
   --font-size-sm: #{$font-size-sm};
