@@ -1,9 +1,11 @@
 import Header from '../Header'
 import HomePage from '../../pages/HomePage'
 
+import './App.style.scss'
+
 const App = () => {
   return (
-    <div className='App'>
+    <div className='app'>
       <Header />
       <HomePage />
     </div>
