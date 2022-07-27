@@ -8,7 +8,10 @@
   --text-color-primary-hover: #{rgba($color-blue-darkest, 0.7)};
   --text-color-secondary: #{$color-gray-dark};
 
-  --box-shadow-dark: #{0 2px 4px rgba($color-black-fade, 0.06)};
+  --box-shadow-header: #{0 2px 4px rgba($color-black-fade-06, 0.06)};
+  --box-shadow-text-input: #{0 2px 9px $color-black-fade-05};
+
+  --placeholder-color: #{$color-gray};
 
   //Typography
   --font-family: #{$font-primary};

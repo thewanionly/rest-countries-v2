@@ -1,0 +1,22 @@
+.text-input {
+  padding: 1.75rem 2rem;
+  box-shadow: var(--box-shadow-text-input);
+  border-radius: 5px;
+  font-size: 1.5rem;
+  border: 1px solid transparent;
+  transition: border-color 0.2s;
+
+  &:focus-within {
+    border-color: var(--text-color-secondary);
+  }
+
+  // input element
+  &__field {
+    all: unset;
+    width: 100%;
+
+    &::placeholder {
+      color: var(--placeholder-color);
+    }
+  }
+}
