@@ -1,3 +1,23 @@
+// light mode (default)
+:root {
+  //Colors
+  --bg-color-primary: #{$color-gray-light};
+  --bg-color-secondary: #{$color-white};
+
+  --text-color-primary: #{$color-blue-darkest};
+  --text-color-primary-hover: #{rgba($color-blue-darkest, 0.7)};
+  --text-color-secondary: #{$color-gray-dark};
+
+  //Typography
+  --font-family: #{$font-primary};
+  --font-size-sm: #{$font-size-sm};
+  --font-size-base: #{$font-size-base};
+
+  --font-weight-light: #{$font-weight-light};
+  --font-weight-semibold: #{$font-weight-semibold};
+  --font-weight-extrabold: #{$font-weight-extrabold};
+}
+
 *,
 *::before,
 *::after {
@@ -8,9 +28,13 @@
 
 html {
   box-sizing: border-box;
-  font-size: 62.5%; //1rem = 10px 10px/16px = 62.5%
+  font-size: 50%; //1rem = 8px (8px/16px = 50%) - mobile
 }
 
-body {
-  font-size: 1.6rem;
+body,
+input,
+textarea {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-light);
 }
