@@ -9,7 +9,7 @@ const setup = () => {
 
 describe('Home Page', () => {
   describe('Layout', () => {
-    xit('has a search bar component', () => {
+    it('has a search bar component', () => {
       setup()
 
       const searchBar = screen.getByTestId('country-search-bar')
