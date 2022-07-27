@@ -7,7 +7,7 @@ const setup = () => {
   render(<Header />)
 }
 
-describe('Layout', () => {
+describe('Header', () => {
   it('displays "Where in the world?" heading', () => {
     setup()
 

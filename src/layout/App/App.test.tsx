@@ -10,6 +10,17 @@ const setup = () => {
 describe('Header', () => {
   it('displays header component', () => {
     setup()
-    expect(screen.getByTestId('header')).toBeInTheDocument()
+
+    const header = screen.getByTestId('header')
+    expect(header).toBeInTheDocument()
+  })
+})
+
+describe('Routing', () => {
+  it('displays home page', () => {
+    setup()
+
+    const homePage = screen.getByTestId('home-page')
+    expect(homePage).toBeInTheDocument()
   })
 })
