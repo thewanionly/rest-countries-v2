@@ -9,7 +9,7 @@ const setup = () => {
 }
 
 describe('TextInput component', () => {
-  it('text is reflected to the component after user types anything', () => {
+  it('reflects the inputted text by the user', () => {
     setup()
 
     const textInput = screen.getByTestId('text-input-field')

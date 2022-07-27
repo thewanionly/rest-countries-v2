@@ -6,7 +6,7 @@ type TextInputProps = {
   value?: string
   name: string
   placeholder?: string
-  onChange?: () => void
+  onChange?: (event: React.FormEvent<HTMLInputElement>) => void
   required?: boolean
   disabled?: boolean
 }
