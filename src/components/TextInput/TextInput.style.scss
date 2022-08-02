@@ -1,8 +1,8 @@
 .text-input {
   padding: 1.75rem 2rem;
-  box-shadow: var(--box-shadow-text-input);
+  box-shadow: var(--box-shadow-component);
+  background-color: var(--bg-color-secondary);
   border-radius: 5px;
-  font-size: 1.5rem;
   border: 1px solid transparent;
   transition: border-color 0.2s;
 

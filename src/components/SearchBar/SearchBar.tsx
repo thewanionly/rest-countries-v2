@@ -1,4 +1,5 @@
 import TextInput from '../TextInput'
+import './SearchBar.style.scss'
 
 type SearchBarProps = {
   className?: string
