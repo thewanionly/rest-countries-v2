@@ -3,4 +3,23 @@
 
   &__container {
   }
+
+  &__top-area {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 5rem;
+  }
+
+  &__search-bar {
+    flex: 1;
+    min-width: 30rem;
+    max-width: 48rem;
+  }
+
+  &__filter-dropdown {
+    flex: 1;
+    min-width: max-content;
+    max-width: 25rem;
+  }
 }
