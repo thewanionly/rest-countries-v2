@@ -16,7 +16,7 @@
     opacity: 0;
     transition: opacity 0.2s;
 
-    margin-top: 0.5rem;
+    margin-top: 0.7rem;
     position: absolute;
     top: 0;
     left: 0;
@@ -28,7 +28,6 @@
     background-color: var(--bg-color-secondary);
     box-shadow: var(--box-shadow-component);
     border-radius: 5px;
-    border: 1px solid transparent;
     transition: all 0.2s;
 
     &-item {
@@ -41,6 +40,10 @@
   }
 
   &--open {
+    .dropdown__toggle {
+      border-color: var(--text-color-secondary);
+    }
+
     .dropdown__menu {
       visibility: visible;
       opacity: 1;
