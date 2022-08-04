@@ -16,7 +16,7 @@ type DropdownProps = {
 
 type DropdownToggleProps = {
   className?: string
-  label: string
+  label: string | ((isMenuOpen: boolean, handleToggleMenu: () => void) => React.ReactNode)
 }
 
 type DropdownMenuProps = {
@@ -87,7 +87,8 @@ const DropdownToggle = ({ className = '', label }: DropdownToggleProps) => {
   const dropdownToggleRef = useRef(null)
 
   const {
-    handleToggleMenu,
+    isMenuOpen = false,
+    handleToggleMenu = () => {},
     handleCloseMenu = () => {},
     handleSetMenuTopValue
   } = useContext(DropdownContext) || {}
@@ -105,7 +106,7 @@ const DropdownToggle = ({ className = '', label }: DropdownToggleProps) => {
       onClick={handleToggleMenu}
       data-testid='dropdown-toggle'
     >
-      {label}
+      {typeof label === 'function' ? label(isMenuOpen, handleToggleMenu) : label}
     </div>
   )
 }
