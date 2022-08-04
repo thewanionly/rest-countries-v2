@@ -6,6 +6,10 @@
   border: 1px solid transparent;
   transition: border-color 0.2s;
 
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
   &:focus-within {
     border-color: var(--text-color-secondary);
   }
