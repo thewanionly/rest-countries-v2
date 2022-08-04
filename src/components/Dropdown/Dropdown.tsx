@@ -1,12 +1,5 @@
-import {
-  createContext,
-  forwardRef,
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState
-} from 'react'
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useClickOutside } from '../../utilities/hooks'
 
 import './Dropdown.style.scss'
 
@@ -39,6 +32,7 @@ type DropdownContextValue = {
   handleSelectItem: (menuItem: DropdownMenuItem) => void
   menuTopValue: number
   handleSetMenuTopValue: (value: number) => void
+  handleCloseMenu: () => void
 }
 
 const DropdownContext = createContext<DropdownContextValue | null>(null)
@@ -54,9 +48,11 @@ const Dropdown = ({ className = '', children }: DropdownProps) => {
 
   const handleToggleMenu = () => setMenuOpen((prevValue) => !prevValue)
 
+  const handleCloseMenu = () => setMenuOpen(false)
+
   const handleSelectItem = (item: DropdownMenuItem) => {
     setSelectedItem(item)
-    setMenuOpen(false)
+    handleCloseMenu()
   }
 
   const handleSetMenuTopValue = useCallback((value: number) => {
@@ -69,7 +65,8 @@ const Dropdown = ({ className = '', children }: DropdownProps) => {
     selectedItem,
     handleSelectItem,
     menuTopValue,
-    handleSetMenuTopValue
+    handleSetMenuTopValue,
+    handleCloseMenu
   }
 
   return (
@@ -86,12 +83,19 @@ const Dropdown = ({ className = '', children }: DropdownProps) => {
 
 const DropdownToggle = ({ className = '', label }: DropdownToggleProps) => {
   const dropdownToggleRef = useRef(null)
-  const { selectedItem, handleToggleMenu, handleSetMenuTopValue } =
-    useContext(DropdownContext) || {}
+
+  const {
+    selectedItem,
+    handleToggleMenu,
+    handleCloseMenu = () => {},
+    handleSetMenuTopValue
+  } = useContext(DropdownContext) || {}
 
   useEffect(() => {
     handleSetMenuTopValue?.(dropdownToggleRef.current?.['offsetHeight'] || 0)
   }, [handleSetMenuTopValue])
+
+  useClickOutside(dropdownToggleRef, handleCloseMenu)
 
   return (
     <div

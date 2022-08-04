@@ -90,7 +90,7 @@ describe('Dropdown component', () => {
     expect(screen.queryByRole('menu')).not.toBeInTheDocument()
   })
 
-  xit('closes the dropdown menu when user clicked anywhere outside the dropdown', () => {
+  it('closes the dropdown menu when user clicked anywhere outside the dropdown', () => {
     setup(menuItems)
 
     userEvent.click(screen.getByTestId('dropdown-toggle'))
