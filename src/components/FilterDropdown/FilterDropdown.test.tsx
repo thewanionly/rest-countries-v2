@@ -22,7 +22,7 @@ const menuItems: DropdownMenuItem[] = [
 ]
 
 const setup = () => {
-  render(<FilterDropdown label={defaultLabel} menuItems={menuItems} />)
+  render(<FilterDropdown placeholder={defaultLabel} menuItems={menuItems} />)
 }
 
 describe('FilterDropdown component', () => {

@@ -30,9 +30,14 @@ const REGIONS = [
 
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('')
+  const [filterValue, setFilterValue] = useState('')
 
   const handleSearchTerm = (value: string) => {
     setSearchTerm(value)
+  }
+
+  const handleFilterValue = (value: string) => {
+    setFilterValue(value)
   }
 
   return (
@@ -48,7 +53,8 @@ const HomePage = () => {
           />
           <FilterDropdown
             className='home-page__filter-dropdown'
-            label='Filter by Region'
+            placeholder='Filter by Region'
+            onChange={handleFilterValue}
             menuItems={REGIONS}
           />
         </div>

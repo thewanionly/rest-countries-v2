@@ -19,9 +19,9 @@ const menuItems: DropdownMenuItem[] = [
   }
 ]
 
-const setup = (menuItems?: DropdownMenuItem[]) => {
+const setup = (menuItems?: DropdownMenuItem[], onChange?: (item: DropdownMenuItem) => void) => {
   render(
-    <Dropdown>
+    <Dropdown onChange={onChange}>
       <Dropdown.Toggle label='Click to open' />
       <Dropdown.Menu menuItems={menuItems || []} />
     </Dropdown>
@@ -66,19 +66,14 @@ describe('Dropdown component', () => {
     )
   })
 
-  xit('calls the handleSelectItem function with the selected item when a menu item is clicked', () => {
+  it('calls the handleSelectItem function with the selected item when a menu item is clicked', () => {
     const handleSelectItem = jest.fn()
-    setup(menuItems)
+    setup(menuItems, handleSelectItem)
 
     userEvent.click(screen.getByTestId('dropdown-toggle'))
     userEvent.click(screen.getAllByTestId('dropdown-menu-item')[0])
 
-    expect(handleSelectItem).lastCalledWith(
-      expect.objectContaining({
-        label: menuItems[0].label,
-        value: menuItems[0].value
-      })
-    )
+    expect(handleSelectItem).toHaveBeenCalledWith(menuItems[0])
   })
 
   it('closes the dropdown menu when a menu item is clicked', () => {

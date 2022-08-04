@@ -10,6 +10,7 @@ export type DropdownMenuItem = {
 
 type DropdownProps = {
   className?: string
+  onChange?: (item: DropdownMenuItem) => void
   children: React.ReactNode
 }
 
@@ -41,7 +42,7 @@ const DropdownContext = createContext<DropdownContextValue | null>(null)
  * This component is following the Compound Components Pattern.
  * It holds the state of the Dropdown children and passed the state to the children through context.
  **/
-const Dropdown = ({ className = '', children }: DropdownProps) => {
+const Dropdown = ({ className = '', onChange: changeHandler, children }: DropdownProps) => {
   const [isMenuOpen, setMenuOpen] = useState(false)
   const [selectedItem, setSelectedItem] = useState<DropdownMenuItem | undefined>()
   const [menuTopValue, setMenuTopValue] = useState(0)
@@ -51,6 +52,7 @@ const Dropdown = ({ className = '', children }: DropdownProps) => {
   const handleCloseMenu = () => setMenuOpen(false)
 
   const handleSelectItem = (item: DropdownMenuItem) => {
+    changeHandler?.(item)
     setSelectedItem(item)
     handleCloseMenu()
   }
@@ -85,7 +87,6 @@ const DropdownToggle = ({ className = '', label }: DropdownToggleProps) => {
   const dropdownToggleRef = useRef(null)
 
   const {
-    selectedItem,
     handleToggleMenu,
     handleCloseMenu = () => {},
     handleSetMenuTopValue
@@ -104,7 +105,7 @@ const DropdownToggle = ({ className = '', label }: DropdownToggleProps) => {
       onClick={handleToggleMenu}
       data-testid='dropdown-toggle'
     >
-      {selectedItem?.label || label}
+      {label}
     </div>
   )
 }
