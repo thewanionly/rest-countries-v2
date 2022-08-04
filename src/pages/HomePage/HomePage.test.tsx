@@ -12,14 +12,14 @@ describe('Home Page', () => {
     it('has a search bar component', () => {
       setup()
 
-      const searchBar = screen.getByTestId('country-search-bar')
+      const searchBar = screen.getByPlaceholderText('Search for a country...')
       expect(searchBar).toBeInTheDocument()
     })
 
-    xit('has a dropdown component', () => {
+    it('has a dropdown component', () => {
       setup()
 
-      const dropdown = screen.getByTestId('country-dropdown')
+      const dropdown = screen.getByText('Filter by Region')
       expect(dropdown).toBeInTheDocument()
     })
 

@@ -46,7 +46,6 @@ const HomePage = () => {
         <div className='home-page__top-area'>
           <SearchBar
             className='home-page__search-bar'
-            data-testid='country-search-bar'
             placeholder='Search for a country...'
             value={searchTerm}
             onChange={handleSearchTerm}
