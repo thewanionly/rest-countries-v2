@@ -35,11 +35,11 @@ describe('FilterDropdown component', () => {
     expect(screen.getByTestId('dropdown-toggle')).toHaveTextContent(menuItems[0].label)
   })
 
-  xit(`removes the selected item's value from the toggle and show the default label when selecting "Clear value" option`, () => {
+  it(`removes the selected item's value from the toggle and show the default label when selecting "Clear value" option`, () => {
     setup()
 
     userEvent.click(screen.getByTestId('dropdown-toggle'))
-    userEvent.click(screen.getByTestId('filter-dropdown-clear-item'))
+    userEvent.click(screen.getByText('Show all'))
 
     expect(screen.getByTestId('dropdown-toggle')).toHaveTextContent(defaultLabel)
   })

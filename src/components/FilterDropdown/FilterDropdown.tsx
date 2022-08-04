@@ -18,15 +18,24 @@ const FilterDropdown = ({
 }: FilterDropdownProps) => {
   const [toggleLabel, setToggleLabel] = useState(placeholder)
 
+  const filterMenuItems = [
+    ...menuItems,
+    {
+      label: 'Show all',
+      value: ''
+    }
+  ]
+
   const handleFilter = (item: DropdownMenuItem) => {
     changeHandler?.(item.value)
-    setToggleLabel(item.label)
+
+    setToggleLabel(item.value === '' ? placeholder : item.label)
   }
 
   return (
     <Dropdown className={className} onChange={handleFilter}>
       <Dropdown.Toggle label={toggleLabel} />
-      <Dropdown.Menu menuItems={menuItems} />
+      <Dropdown.Menu menuItems={filterMenuItems} />
     </Dropdown>
   )
 }
