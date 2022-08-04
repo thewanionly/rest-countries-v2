@@ -13,6 +13,9 @@
 
   --placeholder-color: #{$color-gray};
 
+  --search-bar-icons-color: #{$color-gray-dark};
+  --search-bar-icons-color-hover: #{rgba($color-gray-dark, 0.7)};
+
   //Typography
   --font-family: #{$font-primary};
   --font-size-sm: #{$font-size-sm};

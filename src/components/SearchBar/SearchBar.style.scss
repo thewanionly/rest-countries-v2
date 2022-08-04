@@ -1,0 +1,12 @@
+.search-bar {
+  &__search-icon,
+  &__close-icon {
+    color: var(--search-bar-icons-color);
+  }
+
+  &__close-icon {
+    &:hover {
+      color: var(--search-bar-icons-color-hover);
+    }
+  }
+}

@@ -8,14 +8,38 @@ type SearchBarProps = {
   onChange?: (value: string) => void
 }
 
-const SearchBar = ({ onChange: changeHandler = () => {}, ...props }: SearchBarProps) => {
+const SearchBar = ({ value, onChange: changeHandler = () => {}, ...props }: SearchBarProps) => {
   const handleSearch = (event: React.FormEvent<HTMLInputElement>) => {
     const element = event.target as HTMLInputElement
 
     changeHandler(element.value)
   }
 
-  return <TextInput name='search-bar' onChange={handleSearch} {...props} />
+  const handleClearSearch = () => {
+    changeHandler('')
+  }
+
+  return (
+    <TextInput
+      name='search-bar'
+      value={value}
+      onChange={handleSearch}
+      iconLeft={{
+        name: 'search',
+        className: 'search-bar__search-icon'
+      }}
+      iconRight={
+        value
+          ? {
+              name: 'close',
+              className: 'search-bar__close-icon',
+              onClick: handleClearSearch
+            }
+          : undefined
+      }
+      {...props}
+    />
+  )
 }
 
 export default SearchBar
