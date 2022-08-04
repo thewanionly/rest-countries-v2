@@ -1,15 +1,17 @@
-import { FaChevronDown, FaMoon, FaRegMoon, FaSearch, FaTimes } from 'react-icons/fa'
+import React from 'react'
+import { FaChevronDown, FaChevronUp, FaMoon, FaRegMoon, FaSearch, FaTimes } from 'react-icons/fa'
 import './Icon.style.scss'
 
 export type IconProps = {
   name: IconName
   className?: string
-  onClick?: () => void
+  onClick?: (event: React.MouseEvent<SVGElement>) => void
 }
 
 // Icon name to component mapping
 const IconMap = {
   chevron_down: FaChevronDown,
+  chevron_up: FaChevronUp,
   moon_fill: FaMoon,
   moon_outline: FaRegMoon,
   search: FaSearch,
