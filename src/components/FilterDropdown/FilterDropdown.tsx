@@ -60,13 +60,4 @@ const FilterDropdown = ({
   )
 }
 
-const renderLabel2 = (label: string) => {
-  return (
-    <>
-      {label}
-      <Icon name='chevron_down' />
-    </>
-  )
-}
-
 export default FilterDropdown
