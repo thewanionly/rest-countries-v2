@@ -26,6 +26,23 @@ const setup = () => {
 }
 
 describe('FilterDropdown component', () => {
+  it('displays a down icon when dropdown menu is closed', () => {
+    setup()
+
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument()
+    expect(screen.getByTestId('icon-chevron_down')).toBeInTheDocument()
+  })
+
+  it('displays an up icon when dropdown menu is opened', () => {
+    setup()
+
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument()
+    userEvent.click(screen.getByTestId('dropdown-toggle'))
+    expect(screen.getByRole('menu')).toBeInTheDocument()
+
+    expect(screen.getByTestId('icon-chevron_up')).toBeInTheDocument()
+  })
+
   it(`relfects the selected item's value to the toggle`, () => {
     setup()
 
