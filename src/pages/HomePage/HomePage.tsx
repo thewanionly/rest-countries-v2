@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import SearchBar from '../../components/SearchBar'
 import FilterDropdown from '../../components/FilterDropdown'
+import CountryList from '../../components/CountryList'
 
 import './HomePage.style.scss'
 
@@ -57,7 +58,9 @@ const HomePage = () => {
             menuItems={REGIONS}
           />
         </div>
-        <div className='home-page__countries-list' data-testid='countries-list'></div>
+        <div className='home-page__country-list' data-testid='country-list'>
+          <CountryList />
+        </div>
       </div>
     </div>
   )

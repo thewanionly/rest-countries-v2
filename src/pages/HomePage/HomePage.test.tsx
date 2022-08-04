@@ -26,8 +26,8 @@ describe('Home Page', () => {
     it('has the countries list component', () => {
       setup()
 
-      const countriesList = screen.getByTestId('countries-list')
-      expect(countriesList).toBeInTheDocument()
+      const CountryList = screen.getByTestId('country-list')
+      expect(CountryList).toBeInTheDocument()
     })
   })
 })
