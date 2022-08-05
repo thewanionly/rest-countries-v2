@@ -3,6 +3,8 @@ import { memo } from 'react'
 import { Country, PAGE_LIMIT, RESOURCES } from '../../utilities/constants'
 import { useResource } from '../../utilities/hooks'
 
+import CountryCard from '../CountryCard'
+
 const DUMMY_COUNTRIES: undefined[] = [...new Array(PAGE_LIMIT)]
 
 const CountryList = memo(() => {
@@ -25,23 +27,5 @@ const CountryList = memo(() => {
     </div>
   )
 })
-
-type CountryCardProps = {
-  name: string
-}
-
-const CountryCard = ({ name = '' }: CountryCardProps) => {
-  return <div data-testid='country-card'>{name}</div>
-}
-
-type CountryCardSkeletonProps = {
-  className?: string
-}
-
-const CountryCardSkeleton = ({ className }: CountryCardSkeletonProps) => {
-  return <div data-testid='country-card-skeleton'>Loading...</div>
-}
-
-CountryCard.Skeleton = CountryCardSkeleton
 
 export default CountryList

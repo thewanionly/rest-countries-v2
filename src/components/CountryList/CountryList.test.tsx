@@ -11,7 +11,7 @@ const setup = () => {
   render(<CountryList />)
 }
 
-describe('Countries List', () => {
+describe('Country List', () => {
   describe('Interactions', () => {
     it('displays all countries in the list', async () => {
       setup()
