@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import { mockedCountries } from '../../mocks/data'
 import { generateFetchEmpty, generateFetchError } from '../../mocks/handlers'
 import { server } from '../../mocks/server'
 import { PAGE_LIMIT } from '../../utilities/constants'

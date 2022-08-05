@@ -5,7 +5,6 @@ import { COUNTRIES_ALL } from '../utilities/constants'
 import { mockedCountries } from './data'
 
 export const handlers = [
-  // Handles a GET `{COUNTRIES_ALL}{FIELDS_FILTER}`
   rest.get(`${COUNTRIES_ALL}`, (req, res, ctx) => {
     // req.url.searchParams.get('flag') to get the params
     return res(ctx.status(200), ctx.json(mockedCountries))

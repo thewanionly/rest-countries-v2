@@ -1,4 +1,6 @@
-const mockedCountries = [
+import { Country } from '../utilities/constants'
+
+const mockedCountries: Country[] = [
   {
     name: {
       common: 'United States',

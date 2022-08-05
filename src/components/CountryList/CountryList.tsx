@@ -1,31 +1,12 @@
 import { memo } from 'react'
 
-import { COUNTRIES_ALL, FIELDS_FILTER, PAGE_LIMIT } from '../../utilities/constants'
-import { useFetchData } from '../../utilities/hooks'
+import { Country, PAGE_LIMIT, RESOURCES } from '../../utilities/constants'
+import { useResource } from '../../utilities/hooks'
 
-type Country = {
-  name: {
-    common: string
-    official: string
-    nativeName: {
-      [key: string]: {
-        common: string
-        official: string
-      }
-    }
-  }
-  cca2: string
-  capital: string[]
-  region: string
-  flag: string
-  population: number
-}
-
-const COUNTRIES_ALL_ENDPOINT = `${COUNTRIES_ALL}${FIELDS_FILTER}`
 const DUMMY_COUNTRIES: undefined[] = [...new Array(PAGE_LIMIT)]
 
 const CountryList = memo(() => {
-  const { data: countries = [], isLoading, error } = useFetchData<Country[]>(COUNTRIES_ALL_ENDPOINT)
+  const { data: countries = [], isLoading, error } = useResource<Country[]>(RESOURCES.COUNTRIES)
 
   return (
     <div className='country-list'>
