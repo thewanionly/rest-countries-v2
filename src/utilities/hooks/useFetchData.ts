@@ -4,7 +4,7 @@ import { fetchData } from '../helpers'
 /**
  * Fetches data using the native Fetch API through the `fetchData` helper function.
  */
-const useFetchData = <T>(url: string) => {
+const useFetchData = <T>(url: string): [T, boolean, undefined] => {
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState<T>()
   const [error, setError] = useState()
@@ -34,7 +34,7 @@ const useFetchData = <T>(url: string) => {
     loadData()
   }, [url])
 
-  return { data, isLoading, error }
+  return [data as T, isLoading, error]
 }
 
 export default useFetchData

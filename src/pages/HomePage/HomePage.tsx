@@ -1,37 +1,24 @@
 import { useState } from 'react'
 
+import { Region, RESOURCES } from '../../utilities/constants'
+import { useResource } from '../../utilities/hooks'
+
 import SearchBar from '../../components/SearchBar'
 import FilterDropdown from '../../components/FilterDropdown'
 import CountryList from '../../components/CountryList'
 
 import './HomePage.style.scss'
 
-const REGIONS = [
-  {
-    label: 'Africa',
-    value: 'africa'
-  },
-  {
-    label: 'America',
-    value: 'america'
-  },
-  {
-    label: 'Asia',
-    value: 'asia'
-  },
-  {
-    label: 'Europe',
-    value: 'europe'
-  },
-  {
-    label: 'Oceania',
-    value: 'oceania'
-  }
-]
-
 const HomePage = () => {
+  const [regionData = [], isLoadingRegion, errorRegion] = useResource<Region[]>(RESOURCES.REGIONS)
   const [searchTerm, setSearchTerm] = useState('')
   const [filterValue, setFilterValue] = useState('')
+
+  const regions = Array.from(new Set(regionData.map(({ region }) => region)))
+  const regionOptions = regions.map((region) => ({
+    label: region,
+    value: region.toLowerCase()
+  }))
 
   const handleSearchTerm = (value: string) => {
     setSearchTerm(value)
@@ -55,7 +42,7 @@ const HomePage = () => {
             className='home-page__filter-dropdown'
             placeholder='Filter by Region'
             onChange={handleFilterValue}
-            menuItems={REGIONS}
+            menuItems={regionOptions}
           />
         </div>
         <div className='home-page__country-list' data-testid='country-list'>

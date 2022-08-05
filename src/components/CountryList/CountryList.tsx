@@ -6,7 +6,7 @@ import { useResource } from '../../utilities/hooks'
 const DUMMY_COUNTRIES: undefined[] = [...new Array(PAGE_LIMIT)]
 
 const CountryList = memo(() => {
-  const { data: countries = [], isLoading, error } = useResource<Country[]>(RESOURCES.COUNTRIES)
+  const [countries = [], isLoading, error] = useResource<Country[]>(RESOURCES.COUNTRIES)
 
   return (
     <div className='country-list'>
