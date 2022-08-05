@@ -74,6 +74,94 @@ const mockedCountries = [
     region: 'Oceania',
     flag: '🇳🇿',
     population: 5084300
+  },
+  {
+    name: {
+      common: 'Japan',
+      official: 'Japan',
+      nativeName: {
+        jpn: {
+          official: '日本',
+          common: '日本'
+        }
+      }
+    },
+    cca2: 'JP',
+    capital: ['Tokyo'],
+    region: 'Asia',
+    flag: '🇯🇵',
+    population: 125836021
+  },
+  {
+    name: {
+      common: 'Philippines',
+      official: 'Republic of the Philippines',
+      nativeName: {
+        eng: {
+          official: 'Republic of the Philippines',
+          common: 'Philippines'
+        },
+        fil: {
+          official: 'Republic of the Philippines',
+          common: 'Pilipinas'
+        }
+      }
+    },
+    cca2: 'PH',
+    capital: ['Manila'],
+    region: 'Asia',
+    flag: '🇵🇭',
+    population: 109581085
+  },
+  {
+    name: {
+      common: 'Singapore',
+      official: 'Republic of Singapore',
+      nativeName: {
+        zho: {
+          official: '新加坡共和国',
+          common: '新加坡'
+        },
+        eng: {
+          official: 'Republic of Singapore',
+          common: 'Singapore'
+        },
+        msa: {
+          official: 'Republik Singapura',
+          common: 'Singapura'
+        },
+        tam: {
+          official: 'சிங்கப்பூர் குடியரசு',
+          common: 'சிங்கப்பூர்'
+        }
+      }
+    },
+    cca2: 'SG',
+    capital: ['Singapore'],
+    region: 'Asia',
+    flag: '🇸🇬',
+    population: 5685807
+  },
+  {
+    name: {
+      common: 'Morocco',
+      official: 'Kingdom of Morocco',
+      nativeName: {
+        ara: {
+          official: 'المملكة المغربية',
+          common: 'المغرب'
+        },
+        ber: {
+          official: 'ⵜⴰⴳⵍⴷⵉⵜ ⵏ ⵍⵎⵖⵔⵉⴱ',
+          common: 'ⵍⵎⴰⵖⵔⵉⴱ'
+        }
+      }
+    },
+    cca2: 'MA',
+    capital: ['Rabat'],
+    region: 'Africa',
+    flag: '🇲🇦',
+    population: 36910558
   }
 ]
 

@@ -13,3 +13,15 @@ export const handlers = [
   //  // Handles a GET `{COUNTRIES_DETAIL}{cca2}`
   //  rest.get(`${COUNTRIES_DETAIL}:cca2`, null),
 ]
+
+export const generateFetchError = () => {
+  return rest.get(`${COUNTRIES_ALL}`, (req, res, ctx) => {
+    return res(ctx.status(400), ctx.json({}))
+  })
+}
+
+export const generateFetchEmpty = () => {
+  return rest.get(`${COUNTRIES_ALL}`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json([]))
+  })
+}
