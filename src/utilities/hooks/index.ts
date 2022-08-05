@@ -1,3 +1,4 @@
 import useClickOutside from './useClickOutside'
+import useFetchData from './useFetchData'
 
-export { useClickOutside }
+export { useClickOutside, useFetchData }

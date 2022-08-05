@@ -1,7 +1,7 @@
-import { memo, useEffect, useState } from 'react'
+import { memo } from 'react'
 
 import { COUNTRIES_ALL, FIELDS_FILTER, PAGE_LIMIT } from '../../utilities/constants'
-import { fetchData } from '../../utilities/helpers'
+import { useFetchData } from '../../utilities/hooks'
 
 type Country = {
   name: {
@@ -21,39 +21,11 @@ type Country = {
   population: number
 }
 
+const COUNTRIES_ALL_ENDPOINT = `${COUNTRIES_ALL}${FIELDS_FILTER}`
 const DUMMY_COUNTRIES: undefined[] = [...new Array(PAGE_LIMIT)]
 
 const CountryList = memo(() => {
-  const [isLoading, setIsLoading] = useState(false)
-  const [countries, setCountries] = useState<Country[]>([])
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-    const loadCountries = async () => {
-      const url = `${COUNTRIES_ALL}${FIELDS_FILTER}`
-
-      // Fetching
-      setIsLoading(true)
-      setCountries([])
-      setError(null)
-
-      try {
-        const data = await fetchData<Country[]>(url)
-
-        // Success
-        setIsLoading(false)
-        setCountries(data)
-        setError(null)
-      } catch (err: any) {
-        // Error
-        setIsLoading(false)
-        setCountries([])
-        setError(err?.message || '')
-      }
-    }
-
-    loadCountries()
-  }, [])
+  const { data: countries = [], isLoading, error } = useFetchData<Country[]>(COUNTRIES_ALL_ENDPOINT)
 
   return (
     <div className='country-list'>
