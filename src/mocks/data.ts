@@ -1,4 +1,4 @@
-import { Country } from '../utilities/constants'
+import { Country, Region } from '../utilities/constants'
 
 const mockedCountries: Country[] = [
   {
@@ -167,4 +167,19 @@ const mockedCountries: Country[] = [
   }
 ]
 
-export { mockedCountries }
+const mockedRegions: Region[] = [
+  {
+    region: 'Africa'
+  },
+  {
+    region: 'Asia'
+  },
+  {
+    region: 'Europe'
+  },
+  {
+    region: 'Americas'
+  }
+]
+
+export { mockedCountries, mockedRegions }

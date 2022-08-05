@@ -2,11 +2,16 @@
 import { rest } from 'msw'
 
 import { COUNTRIES_ALL } from '../utilities/constants'
-import { mockedCountries } from './data'
+import { mockedCountries, mockedRegions } from './data'
 
 export const handlers = [
   rest.get(`${COUNTRIES_ALL}`, (req, res, ctx) => {
-    // req.url.searchParams.get('flag') to get the params
+    const isRegion = Boolean(req.url.searchParams.get('region'))
+
+    // region
+    if (isRegion) return res(ctx.status(200), ctx.json(mockedRegions))
+
+    // all countries
     return res(ctx.status(200), ctx.json(mockedCountries))
   })
   //  // Handles a GET `{COUNTRIES_DETAIL}{cca2}`
