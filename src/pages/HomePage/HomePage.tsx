@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { Region, RESOURCES } from '../../utilities/constants'
+import { RESOURCES } from '../../utilities/constants'
 import { useResource } from '../../utilities/hooks'
 
 import SearchBar from '../../components/SearchBar'
@@ -10,7 +10,7 @@ import CountryList from '../../components/CountryList'
 import './HomePage.style.scss'
 
 const HomePage = () => {
-  const [regionData = [], isLoadingRegion, errorRegion] = useResource<Region[]>(RESOURCES.REGIONS)
+  const [regionData = [], isLoadingRegion, errorRegion] = useResource(RESOURCES.REGIONS)
   const [searchTerm, setSearchTerm] = useState('')
   const [filterValue, setFilterValue] = useState('')
 

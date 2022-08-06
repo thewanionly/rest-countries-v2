@@ -1,6 +1,6 @@
 import { memo } from 'react'
 
-import { Country, PAGE_LIMIT, RESOURCES } from '../../utilities/constants'
+import { PAGE_LIMIT, RESOURCES } from '../../utilities/constants'
 import { useResource } from '../../utilities/hooks'
 
 import CountryCard from '../CountryCard'
@@ -8,7 +8,7 @@ import CountryCard from '../CountryCard'
 const DUMMY_COUNTRIES: undefined[] = [...new Array(PAGE_LIMIT)]
 
 const CountryList = memo(() => {
-  const [countries = [], isLoading, error] = useResource<Country[]>(RESOURCES.COUNTRIES)
+  const [countries = [], isLoading, error] = useResource(RESOURCES.COUNTRIES)
 
   return (
     <div className='country-list'>

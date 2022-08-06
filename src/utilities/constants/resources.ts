@@ -36,3 +36,9 @@ export type Country = {
 export type Region = {
   region: string
 }
+
+export type ResourceType = {
+  [RESOURCES.COUNTRIES]: Country[]
+  [RESOURCES.COUNTRY]: Country
+  [RESOURCES.REGIONS]: Region[]
+}
