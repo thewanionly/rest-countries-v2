@@ -4,28 +4,31 @@ import { rest } from 'msw'
 import { COUNTRIES_ALL } from '../utilities/constants'
 import { mockedCountries, mockedRegions } from './data'
 
-export const handlers = [
-  rest.get(`${COUNTRIES_ALL}`, (req, res, ctx) => {
-    const isRegion = Boolean(req.url.searchParams.get('region'))
-
-    // region
-    if (isRegion) return res(ctx.status(200), ctx.json(mockedRegions))
-
-    // all countries
+export const fetchAllCountries = () => {
+  return rest.get(`${COUNTRIES_ALL}`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(mockedCountries))
   })
-  //  // Handles a GET `{COUNTRIES_DETAIL}{cca2}`
-  //  rest.get(`${COUNTRIES_DETAIL}:cca2`, null),
-]
+}
 
-export const generateFetchError = () => {
+export const fetchAllRegions = () => {
+  return rest.get(`${COUNTRIES_ALL}`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(mockedRegions))
+  })
+}
+
+export const fetchAllCountriesError = () => {
   return rest.get(`${COUNTRIES_ALL}`, (req, res, ctx) => {
     return res(ctx.status(400), ctx.json({}))
   })
 }
 
-export const generateFetchEmpty = () => {
+export const fetchAllCountriesEmpty = () => {
   return rest.get(`${COUNTRIES_ALL}`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json([]))
   })
 }
+
+export const handlers = [fetchAllCountries(), fetchAllRegions()]
+
+//  // Handles a GET `{COUNTRIES_DETAIL}{cca2}`
+//  rest.get(`${COUNTRIES_DETAIL}:cca2`, null),

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import { generateFetchEmpty, generateFetchError } from '../../mocks/handlers'
+import { fetchAllCountriesEmpty, fetchAllCountriesError } from '../../mocks/handlers'
 import { server } from '../../mocks/server'
 import { PAGE_LIMIT } from '../../utilities/constants'
 
@@ -31,7 +31,7 @@ describe('Country List', () => {
 
     it('displays error message when error occurs when fetching the countries', async () => {
       const message = 'Error fetching (Bad Request)'
-      server.use(generateFetchError())
+      server.use(fetchAllCountriesError())
       setup()
 
       expect(await screen.findByTestId('error-section')).toBeInTheDocument()
@@ -39,7 +39,7 @@ describe('Country List', () => {
     })
 
     it('displays an empty section when there are no countries found', async () => {
-      server.use(generateFetchEmpty())
+      server.use(fetchAllCountriesEmpty())
       setup()
 
       const emptySection = await screen.findByTestId('empty-section')
