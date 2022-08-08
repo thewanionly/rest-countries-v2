@@ -4,6 +4,7 @@ import { PAGE_LIMIT, RESOURCES } from '../../utilities/constants'
 import { useResource } from '../../utilities/hooks'
 
 import CountryCard from '../CountryCard'
+import './CountryList.style.scss'
 
 const DUMMY_COUNTRIES: undefined[] = [...new Array(PAGE_LIMIT)]
 

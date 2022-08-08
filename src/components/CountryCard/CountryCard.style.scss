@@ -1,0 +1,15 @@
+.country-card {
+  width: 33rem;
+  height: 42rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow-component);
+  background-color: var(--bg-color-secondary);
+
+  &__image {
+    height: 20rem;
+  }
+
+  &__details {
+    padding: 3rem;
+  }
+}

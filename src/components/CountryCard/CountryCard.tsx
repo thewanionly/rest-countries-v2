@@ -1,3 +1,5 @@
+import './CountryCard.style.scss'
+
 type CountryCardProps = {
   name: string
 }
@@ -7,7 +9,12 @@ type CountryCardSkeletonProps = {
 }
 
 const CountryCard = ({ name = '' }: CountryCardProps) => {
-  return <div data-testid='country-card'>{name}</div>
+  return (
+    <div data-testid='country-card' className='country-card'>
+      <div className='country-card__image'></div>
+      <div className='country-card__details'>{name}</div>
+    </div>
+  )
 }
 
 const CountryCardSkeleton = ({ className }: CountryCardSkeletonProps) => {
