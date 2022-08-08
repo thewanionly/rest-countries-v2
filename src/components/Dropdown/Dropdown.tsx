@@ -12,6 +12,7 @@ type DropdownProps = {
   className?: string
   onChange?: (item: DropdownMenuItem) => void
   children: React.ReactNode
+  isLoading?: boolean
 }
 
 type DropdownToggleProps = {
@@ -28,12 +29,15 @@ type DropdownMenuProps = {
 
 type DropdownContextValue = {
   isMenuOpen: boolean
+  isLoading: boolean
   handleToggleMenu: () => void
   selectedItem: DropdownMenuItem | undefined
   handleSelectItem: (menuItem: DropdownMenuItem) => void
   menuTopValue: number
   handleSetMenuTopValue: (value: number) => void
   handleCloseMenu: () => void
+  hasEmptyMenu: boolean
+  handleSetHasEmptyMenu: (value: boolean) => void
 }
 
 const DropdownContext = createContext<DropdownContextValue | null>(null)
@@ -42,10 +46,16 @@ const DropdownContext = createContext<DropdownContextValue | null>(null)
  * This component is following the Compound Components Pattern.
  * It holds the state of the Dropdown children and passed the state to the children through context.
  **/
-const Dropdown = ({ className = '', onChange: changeHandler, children }: DropdownProps) => {
+const Dropdown = ({
+  className = '',
+  onChange: changeHandler,
+  isLoading = false,
+  children
+}: DropdownProps) => {
   const [isMenuOpen, setMenuOpen] = useState(false)
   const [selectedItem, setSelectedItem] = useState<DropdownMenuItem | undefined>()
   const [menuTopValue, setMenuTopValue] = useState(0)
+  const [hasEmptyMenu, setHasEmptyMenu] = useState(false)
 
   const handleToggleMenu = () => setMenuOpen((prevValue) => !prevValue)
 
@@ -61,14 +71,21 @@ const Dropdown = ({ className = '', onChange: changeHandler, children }: Dropdow
     setMenuTopValue(value)
   }, [])
 
+  const handleSetHasEmptyMenu = useCallback((value: boolean) => {
+    setHasEmptyMenu(value)
+  }, [])
+
   const value: DropdownContextValue = {
     isMenuOpen,
+    isLoading,
     handleToggleMenu,
     selectedItem,
     handleSelectItem,
     menuTopValue,
     handleSetMenuTopValue,
-    handleCloseMenu
+    handleCloseMenu,
+    hasEmptyMenu,
+    handleSetHasEmptyMenu
   }
 
   return (
@@ -88,6 +105,8 @@ const DropdownToggle = ({ className = '', label }: DropdownToggleProps) => {
 
   const {
     isMenuOpen = false,
+    isLoading = false,
+    hasEmptyMenu = false,
     handleToggleMenu = () => {},
     handleCloseMenu = () => {},
     handleSetMenuTopValue
@@ -95,7 +114,7 @@ const DropdownToggle = ({ className = '', label }: DropdownToggleProps) => {
 
   useEffect(() => {
     handleSetMenuTopValue?.(dropdownToggleRef.current?.['offsetHeight'] || 0)
-  }, [handleSetMenuTopValue])
+  }, [handleSetMenuTopValue, isLoading])
 
   useClickOutside(dropdownToggleRef, handleCloseMenu)
 
@@ -103,10 +122,16 @@ const DropdownToggle = ({ className = '', label }: DropdownToggleProps) => {
     <div
       ref={dropdownToggleRef}
       className={`dropdown__toggle ${className}`}
-      onClick={handleToggleMenu}
-      data-testid='dropdown-toggle'
+      onClick={!hasEmptyMenu ? handleToggleMenu : undefined}
+      data-testid={!isLoading ? 'dropdown-toggle' : undefined}
     >
-      {typeof label === 'function' ? label(isMenuOpen, handleToggleMenu) : label}
+      {isLoading ? (
+        <Dropdown.Skeleton />
+      ) : typeof label === 'function' ? (
+        label(isMenuOpen, handleToggleMenu)
+      ) : (
+        label
+      )}
     </div>
   )
 }
@@ -117,10 +142,14 @@ const DropdownMenu = ({
   menuItems,
   defaultSelected
 }: DropdownMenuProps) => {
-  const { isMenuOpen, selectedItem, menuTopValue, handleSelectItem } =
+  const { isMenuOpen, selectedItem, menuTopValue, handleSelectItem, handleSetHasEmptyMenu } =
     useContext(DropdownContext) || {}
 
   const selectedMenuItemValue = selectedItem?.value || defaultSelected?.value
+
+  useEffect(() => {
+    handleSetHasEmptyMenu?.(!menuItems.length)
+  }, [menuItems, handleSetHasEmptyMenu])
 
   return (
     <ul
@@ -146,7 +175,16 @@ const DropdownMenu = ({
   )
 }
 
+const DropdownSkeleton = () => {
+  return (
+    <div className='dropdown-skeleton' data-testid='dropdown-skeleton'>
+      Loading...
+    </div>
+  )
+}
+
 Dropdown.Toggle = DropdownToggle
 Dropdown.Menu = DropdownMenu
+Dropdown.Skeleton = DropdownSkeleton
 
 export default Dropdown

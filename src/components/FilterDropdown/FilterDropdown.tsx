@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import Dropdown from '../Dropdown'
 import { DropdownMenuItem } from '../Dropdown/Dropdown'
@@ -11,23 +11,27 @@ type FilterDropdownProps = {
   placeholder?: string
   onChange?: (value: string) => void
   menuItems: DropdownMenuItem[]
+  isLoading?: boolean
 }
 
 const FilterDropdown = ({
   className = '',
   placeholder = '',
   onChange: changeHandler,
-  menuItems
+  menuItems,
+  isLoading = false
 }: FilterDropdownProps) => {
-  const [toggleLabel, setToggleLabel] = useState(placeholder)
+  const [toggleLabel, setToggleLabel] = useState('')
 
-  const filterMenuItems = [
-    ...menuItems,
-    {
-      label: 'Show all',
-      value: ''
-    }
-  ]
+  const filterMenuItems = menuItems.length
+    ? [
+        ...menuItems,
+        {
+          label: 'Show all',
+          value: ''
+        }
+      ]
+    : []
 
   const handleFilter = (item: DropdownMenuItem) => {
     changeHandler?.(item.value)
@@ -52,9 +56,20 @@ const FilterDropdown = ({
     [toggleLabel]
   )
 
+  useEffect(() => {
+    setToggleLabel(placeholder)
+  }, [placeholder])
+
   return (
-    <Dropdown className={`filter-dropdown ${className}`} onChange={handleFilter}>
-      <Dropdown.Toggle className='filter-dropdown__toggle' label={renderLabel} />
+    <Dropdown
+      className={`filter-dropdown ${className}`}
+      onChange={handleFilter}
+      isLoading={isLoading}
+    >
+      <Dropdown.Toggle
+        className='filter-dropdown__toggle'
+        label={!!menuItems.length ? renderLabel : toggleLabel}
+      />
       <Dropdown.Menu menuItems={filterMenuItems} />
     </Dropdown>
   )

@@ -19,9 +19,13 @@ const menuItems: DropdownMenuItem[] = [
   }
 ]
 
-const setup = (menuItems?: DropdownMenuItem[], onChange?: (item: DropdownMenuItem) => void) => {
+const setup = (
+  menuItems?: DropdownMenuItem[],
+  onChange?: (item: DropdownMenuItem) => void,
+  isLoading?: boolean
+) => {
   render(
-    <Dropdown onChange={onChange}>
+    <Dropdown onChange={onChange} isLoading={isLoading}>
       <Dropdown.Toggle label='Click to open' />
       <Dropdown.Menu menuItems={menuItems || []} />
     </Dropdown>
@@ -30,7 +34,7 @@ const setup = (menuItems?: DropdownMenuItem[], onChange?: (item: DropdownMenuIte
 
 describe('Dropdown component', () => {
   it('opens the dropdown menu when dropdown toggle is clicked', () => {
-    setup()
+    setup(menuItems)
 
     expect(screen.queryByRole('menu')).not.toBeInTheDocument()
 
@@ -40,7 +44,7 @@ describe('Dropdown component', () => {
   })
 
   it('closes the dropdown menu when dropdown toggle is clicked again', () => {
-    setup()
+    setup(menuItems)
 
     expect(screen.queryByRole('menu')).not.toBeInTheDocument()
 
@@ -92,6 +96,30 @@ describe('Dropdown component', () => {
     expect(screen.getByRole('menu')).toBeInTheDocument()
 
     userEvent.click(document.body)
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument()
+  })
+
+  it('shows skeleton loading when isLoading is true', () => {
+    setup(menuItems, undefined, true)
+
+    expect(screen.getByTestId('dropdown-skeleton')).toBeInTheDocument()
+  })
+
+  it('cannot toggle the menu when skeleton loading is displayed', () => {
+    setup(menuItems, undefined, true)
+
+    expect(screen.getByTestId('dropdown-skeleton')).toBeInTheDocument()
+    expect(screen.queryByTestId('dropdown-toggle')).not.toBeInTheDocument()
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument()
+  })
+
+  it('cannot toggle if there are empty options', () => {
+    setup([])
+
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument()
+
+    userEvent.click(screen.getByTestId('dropdown-toggle'))
+
     expect(screen.queryByRole('menu')).not.toBeInTheDocument()
   })
 })

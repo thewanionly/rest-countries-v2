@@ -21,8 +21,8 @@ const menuItems: DropdownMenuItem[] = [
   }
 ]
 
-const setup = () => {
-  render(<FilterDropdown placeholder={defaultLabel} menuItems={menuItems} />)
+const setup = (options: DropdownMenuItem[] = menuItems, isLoading?: boolean) => {
+  render(<FilterDropdown placeholder={defaultLabel} menuItems={options} isLoading={isLoading} />)
 }
 
 describe('FilterDropdown component', () => {
@@ -43,6 +43,14 @@ describe('FilterDropdown component', () => {
     expect(screen.getByTestId('icon-chevron_up')).toBeInTheDocument()
   })
 
+  it('displays no icon when there are empty options', () => {
+    setup([])
+
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument()
+    expect(screen.queryByTestId('icon-chevron_down')).not.toBeInTheDocument()
+    expect(screen.queryByTestId('icon-chevron_up')).not.toBeInTheDocument()
+  })
+
   it(`relfects the selected item's value to the toggle`, () => {
     setup()
 
@@ -59,5 +67,11 @@ describe('FilterDropdown component', () => {
     userEvent.click(screen.getByText('Show all'))
 
     expect(screen.getByTestId('dropdown-toggle')).toHaveTextContent(defaultLabel)
+  })
+
+  it('shows skeleton loading when isLoading is true', () => {
+    setup(undefined, true)
+
+    expect(screen.getByTestId('dropdown-skeleton')).toBeInTheDocument()
   })
 })
