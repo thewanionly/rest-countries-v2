@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { RESOURCES } from '../../utilities/constants'
 import { useResource } from '../../utilities/hooks'
@@ -9,16 +9,24 @@ import CountryList from '../../components/CountryList'
 
 import './HomePage.style.scss'
 
+const DEFAULT_FILTER_DROPDOWN_PLACEHOLDER = 'Filter by Region'
+
 const HomePage = () => {
-  const [regionData = [], isLoadingRegion, errorRegion] = useResource(RESOURCES.REGIONS)
+  const [regionData, isLoadingRegion, errorRegion] = useResource(RESOURCES.REGIONS)
+  const [filterDropdownPlaceholder, setFilterDropdownPlaceholder] = useState(
+    DEFAULT_FILTER_DROPDOWN_PLACEHOLDER
+  )
   const [searchTerm, setSearchTerm] = useState('')
   const [filterValue, setFilterValue] = useState('')
 
-  const regions = Array.from(new Set(regionData.map(({ region }) => region)))
-  const regionOptions = regions.map((region) => ({
-    label: region,
-    value: region.toLowerCase()
-  }))
+  const regions = Array.isArray(regionData)
+    ? Array.from(new Set(regionData.map(({ region }) => region)))
+    : regionData
+  const regionOptions =
+    regions?.map((region) => ({
+      label: region,
+      value: region.toLowerCase()
+    })) || []
 
   const handleSearchTerm = (value: string) => {
     setSearchTerm(value)
@@ -27,6 +35,20 @@ const HomePage = () => {
   const handleFilterValue = (value: string) => {
     setFilterValue(value)
   }
+
+  useEffect(() => {
+    let placeholder = DEFAULT_FILTER_DROPDOWN_PLACEHOLDER
+
+    if (isLoadingRegion) {
+      placeholder = ''
+    } else if (errorRegion) {
+      placeholder = errorRegion
+    } else if (!regionData?.length) {
+      placeholder = 'No regions found'
+    }
+
+    setFilterDropdownPlaceholder(placeholder)
+  }, [regionData, isLoadingRegion, errorRegion])
 
   return (
     <div className='home-page' data-testid='home-page'>
@@ -40,9 +62,10 @@ const HomePage = () => {
           />
           <FilterDropdown
             className='home-page__filter-dropdown'
-            placeholder='Filter by Region'
+            placeholder={filterDropdownPlaceholder}
             onChange={handleFilterValue}
             menuItems={regionOptions}
+            isLoading={isLoadingRegion}
           />
         </div>
         <div className='home-page__country-list' data-testid='country-list'>
