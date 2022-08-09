@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 import { RESOURCES } from '../../utilities/constants'
 import { useResource } from '../../utilities/hooks'
 
+import { StoreContext } from '../../store/StoreProvider'
 import SearchBar from '../../components/SearchBar'
 import FilterDropdown from '../../components/FilterDropdown'
 import CountryList from '../../components/CountryList'
@@ -12,12 +13,11 @@ import './HomePage.style.scss'
 const DEFAULT_FILTER_DROPDOWN_PLACEHOLDER = 'Filter by Region'
 
 const HomePage = () => {
+  const { searchTerm, handleSearchTerm, handleFilterValue } = useContext(StoreContext)
   const [regionData, isLoadingRegion, errorRegion] = useResource(RESOURCES.REGIONS)
   const [filterDropdownPlaceholder, setFilterDropdownPlaceholder] = useState(
     DEFAULT_FILTER_DROPDOWN_PLACEHOLDER
   )
-  const [searchTerm, setSearchTerm] = useState('')
-  const [filterValue, setFilterValue] = useState('')
 
   const regions = Array.isArray(regionData)
     ? Array.from(new Set(regionData.map(({ region }) => region)))
@@ -27,14 +27,6 @@ const HomePage = () => {
       label: region,
       value: region.toLowerCase()
     })) || []
-
-  const handleSearchTerm = (value: string) => {
-    setSearchTerm(value)
-  }
-
-  const handleFilterValue = (value: string) => {
-    setFilterValue(value)
-  }
 
   useEffect(() => {
     let placeholder = DEFAULT_FILTER_DROPDOWN_PLACEHOLDER
