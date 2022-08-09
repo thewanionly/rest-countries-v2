@@ -2,14 +2,19 @@ import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 
+import { mockedCountries, mockedRegions } from '../../mocks/data'
 import { server } from '../../mocks/server'
 import { fetchAllRegionsError, fetchAllRegionsEmpty } from '../../mocks/handlers'
 
+import StoreProvider from '../../store/StoreProvider'
 import HomePage from './HomePage'
-import { mockedRegions } from '../../mocks/data'
 
 const setup = () => {
-  render(<HomePage />)
+  render(
+    <StoreProvider>
+      <HomePage />
+    </StoreProvider>
+  )
 }
 
 describe('Home Page', () => {
@@ -128,6 +133,44 @@ describe('Home Page', () => {
 
       const CountryList = screen.getByTestId('country-list')
       expect(CountryList).toBeInTheDocument()
+    })
+  })
+
+  describe('Interactions', () => {
+    it('can search a country', async () => {
+      setup()
+      await screen.findAllByTestId('country-card')
+
+      const searchBar = screen.getByPlaceholderText('Search for a country...')
+      userEvent.type(searchBar, 'Philippines')
+
+      const countries = screen.getAllByTestId('country-card')
+      expect(countries.length).toBe(1)
+      expect(countries[0].textContent).toBe('Philippines')
+    })
+
+    it('shows the first 10 countries after clearing search term', async () => {
+      setup()
+      await screen.findAllByTestId('country-card')
+
+      const searchBar = screen.getByPlaceholderText('Search for a country...')
+      userEvent.type(searchBar, 'Philippines')
+
+      expect(screen.getAllByTestId('country-card').length).toBe(1)
+
+      userEvent.click(screen.getByTestId('icon-close'))
+
+      expect(screen.getAllByTestId('country-card').length).toBe(mockedCountries.length)
+    })
+
+    xit('can filter a country by region', async () => {
+      setup()
+      await screen.findAllByTestId('country-card')
+    })
+
+    xit('shows the first 10 countries after clearing filter value', async () => {
+      setup()
+      await screen.findAllByTestId('country-card')
     })
   })
 })

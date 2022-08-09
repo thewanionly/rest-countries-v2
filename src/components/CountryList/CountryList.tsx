@@ -1,14 +1,16 @@
-import { memo } from 'react'
+import { memo, useContext } from 'react'
 
 import { PAGE_LIMIT, RESOURCES } from '../../utilities/constants'
 import { useResource } from '../../utilities/hooks'
 
+import { StoreContext } from '../../store/StoreProvider'
 import CountryCard from '../CountryCard'
 import './CountryList.style.scss'
 
 const DUMMY_COUNTRIES: undefined[] = [...new Array(PAGE_LIMIT)]
 
 const CountryList = memo(() => {
+  const { searchTerm, filterValue } = useContext(StoreContext)
   const [countries = [], isLoading, error] = useResource(RESOURCES.COUNTRIES)
 
   return (
@@ -21,7 +23,11 @@ const CountryList = memo(() => {
         <div data-testid='empty-section'>No countries found</div>
       ) : (
         countries
-          ?.sort((country1, country2) => country1.name.common.localeCompare(country2.name.common))
+          ?.filter(
+            (country) =>
+              !searchTerm || country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
+          )
+          .sort((country1, country2) => country1.name.common.localeCompare(country2.name.common))
           .slice(0, PAGE_LIMIT)
           .map((country) => <CountryCard key={country.cca2} name={country.name.common} />)
       )}
