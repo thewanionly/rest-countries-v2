@@ -35,7 +35,7 @@ describe('Country Card', () => {
     })
 
     xit('displays skeleton loading', async () => {
-      render(<CountryCard.Skeleton />)
+      render(<CountryCard isLoading />)
 
       expect(screen.getByTestId('country-card-skeleton')).toBeInTheDocument()
     })

@@ -2,7 +2,11 @@
   &__text {
     color: transparent;
     width: 100%;
-    font-size: var(--font-size-base);
+    font-size: 1em;
     border-radius: 0.25rem;
+  }
+
+  &__rectangular {
+    height: 100%;
   }
 }

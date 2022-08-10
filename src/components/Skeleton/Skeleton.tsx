@@ -21,7 +21,7 @@ const Skeleton = ({ id, className = '', variant = SkeletonVariantMap.TEXT }: Ske
       className={`skeleton skeleton-animation skeleton__${variant} ${className}`}
       data-testid={id}
     >
-      {variant === 'text' ? 'Skeleton' : ''}
+      {variant === 'text' ? 'Loading...' : ''}
     </div>
   )
 }

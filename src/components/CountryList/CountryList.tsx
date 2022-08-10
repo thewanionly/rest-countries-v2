@@ -16,7 +16,7 @@ const CountryList = memo(() => {
   return (
     <div className='country-list'>
       {isLoading ? (
-        DUMMY_COUNTRIES.map((_, index) => <CountryCard.Skeleton key={index} />)
+        DUMMY_COUNTRIES.map((_, index) => <CountryCard key={index} isLoading />)
       ) : error ? (
         <div data-testid='error-section'>{error}</div>
       ) : !countries.length ? (
