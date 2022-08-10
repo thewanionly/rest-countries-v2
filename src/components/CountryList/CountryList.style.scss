@@ -1,6 +1,6 @@
 .country-list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(20%, 25rem), 1fr));
   gap: 5rem;
-  justify-content: center;
+  justify-items: center;
 }
