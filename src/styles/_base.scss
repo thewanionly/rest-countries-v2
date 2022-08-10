@@ -1,7 +1,7 @@
 // light mode (default)
 :root {
   //Colors
-  --bg-color-primary: #{$color-gray-light};
+  --bg-color-primary: #{$color-gray-lightest};
   --bg-color-secondary: #{$color-white};
 
   --text-color-primary: #{$color-blue-darkest};
@@ -15,6 +15,9 @@
 
   --search-bar-icons-color: #{$color-gray-dark};
   --search-bar-icons-color-hover: #{rgba($color-gray-dark, 0.7)};
+
+  --skeleton-loading-bg-color-start: #{$color-gray-lighter};
+  --skeleton-loading-bg-color-end: #{$color-gray-light};
 
   //Typography
   --font-family: #{$font-primary};

@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useClickOutside } from '../../utilities/hooks'
 
+import Skeleton from '../Skeleton'
 import './Dropdown.style.scss'
 
 export type DropdownMenuItem = {
@@ -176,11 +177,7 @@ const DropdownMenu = ({
 }
 
 const DropdownSkeleton = () => {
-  return (
-    <div className='dropdown-skeleton' data-testid='dropdown-skeleton'>
-      Loading...
-    </div>
-  )
+  return <Skeleton className='dropdown__skeleton' id='dropdown-skeleton' />
 }
 
 Dropdown.Toggle = DropdownToggle

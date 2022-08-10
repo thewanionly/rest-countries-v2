@@ -1,0 +1,22 @@
+@keyframes skeleton-loading {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.skeleton-animation {
+  animation: skeleton-loading 1.5s linear infinite forwards;
+  background: var(--skeleton-loading-bg-color-start);
+  background-image: linear-gradient(
+    to right,
+    var(--skeleton-loading-bg-color-start) 0%,
+    var(--skeleton-loading-bg-color-end) 20%,
+    var(--skeleton-loading-bg-color-start) 40%,
+    var(--skeleton-loading-bg-color-start) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 800px 104px;
+}
