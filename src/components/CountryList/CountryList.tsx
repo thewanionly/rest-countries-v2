@@ -25,7 +25,9 @@ const CountryList = memo(() => {
         countries
           ?.filter(
             (country) =>
-              !searchTerm || country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
+              (!searchTerm ||
+                country.name.common.toLowerCase().includes(searchTerm.toLowerCase())) &&
+              (!filterValue || country.region.toLowerCase() === filterValue.toLowerCase())
           )
           .sort((country1, country2) => country1.name.common.localeCompare(country2.name.common))
           .slice(0, PAGE_LIMIT)
