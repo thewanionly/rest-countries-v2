@@ -32,7 +32,14 @@ const CountryCard = ({
     >
       <div className='country-card__image-container'>
         {!isLoading ? (
-          flag && <img className='country-card__image' src={flag} alt={`${name}'s flag`} />
+          flag && (
+            <img
+              className='country-card__image'
+              data-testid='country-card-flag'
+              src={flag}
+              alt={`${name}'s flag`}
+            />
+          )
         ) : (
           <Skeleton variant='rectangular' />
         )}
@@ -47,7 +54,12 @@ const CountryCard = ({
               {!isLoading ? (
                 <>
                   <span className='country-card__description-label'>{`${titleCase(label)}: `}</span>
-                  <span className='country-card__description-value'>{value}</span>
+                  <span
+                    className='country-card__description-value'
+                    data-testid='country-card-description-value'
+                  >
+                    {value}
+                  </span>
                 </>
               ) : (
                 <Skeleton

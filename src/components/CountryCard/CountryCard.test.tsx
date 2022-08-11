@@ -1,42 +1,59 @@
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 
+import { mockedCountries } from '../../mocks/data'
 import CountryCard from './CountryCard'
+import { formatNumber } from '../../utilities/helpers'
+
+const { name, flags, population, region, capital } = mockedCountries[0]
 
 const setup = () => {
-  render(<CountryCard name='test' />)
+  render(
+    <CountryCard
+      name={name.common}
+      flag={flags.svg}
+      population={population}
+      region={region}
+      capital={capital}
+    />
+  )
 }
 
 describe('Country Card', () => {
   describe('Layout', () => {
-    xit('displays flag of the country', async () => {
+    it('displays flag of the country', async () => {
       setup()
-      expect(screen.getByTestId('country-card-flag')).toBeInTheDocument()
+      const countryFlagImg = screen.getByTestId('country-card-flag')
+      expect(countryFlagImg).toHaveAttribute('src', flags.svg)
+      expect(countryFlagImg).toHaveAttribute('alt', `${name.common}'s flag`)
     })
 
-    xit('displays name of the country', async () => {
+    it('displays name of the country', async () => {
       setup()
-      expect(screen.getByTestId('country-card-name')).toBeInTheDocument()
+      expect(screen.getByTestId('country-card-name').textContent).toBe(name.common)
     })
 
-    xit('displays population of the country', async () => {
+    it('displays population of the country', async () => {
       setup()
-      expect(screen.getByTestId('country-card-population')).toBeInTheDocument()
+      expect(screen.getAllByTestId('country-card-description-value')[0].textContent).toBe(
+        formatNumber(population)
+      )
     })
 
-    xit('displays region of the country', async () => {
+    it('displays region of the country', async () => {
       setup()
-      expect(screen.getByTestId('country-card-region')).toBeInTheDocument()
+      expect(screen.getAllByTestId('country-card-description-value')[1].textContent).toBe(region)
     })
 
-    xit('displays capital of the country', async () => {
+    it('displays capital of the country', async () => {
       setup()
-      expect(screen.getByTestId('country-card-capital')).toBeInTheDocument()
+      expect(screen.getAllByTestId('country-card-description-value')[2].textContent).toBe(
+        capital?.join(', ')
+      )
     })
 
-    xit('displays skeleton loading', async () => {
+    it('displays skeleton loading', async () => {
       render(<CountryCard isLoading />)
-
       expect(screen.getByTestId('country-card-skeleton')).toBeInTheDocument()
     })
   })
