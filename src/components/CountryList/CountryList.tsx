@@ -34,7 +34,7 @@ const CountryList = memo(() => {
           .map((country) => (
             <CountryCard
               key={country.cca2}
-              flag={country.flag}
+              flag={country.flags.svg}
               name={country.name.common}
               population={country.population}
               region={country.region}

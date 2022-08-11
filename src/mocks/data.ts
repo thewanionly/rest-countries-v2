@@ -15,7 +15,10 @@ const mockedCountries: Country[] = [
     cca2: 'US',
     capital: ['Washington, D.C.'],
     region: 'Americas',
-    flag: '🇺🇸',
+    flags: {
+      png: 'https://flagcdn.com/w320/us.png',
+      svg: 'https://flagcdn.com/us.svg'
+    },
     population: 329484123
   },
   {
@@ -32,7 +35,10 @@ const mockedCountries: Country[] = [
     cca2: 'GB',
     capital: ['London'],
     region: 'Europe',
-    flag: '🇬🇧',
+    flags: {
+      png: 'https://flagcdn.com/w320/gb.png',
+      svg: 'https://flagcdn.com/gb.svg'
+    },
     population: 67215293
   },
   {
@@ -49,7 +55,10 @@ const mockedCountries: Country[] = [
     cca2: 'AU',
     capital: ['Canberra'],
     region: 'Oceania',
-    flag: '🇦🇺',
+    flags: {
+      png: 'https://flagcdn.com/w320/au.png',
+      svg: 'https://flagcdn.com/au.svg'
+    },
     population: 25687041
   },
   {
@@ -74,7 +83,10 @@ const mockedCountries: Country[] = [
     cca2: 'NZ',
     capital: ['Wellington'],
     region: 'Oceania',
-    flag: '🇳🇿',
+    flags: {
+      png: 'https://flagcdn.com/w320/nz.png',
+      svg: 'https://flagcdn.com/nz.svg'
+    },
     population: 5084300
   },
   {
@@ -91,7 +103,10 @@ const mockedCountries: Country[] = [
     cca2: 'JP',
     capital: ['Tokyo'],
     region: 'Asia',
-    flag: '🇯🇵',
+    flags: {
+      png: 'https://flagcdn.com/w320/jp.png',
+      svg: 'https://flagcdn.com/jp.svg'
+    },
     population: 125836021
   },
   {
@@ -112,7 +127,10 @@ const mockedCountries: Country[] = [
     cca2: 'PH',
     capital: ['Manila'],
     region: 'Asia',
-    flag: '🇵🇭',
+    flags: {
+      png: 'https://flagcdn.com/w320/ph.png',
+      svg: 'https://flagcdn.com/ph.svg'
+    },
     population: 109581085
   },
   {
@@ -141,7 +159,10 @@ const mockedCountries: Country[] = [
     cca2: 'SG',
     capital: ['Singapore'],
     region: 'Asia',
-    flag: '🇸🇬',
+    flags: {
+      png: 'https://flagcdn.com/w320/sg.png',
+      svg: 'https://flagcdn.com/sg.svg'
+    },
     population: 5685807
   },
   {
@@ -162,7 +183,10 @@ const mockedCountries: Country[] = [
     cca2: 'MA',
     capital: ['Rabat'],
     region: 'Africa',
-    flag: '🇲🇦',
+    flags: {
+      png: 'https://flagcdn.com/w320/ma.png',
+      svg: 'https://flagcdn.com/ma.svg'
+    },
     population: 36910558
   }
 ]

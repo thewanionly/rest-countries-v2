@@ -29,7 +29,7 @@ export type Country = {
   cca2: string
   capital: string[]
   region: string
-  flag: string
+  flags: { [key: string]: string }
   population: number
 }
 
