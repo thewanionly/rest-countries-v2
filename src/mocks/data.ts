@@ -178,7 +178,7 @@ const mockedRegions: Region[] = [
     region: 'Europe'
   },
   {
-    region: 'Americas'
+    region: 'Oceania'
   }
 ]
 

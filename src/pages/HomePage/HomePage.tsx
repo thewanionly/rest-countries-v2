@@ -23,10 +23,12 @@ const HomePage = () => {
     ? Array.from(new Set(regionData.map(({ region }) => region)))
     : regionData
   const regionOptions =
-    regions?.map((region) => ({
-      label: region,
-      value: region.toLowerCase()
-    })) || []
+    regions
+      ?.sort((region1, region2) => region1.localeCompare(region2))
+      .map((region) => ({
+        label: region,
+        value: region.toLowerCase()
+      })) || []
 
   useEffect(() => {
     let placeholder = DEFAULT_FILTER_DROPDOWN_PLACEHOLDER
