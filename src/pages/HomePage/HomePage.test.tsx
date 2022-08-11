@@ -160,7 +160,7 @@ describe('Home Page', () => {
       const searchBar = screen.getByPlaceholderText('Search for a country...')
       userEvent.type(searchBar, 'Philippines')
 
-      const countries = screen.getAllByTestId('country-card')
+      const countries = screen.getAllByTestId('country-card-name')
       expect(countries.length).toBe(1)
       expect(countries[0].textContent).toBe('Philippines')
     })
@@ -172,7 +172,7 @@ describe('Home Page', () => {
       const searchBar = screen.getByPlaceholderText('Search for a country...')
       userEvent.type(searchBar, 'Phil')
 
-      const countries = screen.getAllByTestId('country-card')
+      const countries = screen.getAllByTestId('country-card-name')
       expect(countries.length).toBe(1)
       expect(countries[0].textContent).toBe('Philippines')
     })
@@ -200,7 +200,7 @@ describe('Home Page', () => {
       userEvent.click(screen.getAllByTestId('dropdown-menu-item')[0])
       expect(screen.getByTestId('dropdown-toggle').textContent).toBe('Africa')
 
-      const countries = screen.getAllByTestId('country-card')
+      const countries = screen.getAllByTestId('country-card-name')
       expect(countries.length).toBe(1)
       expect(countries[0].textContent).toBe('Morocco')
     })
@@ -234,7 +234,7 @@ describe('Home Page', () => {
       userEvent.type(searchBar, searchTerm)
 
       const filteredCountries1 = filterCountries(mockedCountries, searchTerm, '')
-      const countries1 = screen.getAllByTestId('country-card')
+      const countries1 = screen.getAllByTestId('country-card-name')
       expect(countries1.length).toBe(filteredCountries1.length)
       expect(countries1[0].textContent).toBe(filteredCountries1[0].name.common)
 
@@ -244,7 +244,7 @@ describe('Home Page', () => {
       expect(screen.getByTestId('dropdown-toggle').textContent).toBe(filterValue)
 
       const filteredCountries2 = filterCountries(mockedCountries, searchTerm, filterValue)
-      const countries2 = screen.getAllByTestId('country-card')
+      const countries2 = screen.getAllByTestId('country-card-name')
       expect(countries2.length).toBe(filteredCountries2.length)
       expect(countries2[0].textContent).toBe(filteredCountries2[0].name.common)
     })
@@ -261,7 +261,7 @@ describe('Home Page', () => {
       userEvent.type(searchBar, searchTerm)
 
       const filteredCountries1 = filterCountries(mockedCountries, searchTerm, '')
-      const countries1 = screen.getAllByTestId('country-card')
+      const countries1 = screen.getAllByTestId('country-card-name')
       expect(countries1.length).toBe(filteredCountries1.length)
       expect(countries1[0].textContent).toBe(filteredCountries1[0].name.common)
 
@@ -288,7 +288,7 @@ describe('Home Page', () => {
       expect(screen.getByTestId('dropdown-toggle').textContent).toBe(filterValue)
 
       const filteredCountries1 = filterCountries(mockedCountries, '', filterValue)
-      const countries1 = screen.getAllByTestId('country-card')
+      const countries1 = screen.getAllByTestId('country-card-name')
       expect(countries1.length).toBe(filteredCountries1.length)
       expect(countries1[0].textContent).toBe(filteredCountries1[0].name.common)
 
@@ -296,7 +296,7 @@ describe('Home Page', () => {
       userEvent.type(searchBar, searchTerm)
 
       const filteredCountries2 = filterCountries(mockedCountries, searchTerm, filterValue)
-      const countries2 = screen.getAllByTestId('country-card')
+      const countries2 = screen.getAllByTestId('country-card-name')
       expect(countries2.length).toBe(filteredCountries2.length)
       expect(countries2[0].textContent).toBe(filteredCountries2[0].name.common)
     })
@@ -315,7 +315,7 @@ describe('Home Page', () => {
       expect(screen.getByTestId('dropdown-toggle').textContent).toBe(filterValue)
 
       const filteredCountries1 = filterCountries(mockedCountries, '', filterValue)
-      const countries1 = screen.getAllByTestId('country-card')
+      const countries1 = screen.getAllByTestId('country-card-name')
       expect(countries1.length).toBe(filteredCountries1.length)
       expect(countries1[0].textContent).toBe(filteredCountries1[0].name.common)
 

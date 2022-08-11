@@ -31,7 +31,16 @@ const CountryList = memo(() => {
           )
           .sort((country1, country2) => country1.name.common.localeCompare(country2.name.common))
           .slice(0, PAGE_LIMIT)
-          .map((country) => <CountryCard key={country.cca2} name={country.name.common} />)
+          .map((country) => (
+            <CountryCard
+              key={country.cca2}
+              flag={country.flag}
+              name={country.name.common}
+              population={country.population}
+              region={country.region}
+              capital={country.capital}
+            />
+          ))
       )}
     </div>
   )
