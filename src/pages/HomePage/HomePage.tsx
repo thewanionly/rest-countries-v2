@@ -13,8 +13,10 @@ import './HomePage.style.scss'
 const DEFAULT_FILTER_DROPDOWN_PLACEHOLDER = 'Filter by Region'
 
 const HomePage = () => {
-  const { searchTerm, handleSearchTerm, handleFilterValue } = useContext(StoreContext)
+  const { searchTerm, filterValue, handleSearchTerm, handleFilterValue } = useContext(StoreContext)
   const [regionData, isLoadingRegion, errorRegion] = useResource(RESOURCES.REGIONS)
+  const [countries = [], isLoadingCountries, errorCountries] = useResource(RESOURCES.COUNTRIES)
+
   const [filterDropdownPlaceholder, setFilterDropdownPlaceholder] = useState(
     DEFAULT_FILTER_DROPDOWN_PLACEHOLDER
   )
@@ -29,6 +31,14 @@ const HomePage = () => {
         label: region,
         value: region.toLowerCase()
       })) || []
+
+  const filteredCountries = countries
+    ?.filter(
+      (country) =>
+        (!searchTerm || country.name.common.toLowerCase().includes(searchTerm.toLowerCase())) &&
+        (!filterValue || country.region.toLowerCase() === filterValue.toLowerCase())
+    )
+    .sort((country1, country2) => country1.name.common.localeCompare(country2.name.common))
 
   useEffect(() => {
     let placeholder = DEFAULT_FILTER_DROPDOWN_PLACEHOLDER
@@ -63,7 +73,11 @@ const HomePage = () => {
           />
         </div>
         <div className='home-page__country-list' data-testid='country-list'>
-          <CountryList />
+          <CountryList
+            data={filteredCountries}
+            isLoading={isLoadingCountries}
+            error={errorCountries}
+          />
         </div>
       </div>
     </div>

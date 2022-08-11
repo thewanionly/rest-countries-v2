@@ -5,10 +5,15 @@ import { fetchAllCountriesEmpty, fetchAllCountriesError } from '../../mocks/hand
 import { server } from '../../mocks/server'
 import { PAGE_LIMIT } from '../../utilities/constants'
 
-import CountryList from './CountryList'
+import StoreProvider from '../../store/StoreProvider'
+import HomePage from '../../pages/HomePage'
 
 const setup = () => {
-  render(<CountryList />)
+  render(
+    <StoreProvider>
+      <HomePage />
+    </StoreProvider>
+  )
 }
 
 describe('Country List', () => {
