@@ -1,5 +1,14 @@
 import React from 'react'
-import { FaChevronDown, FaChevronUp, FaMoon, FaRegMoon, FaSearch, FaTimes } from 'react-icons/fa'
+import {
+  FaChevronDown,
+  FaChevronLeft,
+  FaChevronRight,
+  FaChevronUp,
+  FaMoon,
+  FaRegMoon,
+  FaSearch,
+  FaTimes
+} from 'react-icons/fa'
 import './Icon.style.scss'
 
 export type IconProps = {
@@ -11,6 +20,8 @@ export type IconProps = {
 // Icon name to component mapping
 const IconMap = {
   chevron_down: FaChevronDown,
+  chevron_left: FaChevronLeft,
+  chevron_right: FaChevronRight,
   chevron_up: FaChevronUp,
   moon_fill: FaMoon,
   moon_outline: FaRegMoon,
