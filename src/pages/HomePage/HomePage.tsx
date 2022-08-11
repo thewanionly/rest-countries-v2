@@ -46,7 +46,7 @@ const HomePage = () => {
 
   return (
     <div className='home-page' data-testid='home-page'>
-      <div className='container home-page__container'>
+      <div className='container'>
         <div className='home-page__top-area'>
           <SearchBar
             className='home-page__search-bar'

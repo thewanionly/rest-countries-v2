@@ -8,14 +8,57 @@
   background-color: var(--bg-color-secondary);
   overflow: hidden;
 
+  &__image-container {
+    height: 16rem;
+    background-color: var(--bg-color-primary);
+  }
+
   &__image {
-    height: 20rem;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   &__details {
-    padding: 3rem;
+    padding: 2.5rem;
+    height: calc(100% - 16rem);
+  }
+
+  &__name {
+    font-weight: var(--font-weight-extrabold);
+    line-height: 2.6rem;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__description {
+    &-list {
+      margin-top: 2rem;
+    }
+
+    &-item {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      &:not(:last-of-type) {
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    &-label {
+      font-weight: var(--font-weight-semibold);
+    }
   }
 }
 
 .country-card-skeleton {
+  &__text--50 {
+    width: 50%;
+  }
+  &__text--80 {
+    width: 80%;
+  }
 }
