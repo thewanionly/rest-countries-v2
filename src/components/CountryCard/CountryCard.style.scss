@@ -7,6 +7,7 @@
   box-shadow: var(--box-shadow-component);
   background-color: var(--bg-color-secondary);
   overflow: hidden;
+  transition: all 0.2s;
 
   &__image-container {
     height: 16rem;
@@ -50,6 +51,15 @@
 
     &-label {
       font-weight: var(--font-weight-semibold);
+    }
+  }
+
+  &--clickable {
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-0.5rem);
+      box-shadow: var(--box-shadow-component-hover);
     }
   }
 }

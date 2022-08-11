@@ -4,17 +4,20 @@ import '@testing-library/jest-dom'
 import { mockedCountries } from '../../mocks/data'
 import CountryCard from './CountryCard'
 import { formatNumber } from '../../utilities/helpers'
+import userEvent from '@testing-library/user-event'
 
-const { name, flags, population, region, capital } = mockedCountries[0]
+const { cca2, name, flags, population, region, capital } = mockedCountries[0]
 
-const setup = () => {
+const setup = (onClick?: (countryCode: string) => void) => {
   render(
     <CountryCard
+      code={cca2}
       name={name.common}
       flag={flags.svg}
       population={population}
       region={region}
       capital={capital}
+      onClick={onClick}
     />
   )
 }
@@ -59,9 +62,13 @@ describe('Country Card', () => {
   })
 
   describe('Interactions', () => {
-    xit('calls the onClick function when clicked', async () => {
-      // render(<CountryCard.Skeleton />)
-      // expect(screen.getByTestId('country-card-skeleton')).toBeInTheDocument()
+    it('calls the onClick function when clicked', async () => {
+      const handleCountryCardClick = jest.fn()
+      setup(handleCountryCardClick)
+
+      userEvent.click(screen.getByTestId('country-card'))
+
+      expect(handleCountryCardClick).toHaveBeenCalledWith(cca2)
     })
   })
 })

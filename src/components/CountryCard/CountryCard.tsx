@@ -3,21 +3,25 @@ import Skeleton from '../Skeleton'
 import './CountryCard.style.scss'
 
 type CountryCardProps = {
+  code?: string
   flag?: string
   name?: string
   population?: number
   region?: string
   capital?: string[]
   isLoading?: boolean
+  onClick?: (countryCode: string) => void
 }
 
 const CountryCard = ({
+  code,
   name,
   flag,
   population,
   region,
   capital,
-  isLoading = false
+  isLoading = false,
+  onClick
 }: CountryCardProps) => {
   const descriptionList = Object.entries({
     population: population ? formatNumber(population) : '',
@@ -25,10 +29,17 @@ const CountryCard = ({
     capital: capital?.join(', ')
   })
 
+  const handleCardClick = () => {
+    onClick && code && onClick(code)
+  }
+
   return (
     <div
       data-testid={!isLoading ? 'country-card' : 'country-card-skeleton'}
-      className={`country-card ${isLoading ? 'country-card-skeleton' : ''}`}
+      className={`country-card ${isLoading ? 'country-card-skeleton' : ''} ${
+        onClick ? 'country-card--clickable' : ''
+      }`}
+      onClick={onClick && handleCardClick}
     >
       <div className='country-card__image-container'>
         {!isLoading ? (

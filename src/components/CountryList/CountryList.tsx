@@ -14,6 +14,10 @@ type CountryListProps = {
 const DUMMY_COUNTRIES: undefined[] = [...new Array(PAGE_LIMIT)]
 
 const CountryList = memo(({ isLoading = false, error, data }: CountryListProps) => {
+  const handleViewCountryDetail = (code: string) => {
+    console.log('view country', code)
+  }
+
   return (
     <div className='country-list'>
       {isLoading ? (
@@ -28,11 +32,13 @@ const CountryList = memo(({ isLoading = false, error, data }: CountryListProps) 
           .map(({ cca2, flags, name, population, region, capital }) => (
             <CountryCard
               key={cca2}
+              code={cca2}
               flag={flags.svg}
               name={name.common}
               population={population}
               region={region}
               capital={capital}
+              onClick={handleViewCountryDetail}
             />
           ))
       )}
