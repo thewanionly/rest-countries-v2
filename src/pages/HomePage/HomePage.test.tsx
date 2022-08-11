@@ -144,11 +144,28 @@ describe('Home Page', () => {
       })
     })
 
-    it('has the countries list component', () => {
+    xit('has the countries list component', () => {
       setup()
 
-      const CountryList = screen.getByTestId('country-list')
-      expect(CountryList).toBeInTheDocument()
+      const countryList = screen.getByTestId('country-list')
+      expect(countryList).toBeInTheDocument()
+    })
+
+    xit('displays the pagination area when countries length is more than 8', async () => {
+      setup()
+      await screen.findAllByTestId('country-card')
+
+      expect(screen.getByTestId('pagination')).toBeInTheDocument()
+    })
+
+    it('does not display the pagination area when countries length is less than or equal to 8', async () => {
+      setup()
+      await screen.findAllByTestId('country-card')
+
+      const searchBar = screen.getByPlaceholderText('Search for a country...')
+      userEvent.type(searchBar, 'Philippines')
+
+      expect(screen.queryByTestId('pagination')).not.toBeInTheDocument()
     })
   })
 
@@ -336,5 +353,32 @@ describe('Home Page', () => {
       const filteredCountries2 = filterCountries(mockedCountries, searchTerm, filterValue)
       expect(screen.queryAllByTestId('country-card').length).toBe(filteredCountries2.length)
     })
+  })
+
+  describe('Pagination', () => {
+    xit('displays the next page icon in first page', () => {
+      setup()
+      // const nextPageIcon = screen.getByTestId('icon-chevron_right')
+
+      // expect(nextPageIcon).toBeInTheDocument()
+    })
+
+    xit('displays the next page after clicking the next page icon', () => {})
+
+    xit('disables the next page icon at last page', () => {})
+
+    xit('disables the previous page icon in first page', () => {})
+
+    xit('displays the previous page icon in second page', () => {})
+
+    xit('displays the previous page after clicking the previous page icon', () => {})
+
+    xit('displays current page after clicking the next and previous icons', () => {})
+
+    xit('updates pagination button after searching', () => {})
+
+    xit('updates pagination button after filtering by region', () => {})
+
+    xit('updates pagination button after searching and filtering by region', () => {})
   })
 })
