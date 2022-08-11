@@ -177,7 +177,18 @@ describe('Home Page', () => {
       expect(countries[0].textContent).toBe('Philippines')
     })
 
-    it('shows the first 10 countries after clearing search term', async () => {
+    it(`shows empty section when searching a text that does not match nor a susbtring of any country's name`, async () => {
+      setup()
+      await screen.findAllByTestId('country-card')
+
+      const searchBar = screen.getByPlaceholderText('Search for a country...')
+      userEvent.type(searchBar, 'asd')
+
+      expect(screen.queryAllByTestId('country-card-name').length).toBe(0)
+      expect(screen.getByTestId('empty-section')).toBeInTheDocument()
+    })
+
+    it('shows the first 8 countries after clearing search term', async () => {
       setup()
       await screen.findAllByTestId('country-card')
 
