@@ -5,11 +5,13 @@ import userEvent from '@testing-library/user-event'
 import { server } from '../../mocks/server'
 import { fetchCountryDetail, fetchCountryDetailsError } from '../../mocks/handlers'
 
-import DetailPage from './DetailPage'
+import App from '../../layout/App'
 
-const setup = () => {
-  server.use(fetchCountryDetail())
-  render(<DetailPage />)
+const setup = (isError?: boolean) => {
+  window.history.pushState({}, '', '/us')
+  server.use(!isError ? fetchCountryDetail() : fetchCountryDetailsError())
+
+  render(<App />)
 }
 
 describe('Detail Page', () => {
@@ -34,8 +36,8 @@ describe('Detail Page', () => {
 
     xit('displays error message when error occurs when fetching the country detail', async () => {
       const message = 'Error fetching (Bad Request)'
-      server.use(fetchCountryDetailsError())
-      render(<DetailPage />)
+
+      setup(true)
 
       expect(await screen.findByTestId('error-section')).toBeInTheDocument()
       expect(await screen.findByText(message)).toBeInTheDocument()
@@ -43,7 +45,7 @@ describe('Detail Page', () => {
   })
 
   describe('Interactions', () => {
-    xit('displays the Home Page after clicking Back button', async () => {
+    it('displays the Home Page after clicking Back button', async () => {
       setup()
 
       userEvent.click(screen.getByRole('button', { name: 'Back' }))
