@@ -1,17 +1,15 @@
 import { render, screen } from '../../mocks/setup'
 import '@testing-library/jest-dom'
-import userEvent from '@testing-library/user-event'
 
 import { server } from '../../mocks/server'
 import { fetchCountryDetail, fetchCountryDetailsError } from '../../mocks/handlers'
 
-import App from '../../layout/App'
+import DetailPage from './DetailPage'
 
 const setup = (isError?: boolean) => {
-  window.history.pushState({}, '', '/us')
   server.use(!isError ? fetchCountryDetail() : fetchCountryDetailsError())
 
-  render(<App />)
+  render(<DetailPage />)
 }
 
 describe('Detail Page', () => {
@@ -41,15 +39,6 @@ describe('Detail Page', () => {
 
       expect(await screen.findByTestId('error-section')).toBeInTheDocument()
       expect(await screen.findByText(message)).toBeInTheDocument()
-    })
-  })
-
-  describe('Interactions', () => {
-    it('displays the Home Page after clicking Back button', async () => {
-      setup()
-
-      userEvent.click(screen.getByRole('button', { name: 'Back' }))
-      expect(await screen.findByTestId('home-page')).toBeInTheDocument()
     })
   })
 })

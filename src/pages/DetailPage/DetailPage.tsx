@@ -12,7 +12,7 @@ const DetailPage = () => {
   }
 
   return (
-    <div className='detail-page'>
+    <div className='detail-page' data-testid='detail-page'>
       <button onClick={handleBackClick}>Back</button>
       <CountryDetail />
     </div>

@@ -1,4 +1,5 @@
 import { memo } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { Country, PAGE_LIMIT } from '../../utilities/constants'
 
@@ -14,8 +15,10 @@ type CountryListProps = {
 const DUMMY_COUNTRIES: undefined[] = [...new Array(PAGE_LIMIT)]
 
 const CountryList = memo(({ isLoading = false, error, data }: CountryListProps) => {
+  const navigate = useNavigate()
+
   const handleViewCountryDetail = (code: string) => {
-    console.log('view country', code)
+    navigate(`/${code}`)
   }
 
   return (
