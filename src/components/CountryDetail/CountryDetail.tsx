@@ -1,4 +1,4 @@
-import { camelCaseToStandardFormat, formatNumber, titleCase } from '../../utilities/helpers'
+import { camelCaseToStandardFormat, formatNumber } from '../../utilities/helpers'
 import Skeleton from '../Skeleton'
 
 import './CountryDetail.style.scss'
