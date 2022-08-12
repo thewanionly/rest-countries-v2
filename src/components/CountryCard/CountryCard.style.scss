@@ -34,26 +34,6 @@
     text-overflow: ellipsis;
   }
 
-  &__description {
-    &-list {
-      margin-top: 2rem;
-    }
-
-    &-item {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      &:not(:last-of-type) {
-        margin-bottom: 0.5rem;
-      }
-    }
-
-    &-label {
-      font-weight: var(--font-weight-semibold);
-    }
-  }
-
   &--clickable {
     cursor: pointer;
 

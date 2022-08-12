@@ -1,8 +1,8 @@
 // src/mocks/handlers.js
 import { rest } from 'msw'
 
-import { COUNTRIES_ALL } from '../utilities/constants'
-import { mockedCountries, mockedRegions } from './data'
+import { COUNTRIES_ALL, COUNTRIES_DETAIL } from '../utilities/constants'
+import { mockedCountries, mockedRegions, mockedCountryDetail } from './data'
 
 export const fetchAll = () => {
   return rest.get(`${COUNTRIES_ALL}`, (req, res, ctx) => {
@@ -11,6 +11,13 @@ export const fetchAll = () => {
     }
 
     return res(ctx.status(200), ctx.json(mockedCountries))
+  })
+}
+
+export const fetchCountryDetail = () => {
+  return rest.get(`${COUNTRIES_DETAIL}:code`, (req, res, ctx) => {
+    // const { code } = req.params
+    return res(ctx.status(200), ctx.json(mockedCountryDetail))
   })
 }
 
@@ -51,6 +58,13 @@ export const fetchAllRegionsEmpty = () => {
     }
 
     return res(ctx.status(200), ctx.json(mockedCountries))
+  })
+}
+
+export const fetchCountryDetailsError = () => {
+  return rest.get(`${COUNTRIES_DETAIL}:code`, (req, res, ctx) => {
+    // const { code } = req.params
+    return res(ctx.status(400), ctx.json({}))
   })
 }
 

@@ -1,4 +1,4 @@
-import { Country, Region } from '../utilities/constants'
+import { Country, CountryDetail, Region } from '../utilities/constants'
 
 const mockedCountries: Country[] = [
   {
@@ -206,4 +206,37 @@ const mockedRegions: Region[] = [
   }
 ]
 
-export { mockedCountries, mockedRegions }
+const mockedCountryDetail: CountryDetail = {
+  name: {
+    common: 'United States',
+    official: 'United States of America',
+    nativeName: {
+      eng: {
+        official: 'United States of America',
+        common: 'United States'
+      }
+    }
+  },
+  cca2: 'US',
+  capital: ['Washington, D.C.'],
+  region: 'Americas',
+  flags: {
+    png: 'https://flagcdn.com/w320/us.png',
+    svg: 'https://flagcdn.com/us.svg'
+  },
+  population: 329484123,
+  tld: ['.us'],
+  currencies: {
+    USD: {
+      name: 'United States dollar',
+      symbol: '$'
+    }
+  },
+  languages: {
+    eng: 'English'
+  },
+  borders: ['CAN', 'MEX'],
+  subregion: 'North America'
+}
+
+export { mockedCountries, mockedCountryDetail, mockedRegions }

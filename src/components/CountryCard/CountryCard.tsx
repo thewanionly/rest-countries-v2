@@ -59,14 +59,16 @@ const CountryCard = ({
         <h3 className='country-card__name' data-testid='country-card-name'>
           {!isLoading ? name : <Skeleton />}
         </h3>
-        <div className='country-card__description-list'>
+        <div className='description-list country-card__description-list'>
           {descriptionList.map(([label, value], index) => (
-            <div key={label} className='country-card__description-item'>
+            <div key={label} className='description-item country-card__description-item'>
               {!isLoading ? (
                 <>
-                  <span className='country-card__description-label'>{`${titleCase(label)}: `}</span>
+                  <span className='description-label country-card__description-label'>
+                    {titleCase(label)}
+                  </span>
                   <span
-                    className='country-card__description-value'
+                    className='description-value country-card__description-value'
                     data-testid='country-card-description-value'
                   >
                     {value}

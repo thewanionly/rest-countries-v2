@@ -1,4 +1,4 @@
-import { BASE_API, FIELDS_FILTER } from './base'
+import { BASE_API, COUNTRIES_ALL_FIELDS } from './base'
 
 export const RESOURCES = {
   COUNTRIES: 'countries',
@@ -7,7 +7,7 @@ export const RESOURCES = {
 } as const
 
 export const RESOURCE_ENDPOINTS = {
-  [RESOURCES.COUNTRIES]: `${BASE_API}all?fields=${FIELDS_FILTER}`,
+  [RESOURCES.COUNTRIES]: `${BASE_API}all?fields=${COUNTRIES_ALL_FIELDS}`,
   [RESOURCES.COUNTRY]: `${BASE_API}alpha/`,
   [RESOURCES.REGIONS]: `${BASE_API}all?fields=region`
 } as const
@@ -32,6 +32,15 @@ export type Country = {
   flags: { [key: string]: string }
   population: number
 }
+
+export type CountryDetail =
+  | Country & {
+      subregion: string
+      tld: string[]
+      currencies: { [key: string]: { name: string; symbol: string } }
+      languages: { [key: string]: string }
+      borders: string[]
+    }
 
 export type Region = {
   region: string
