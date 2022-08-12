@@ -1,19 +1,14 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen } from '../../mocks/setup'
 import '@testing-library/jest-dom'
 
 import { fetchAllCountriesEmpty, fetchAllCountriesError } from '../../mocks/handlers'
 import { server } from '../../mocks/server'
 import { PAGE_LIMIT } from '../../utilities/constants'
 
-import StoreProvider from '../../store/StoreProvider'
 import HomePage from '../../pages/HomePage'
 
 const setup = () => {
-  render(
-    <StoreProvider>
-      <HomePage />
-    </StoreProvider>
-  )
+  render(<HomePage />)
 }
 
 describe('Country List', () => {

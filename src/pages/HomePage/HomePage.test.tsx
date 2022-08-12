@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen } from '../../mocks/setup'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 
@@ -8,15 +8,10 @@ import { fetchAllRegionsError, fetchAllRegionsEmpty } from '../../mocks/handlers
 
 import { Country, PAGE_LIMIT } from '../../utilities/constants'
 
-import StoreProvider from '../../store/StoreProvider'
 import HomePage from './HomePage'
 
 const setup = () => {
-  render(
-    <StoreProvider>
-      <HomePage />
-    </StoreProvider>
-  )
+  render(<HomePage />)
 }
 
 const filterCountries = (
