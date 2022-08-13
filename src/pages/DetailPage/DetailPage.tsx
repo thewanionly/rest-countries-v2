@@ -3,6 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { RESOURCES } from '../../utilities/constants'
 import { useResource } from '../../utilities/hooks'
 
+import Button from '../../components/Button'
+import Icon from '../../components/Icon'
 import CountryDetail from '../../components/CountryDetail'
 
 import './DetailPage.style.scss'
@@ -34,9 +36,10 @@ const DetailPage = () => {
     <div className='detail-page' data-testid='detail-page'>
       <div className='container'>
         <div className='detail-page__top-area'>
-          <button className='detail-page__back-button' onClick={handleBackClick}>
+          <Button className='detail-page__back-button' onClick={handleBackClick}>
+            <Icon name='arrow_left' />
             Back
-          </button>
+          </Button>
         </div>
         <div className='detail-page__country-detail'>
           {isLoadingCountry ? (

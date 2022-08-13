@@ -1,6 +1,12 @@
 .detail-page {
   padding: 8rem 0;
 
+  &__back-button {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
   &__country-detail {
     margin-top: 7rem;
   }

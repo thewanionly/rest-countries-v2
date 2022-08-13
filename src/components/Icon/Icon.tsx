@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+  FaArrowLeft,
   FaChevronDown,
   FaChevronLeft,
   FaChevronRight,
@@ -19,6 +20,7 @@ export type IconProps = {
 
 // Icon name to component mapping
 const IconMap = {
+  arrow_left: FaArrowLeft,
   chevron_down: FaChevronDown,
   chevron_left: FaChevronLeft,
   chevron_right: FaChevronRight,
