@@ -9,6 +9,7 @@ import './FilterDropdown.style.scss'
 type FilterDropdownProps = {
   className?: string
   placeholder?: string
+  value?: string
   onChange?: (value: string) => void
   menuItems: DropdownMenuItem[]
   isLoading?: boolean
@@ -17,6 +18,7 @@ type FilterDropdownProps = {
 const FilterDropdown = ({
   className = '',
   placeholder = '',
+  value,
   onChange: changeHandler,
   menuItems,
   isLoading = false
@@ -57,8 +59,8 @@ const FilterDropdown = ({
   )
 
   useEffect(() => {
-    setToggleLabel(placeholder)
-  }, [placeholder])
+    setToggleLabel((value && menuItems.find((item) => item.value === value)?.label) || placeholder)
+  }, [value, placeholder, menuItems])
 
   return (
     <Dropdown

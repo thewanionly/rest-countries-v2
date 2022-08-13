@@ -67,6 +67,7 @@ const HomePage = () => {
           <FilterDropdown
             className='home-page__filter-dropdown'
             placeholder={filterDropdownPlaceholder}
+            value={filterValue}
             onChange={handleFilterValue}
             menuItems={regionOptions}
             isLoading={isLoadingRegion}
