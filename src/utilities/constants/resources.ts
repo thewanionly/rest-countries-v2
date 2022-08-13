@@ -1,4 +1,4 @@
-import { BASE_API, COUNTRIES_ALL_FIELDS } from './base'
+import { BASE_API, COUNTRIES_ALL_FIELDS, COUNTRIES_DETAIL_FIELDS } from './base'
 
 export const RESOURCES = {
   COUNTRIES: 'countries',
@@ -8,7 +8,7 @@ export const RESOURCES = {
 
 export const RESOURCE_ENDPOINTS = {
   [RESOURCES.COUNTRIES]: `${BASE_API}all?fields=${COUNTRIES_ALL_FIELDS}`,
-  [RESOURCES.COUNTRY]: `${BASE_API}alpha/`,
+  [RESOURCES.COUNTRY]: `${BASE_API}alpha/:id?fields=${COUNTRIES_DETAIL_FIELDS}`,
   [RESOURCES.REGIONS]: `${BASE_API}all?fields=region`
 } as const
 

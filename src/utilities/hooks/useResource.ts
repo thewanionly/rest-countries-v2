@@ -18,7 +18,9 @@ const getResourceSampleValue = <T extends keyof ResourceType>(resource: T): Reso
  */
 const useResource = <T extends keyof ResourceType>(resource: T, id?: string) => {
   const resourceSampleValue = getResourceSampleValue(resource)
-  const url = `${RESOURCE_ENDPOINTS[resource]}${id || ''}`
+
+  let url: string = RESOURCE_ENDPOINTS[resource]
+  if (id) url = url.replace(':id', id)
 
   return useFetchData<typeof resourceSampleValue>(url)
 }
