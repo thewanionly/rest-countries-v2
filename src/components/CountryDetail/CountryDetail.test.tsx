@@ -104,8 +104,8 @@ describe('Country Detail component', () => {
 
   it(`displays the country's borders`, () => {
     setup()
-    const borderCountries = screen.getAllByLabelText('Border Countries:')
-
+    const borderList = screen.getByTestId('border-list')
+    const borderCountries = borderList.childNodes
     borderCountries.forEach((borderCountry, index) => {
       expect(borderCountry.textContent).toBe(borderObj[index].name)
     })

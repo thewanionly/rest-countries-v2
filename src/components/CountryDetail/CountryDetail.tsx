@@ -1,4 +1,7 @@
+import { useNavigate } from 'react-router-dom'
+
 import { camelCaseToStandardFormat, formatNumber } from '../../utilities/helpers'
+import Button from '../Button'
 import Skeleton from '../Skeleton'
 
 import './CountryDetail.style.scss'
@@ -39,6 +42,12 @@ const CountryDetail = ({
   borders,
   isLoading = false
 }: CountryDetailProps) => {
+  const navigate = useNavigate()
+
+  const handleViewCountryDetail = (code: string) => {
+    navigate(`/${code.toLowerCase()}`)
+  }
+
   const primaryDescriptionList = Object.entries({
     nativeName: nativeName?.join(', '),
     population: population ? formatNumber(population) : '',
@@ -122,17 +131,16 @@ const CountryDetail = ({
               <Skeleton className='country-detail-skeleton__text--80' />
             )}
           </h3>
-          <div className='country-detail__border-list'>
+          <div className='country-detail__border-list' data-testid='border-list'>
             {!isLoading ? (
               borders && !!borders.length ? (
                 borders.map(({ cca2, name }) => (
-                  <span
-                    aria-labelledby='borders'
+                  <Button
                     key={cca2}
                     className='country-detail__border-value'
-                  >
-                    {name}
-                  </span>
+                    onClick={() => handleViewCountryDetail(cca2)}
+                    label={name}
+                  />
                 ))
               ) : (
                 <span aria-labelledby='borders' className='country-detail__border-value--empty'>
