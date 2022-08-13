@@ -13,8 +13,16 @@ const DetailPage = () => {
 
   return (
     <div className='detail-page' data-testid='detail-page'>
-      <button onClick={handleBackClick}>Back</button>
-      <CountryDetail />
+      <div className='container'>
+        <div className='detail-page__top-area'>
+          <button className='detail-page__back-button' onClick={handleBackClick}>
+            Back
+          </button>
+        </div>
+        <div className='detail-page__country-detail'>
+          <CountryDetail />
+        </div>
+      </div>
     </div>
   )
 }
