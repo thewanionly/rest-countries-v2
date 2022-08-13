@@ -61,7 +61,10 @@ const CountryCard = ({
         </h3>
         <div className='description-list country-card__description-list'>
           {descriptionList.map(([label, value], index) => (
-            <div key={label} className='description-item country-card__description-item'>
+            <div
+              key={label}
+              className='description-item description-item--ellipsis country-card__description-item'
+            >
               {!isLoading ? (
                 <>
                   <span className='description-label country-card__description-label'>

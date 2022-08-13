@@ -6,9 +6,12 @@
 
 .description {
   &-item {
-    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+
+    &--ellipsis {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
 
     &:not(:last-of-type) {
       margin-bottom: 0.5rem;
