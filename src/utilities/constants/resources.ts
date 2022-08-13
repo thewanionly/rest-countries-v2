@@ -48,6 +48,6 @@ export type Region = {
 
 export type ResourceType = {
   [RESOURCES.COUNTRIES]: Country[]
-  [RESOURCES.COUNTRY]: Country
+  [RESOURCES.COUNTRY]: CountryDetail
   [RESOURCES.REGIONS]: Region[]
 }

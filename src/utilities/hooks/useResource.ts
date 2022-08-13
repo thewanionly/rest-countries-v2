@@ -1,11 +1,11 @@
 import useFetchData from './useFetchData'
 
 import { RESOURCES, RESOURCE_ENDPOINTS, ResourceType } from '../constants'
-import { mockedCountries, mockedRegions } from '../../mocks/data'
+import { mockedCountries, mockedCountryDetail, mockedRegions } from '../../mocks/data'
 
 const RESOURCE_SAMPLE_VALUES = {
   [RESOURCES.COUNTRIES]: mockedCountries,
-  [RESOURCES.COUNTRY]: mockedCountries[0],
+  [RESOURCES.COUNTRY]: mockedCountryDetail,
   [RESOURCES.REGIONS]: mockedRegions
 }
 
@@ -16,10 +16,11 @@ const getResourceSampleValue = <T extends keyof ResourceType>(resource: T): Reso
 /**
  * Fetches the indicated resource through useFetchData
  */
-const useResource = <T extends keyof ResourceType>(resource: T) => {
+const useResource = <T extends keyof ResourceType>(resource: T, id?: string) => {
   const resourceSampleValue = getResourceSampleValue(resource)
+  const url = `${RESOURCE_ENDPOINTS[resource]}${id || ''}`
 
-  return useFetchData<typeof resourceSampleValue>(RESOURCE_ENDPOINTS[resource])
+  return useFetchData<typeof resourceSampleValue>(url)
 }
 
 export default useResource

@@ -4,12 +4,12 @@ import '@testing-library/jest-dom'
 import { server } from '../../mocks/server'
 import { fetchCountryDetail, fetchCountryDetailsError } from '../../mocks/handlers'
 
-import DetailPage from './DetailPage'
+import App from '../../layout/App'
 
 const setup = (isError?: boolean) => {
   server.use(!isError ? fetchCountryDetail() : fetchCountryDetailsError())
-
-  render(<DetailPage />)
+  window.history.pushState({}, '', !isError ? '/us' : '/zz')
+  render(<App />)
 }
 
 describe('Detail Page', () => {
@@ -24,15 +24,15 @@ describe('Detail Page', () => {
       expect(await screen.findByTestId('country-detail')).toBeInTheDocument()
     })
 
-    xit('displays skeleton loading in the country detail when the api call is still in progress', async () => {
+    it('displays skeleton loading in the country detail when the api call is still in progress', async () => {
       setup()
 
-      expect(screen.getAllByTestId('country-detail-skeleton')).toBeInTheDocument()
+      expect(screen.getByTestId('country-detail-skeleton')).toBeInTheDocument()
       await screen.findByTestId('country-detail')
-      expect(screen.queryAllByTestId('country-card-skeleton')).not.toBeInTheDocument()
+      expect(screen.queryByTestId('country-card-skeleton')).not.toBeInTheDocument()
     })
 
-    xit('displays error message when error occurs when fetching the country detail', async () => {
+    it('displays error message when error occurs when fetching the country detail', async () => {
       const message = 'Error fetching (Bad Request)'
 
       setup(true)

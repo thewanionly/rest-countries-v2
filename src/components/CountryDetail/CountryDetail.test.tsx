@@ -4,6 +4,7 @@ import '@testing-library/jest-dom'
 import { mockedCountryDetail } from '../../mocks/data'
 import CountryDetail from './CountryDetail'
 import { formatNumber } from '../../utilities/helpers'
+import { getNativeNames } from '../../pages/DetailPage/DetailPage'
 
 const {
   cca2,
@@ -36,18 +37,6 @@ const setup = () => {
       borders={borders}
     />
   )
-}
-
-const getNativeNames = (
-  nativeName: {
-    [key: string]: {
-      common: string
-      official: string
-    }
-  },
-  languages: { [key: string]: string }
-): string[] => {
-  return Object.keys(languages).map((language) => nativeName[language].common)
 }
 
 describe('Detail Page', () => {

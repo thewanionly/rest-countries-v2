@@ -68,7 +68,4 @@ export const fetchCountryDetailsError = () => {
   })
 }
 
-export const handlers = [fetchAll()]
-
-//  // Handles a GET `{COUNTRIES_DETAIL}{cca2}`
-//  rest.get(`${COUNTRIES_DETAIL}:cca2`, null),
+export const handlers = [fetchAll(), fetchCountryDetail()]
