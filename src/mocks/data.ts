@@ -13,6 +13,7 @@ const mockedCountries: Country[] = [
       }
     },
     cca2: 'US',
+    cca3: 'USA',
     capital: ['Washington, D.C.'],
     region: 'Americas',
     flags: {
@@ -33,6 +34,7 @@ const mockedCountries: Country[] = [
       }
     },
     cca2: 'GB',
+    cca3: 'GBR',
     capital: ['London'],
     region: 'Europe',
     flags: {
@@ -53,6 +55,7 @@ const mockedCountries: Country[] = [
       }
     },
     cca2: 'AU',
+    cca3: 'AUS',
     capital: ['Canberra'],
     region: 'Oceania',
     flags: {
@@ -81,6 +84,7 @@ const mockedCountries: Country[] = [
       }
     },
     cca2: 'NZ',
+    cca3: 'NZL',
     capital: ['Wellington'],
     region: 'Oceania',
     flags: {
@@ -101,6 +105,7 @@ const mockedCountries: Country[] = [
       }
     },
     cca2: 'JP',
+    cca3: 'JPN',
     capital: ['Tokyo'],
     region: 'Asia',
     flags: {
@@ -125,6 +130,7 @@ const mockedCountries: Country[] = [
       }
     },
     cca2: 'PH',
+    cca3: 'PHL',
     capital: ['Manila'],
     region: 'Asia',
     flags: {
@@ -157,6 +163,7 @@ const mockedCountries: Country[] = [
       }
     },
     cca2: 'SG',
+    cca3: 'SGP',
     capital: ['Singapore'],
     region: 'Asia',
     flags: {
@@ -181,6 +188,7 @@ const mockedCountries: Country[] = [
       }
     },
     cca2: 'MA',
+    cca3: 'MAR',
     capital: ['Rabat'],
     region: 'Africa',
     flags: {
@@ -188,6 +196,52 @@ const mockedCountries: Country[] = [
       svg: 'https://flagcdn.com/ma.svg'
     },
     population: 36910558
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/ca.png',
+      svg: 'https://flagcdn.com/ca.svg'
+    },
+    name: {
+      common: 'Canada',
+      official: 'Canada',
+      nativeName: {
+        eng: {
+          official: 'Canada',
+          common: 'Canada'
+        },
+        fra: {
+          official: 'Canada',
+          common: 'Canada'
+        }
+      }
+    },
+    cca2: 'CA',
+    cca3: 'CAN',
+    capital: ['Ottawa'],
+    region: 'Americas',
+    population: 38005238
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/mx.png',
+      svg: 'https://flagcdn.com/mx.svg'
+    },
+    name: {
+      common: 'Mexico',
+      official: 'United Mexican States',
+      nativeName: {
+        spa: {
+          official: 'Estados Unidos Mexicanos',
+          common: 'México'
+        }
+      }
+    },
+    cca2: 'MX',
+    cca3: 'MEX',
+    capital: ['Mexico City'],
+    region: 'Americas',
+    population: 128932753
   }
 ]
 
@@ -218,6 +272,7 @@ const mockedCountryDetail: CountryDetail = {
     }
   },
   cca2: 'US',
+  cca3: 'USA',
   capital: ['Washington, D.C.'],
   region: 'Americas',
   flags: {

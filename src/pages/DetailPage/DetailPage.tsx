@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { RESOURCES } from '../../utilities/constants'
+import { Country, RESOURCES } from '../../utilities/constants'
 import { useResource } from '../../utilities/hooks'
 
 import Button from '../../components/Button'
@@ -8,11 +8,13 @@ import Icon from '../../components/Icon'
 import CountryDetail from '../../components/CountryDetail'
 
 import './DetailPage.style.scss'
+import { BorderCountry } from '../../components/CountryDetail/CountryDetail'
 
 const DetailPage = () => {
   const { code } = useParams()
   const navigate = useNavigate()
   const [country, isLoadingCountry, errorCountry] = useResource(RESOURCES.COUNTRY, code)
+  const [countries = [], isLoadingCountries, errorCountries] = useResource(RESOURCES.COUNTRIES)
 
   const {
     cca2,
@@ -42,10 +44,10 @@ const DetailPage = () => {
           </Button>
         </div>
         <div className='detail-page__country-detail'>
-          {isLoadingCountry ? (
+          {isLoadingCountry || isLoadingCountries ? (
             <CountryDetail isLoading />
-          ) : errorCountry ? (
-            <div data-testid='error-section'>{errorCountry}</div>
+          ) : errorCountry || errorCountries ? (
+            <div data-testid='error-section'>{errorCountry || errorCountries}</div>
           ) : (
             <CountryDetail
               code={cca2}
@@ -62,7 +64,7 @@ const DetailPage = () => {
                 Object.values(currencies).map(({ name, symbol }) => `${name} (${symbol})`)
               }
               languages={languages && Object.values(languages)}
-              borders={borders}
+              borders={borders && getBorders(borders, countries)}
             />
           )}
         </div>
@@ -82,5 +84,12 @@ export const getNativeNames = (
 ): string[] => {
   return Object.keys(languages).map((language) => nativeName[language].common)
 }
+
+export const getBorders = (borders: string[], countries: Country[]): BorderCountry[] =>
+  borders.map((borderCode) => {
+    const { cca2, name } = countries.find(({ cca3 }) => borderCode === cca3) || {}
+
+    return { cca2: cca2 || '', name: name?.common || '' }
+  })
 
 export default DetailPage

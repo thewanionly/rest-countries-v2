@@ -200,7 +200,7 @@ describe('Home Page', () => {
       expect(screen.getByTestId('empty-section')).toBeInTheDocument()
     })
 
-    it('shows the first 8 countries after clearing search term', async () => {
+    it(`shows the first ${PAGE_LIMIT} countries after clearing search term`, async () => {
       setup()
       await screen.findAllByTestId('country-card')
 
@@ -211,7 +211,7 @@ describe('Home Page', () => {
 
       userEvent.click(screen.getByTestId('icon-close'))
 
-      expect(screen.getAllByTestId('country-card').length).toBe(mockedCountries.length)
+      expect(screen.getAllByTestId('country-card').length).toBe(PAGE_LIMIT)
     })
 
     it('can filter a country by region', async () => {
@@ -228,7 +228,7 @@ describe('Home Page', () => {
       expect(countries[0].textContent).toBe('Morocco')
     })
 
-    it('shows the first 10 countries after clearing filter value', async () => {
+    it(`shows the first ${PAGE_LIMIT} countries after clearing filter value`, async () => {
       setup()
       await screen.findAllByTestId('country-card')
       await screen.findByText('Filter by Region')
@@ -242,7 +242,7 @@ describe('Home Page', () => {
       expect(screen.getByTestId('dropdown-toggle').textContent).toBe('Filter by Region')
 
       const countries = screen.getAllByTestId('country-card')
-      expect(countries.length).toBe(mockedCountries.length)
+      expect(countries.length).toBe(PAGE_LIMIT)
     })
 
     it(`displays the target country after searching then choosing a region that matches the country's region`, async () => {

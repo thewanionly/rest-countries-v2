@@ -3,6 +3,11 @@ import Skeleton from '../Skeleton'
 
 import './CountryDetail.style.scss'
 
+export type BorderCountry = {
+  cca2: string
+  name: string
+}
+
 type CountryDetailProps = {
   code?: string
   flag?: string
@@ -15,7 +20,7 @@ type CountryDetailProps = {
   topLevelDomain?: string[]
   currencies?: string[]
   languages?: string[]
-  borders?: string[]
+  borders?: BorderCountry[]
   isLoading?: boolean
 }
 
@@ -120,13 +125,13 @@ const CountryDetail = ({
           <div className='country-detail__border-list'>
             {!isLoading ? (
               borders && !!borders.length ? (
-                borders.map((border) => (
+                borders.map(({ cca2, name }) => (
                   <span
                     aria-labelledby='borders'
-                    key={border}
+                    key={cca2}
                     className='country-detail__border-value'
                   >
-                    {border}
+                    {name}
                   </span>
                 ))
               ) : (

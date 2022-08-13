@@ -1,10 +1,10 @@
 import { render, screen } from '../../mocks/setup'
 import '@testing-library/jest-dom'
 
-import { mockedCountryDetail } from '../../mocks/data'
+import { mockedCountries, mockedCountryDetail } from '../../mocks/data'
 import CountryDetail from './CountryDetail'
 import { formatNumber } from '../../utilities/helpers'
-import { getNativeNames } from '../../pages/DetailPage/DetailPage'
+import { getBorders, getNativeNames } from '../../pages/DetailPage/DetailPage'
 
 const {
   cca2,
@@ -20,6 +20,8 @@ const {
   borders
 } = mockedCountryDetail
 
+const borderObj = borders && getBorders(borders, mockedCountries)
+
 const setup = () => {
   render(
     <CountryDetail
@@ -34,12 +36,12 @@ const setup = () => {
       topLevelDomain={tld}
       currencies={Object.values(currencies).map(({ name, symbol }) => `${name} (${symbol})`)}
       languages={Object.values(languages)}
-      borders={borders}
+      borders={borderObj}
     />
   )
 }
 
-describe('Detail Page', () => {
+describe('Country Detail component', () => {
   it('displays flag of the country', () => {
     setup()
     const countryFlagImg = screen.getByAltText(`${cca2} wide flag`)
@@ -100,12 +102,12 @@ describe('Detail Page', () => {
     )
   })
 
-  it(`displays the country's top borders`, () => {
+  it(`displays the country's borders`, () => {
     setup()
     const borderCountries = screen.getAllByLabelText('Border Countries:')
 
     borderCountries.forEach((borderCountry, index) => {
-      expect(borderCountry.textContent).toBe(borders[index])
+      expect(borderCountry.textContent).toBe(borderObj[index].name)
     })
   })
 
