@@ -57,12 +57,15 @@ const CountryDetail = ({
         {!isLoading ? (
           flag && <img className='country-detail__image' src={flag} alt={`${code} wide flag`} />
         ) : (
-          <Skeleton variant='rectangular' />
+          <Skeleton className='country-detail-skeleton__image' variant='rectangular' />
         )}
       </div>
       <div className='country-detail__primary-info'>
-        <h2 className='country-detail__name'> {!isLoading ? name : <Skeleton />}</h2>
-        <div className='description-list'>
+        <h2 className='country-detail__name'>
+          {' '}
+          {!isLoading ? name : <Skeleton className='country-detail-skeleton__text--80' />}
+        </h2>
+        <div className='country-detail__description-list description-list'>
           {primaryDescriptionList.map(([label, value], index) => (
             <div key={label} className='description-item'>
               {!isLoading ? (
@@ -76,14 +79,14 @@ const CountryDetail = ({
                 </>
               ) : (
                 <Skeleton
-                  className={`country-detail-skeleton__text--${index % 2 === 0 ? '80' : '50'}`}
+                  className={`country-detail-skeleton__text--${index % 2 === 0 ? '65' : '40'}`}
                 />
               )}
             </div>
           ))}
         </div>
       </div>
-      <div className='country-detail__other-info'>
+      <div className='country-detail__description-list country-detail__other-info'>
         {otherDescriptionList.map(([label, value], index) => (
           <div key={label} className='description-item'>
             {!isLoading ? (
@@ -97,27 +100,45 @@ const CountryDetail = ({
               </>
             ) : (
               <Skeleton
-                className={`country-detail-skeleton__text--${index % 2 === 0 ? '80' : '50'}`}
+                className={`country-detail-skeleton__text--${index % 2 === 0 ? '65' : '40'}`}
               />
             )}
           </div>
         ))}
       </div>
       <div className='country-detail__borders'>
-        <h4 className='country-detail__border-label' id='borders'>
-          Border Countries:
-        </h4>
-        {borders && !!borders.length ? (
-          borders.map((border) => (
-            <span aria-labelledby='borders' key={border} className='country-detail__border-value'>
-              {border}
-            </span>
-          ))
-        ) : (
-          <span aria-labelledby='borders' className='country-detail__border-value--empty'>
-            No border countries
-          </span>
-        )}
+        <h3 className='country-detail__border-label' id='borders'>
+          {!isLoading ? (
+            'Border Countries:'
+          ) : (
+            <Skeleton className='country-detail-skeleton__text--80' />
+          )}
+        </h3>
+        <div className='country-detail__border-list'>
+          {!isLoading ? (
+            borders && !!borders.length ? (
+              borders.map((border) => (
+                <span
+                  aria-labelledby='borders'
+                  key={border}
+                  className='country-detail__border-value'
+                >
+                  {border}
+                </span>
+              ))
+            ) : (
+              <span aria-labelledby='borders' className='country-detail__border-value--empty'>
+                No border countries
+              </span>
+            )
+          ) : (
+            <>
+              <Skeleton className='country-detail-skeleton__text--25' />
+              <Skeleton className='country-detail-skeleton__text--25' />
+              <Skeleton className='country-detail-skeleton__text--25' />
+            </>
+          )}
+        </div>
       </div>
     </div>
   )

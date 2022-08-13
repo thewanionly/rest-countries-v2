@@ -18,7 +18,7 @@ const CountryList = memo(({ isLoading = false, error, data }: CountryListProps) 
   const navigate = useNavigate()
 
   const handleViewCountryDetail = (code: string) => {
-    navigate(`/${code}`)
+    navigate(`/${code.toLowerCase()}`)
   }
 
   return (

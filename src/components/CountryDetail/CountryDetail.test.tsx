@@ -32,7 +32,7 @@ const setup = () => {
       subregion={subregion}
       capital={capital}
       topLevelDomain={tld}
-      currencies={Object.values(currencies).map(({ name, symbol }) => `${name} (${symbol}})`)}
+      currencies={Object.values(currencies).map(({ name, symbol }) => `${name} (${symbol})`)}
       languages={Object.values(languages)}
       borders={borders}
     />
@@ -88,7 +88,7 @@ describe('Detail Page', () => {
     setup()
     expect(screen.getByLabelText('Currencies').textContent).toBe(
       Object.values(currencies)
-        .map(({ name, symbol }) => `${name} (${symbol}})`)
+        .map(({ name, symbol }) => `${name} (${symbol})`)
         ?.join(', ')
     )
   })

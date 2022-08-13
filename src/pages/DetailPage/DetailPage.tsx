@@ -56,7 +56,7 @@ const DetailPage = () => {
               topLevelDomain={tld}
               currencies={
                 currencies &&
-                Object.values(currencies).map(({ name, symbol }) => `${name} (${symbol}})`)
+                Object.values(currencies).map(({ name, symbol }) => `${name} (${symbol})`)
               }
               languages={languages && Object.values(languages)}
               borders={borders}
