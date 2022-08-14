@@ -8,25 +8,17 @@ import { fetchAllRegionsError, fetchAllRegionsEmpty } from '../../mocks/handlers
 
 import { Country, INITIAL_ITEMS } from '../../utilities/constants'
 
-import HomePage from './HomePage'
+import HomePage, { filterCountries } from './HomePage'
 
 const setup = () => {
   render(<HomePage />)
 }
 
-const filterCountries = (
+const filterAndSliceCountries = (
   countries: Country[],
   searchTerm: string,
   filterValue: string
-): Country[] =>
-  countries
-    ?.filter(
-      (country) =>
-        (!searchTerm || country.name.common.toLowerCase().includes(searchTerm.toLowerCase())) &&
-        (!filterValue || country.region.toLowerCase() === filterValue.toLowerCase())
-    )
-    .sort((country1, country2) => country1.name.common.localeCompare(country2.name.common))
-    .slice(0, INITIAL_ITEMS)
+): Country[] => filterCountries(countries, searchTerm, filterValue).slice(0, INITIAL_ITEMS)
 
 beforeEach(() => {
   localStorage.clear()
@@ -261,7 +253,7 @@ describe('Home Page', () => {
       const searchBar = screen.getByPlaceholderText('Search for a country...')
       userEvent.type(searchBar, searchTerm)
 
-      const filteredCountries1 = filterCountries(mockedCountries, searchTerm, '')
+      const filteredCountries1 = filterAndSliceCountries(mockedCountries, searchTerm, '')
       const countries1 = screen.getAllByTestId('country-card-name')
       expect(countries1.length).toBe(filteredCountries1.length)
       expect(countries1[0].textContent).toBe(filteredCountries1[0].name.common)
@@ -271,7 +263,7 @@ describe('Home Page', () => {
       userEvent.click(screen.getAllByTestId('dropdown-menu-item')[1])
       expect(screen.getByTestId('dropdown-toggle').textContent).toBe(filterValue)
 
-      const filteredCountries2 = filterCountries(mockedCountries, searchTerm, filterValue)
+      const filteredCountries2 = filterAndSliceCountries(mockedCountries, searchTerm, filterValue)
       const countries2 = screen.getAllByTestId('country-card-name')
       expect(countries2.length).toBe(filteredCountries2.length)
       expect(countries2[0].textContent).toBe(filteredCountries2[0].name.common)
@@ -288,7 +280,7 @@ describe('Home Page', () => {
       const searchBar = screen.getByPlaceholderText('Search for a country...')
       userEvent.type(searchBar, searchTerm)
 
-      const filteredCountries1 = filterCountries(mockedCountries, searchTerm, '')
+      const filteredCountries1 = filterAndSliceCountries(mockedCountries, searchTerm, '')
       const countries1 = screen.getAllByTestId('country-card-name')
       expect(countries1.length).toBe(filteredCountries1.length)
       expect(countries1[0].textContent).toBe(filteredCountries1[0].name.common)
@@ -298,7 +290,7 @@ describe('Home Page', () => {
       userEvent.click(screen.getAllByTestId('dropdown-menu-item')[0])
       expect(screen.getByTestId('dropdown-toggle').textContent).toBe(filterValue)
 
-      const filteredCountries2 = filterCountries(mockedCountries, searchTerm, filterValue)
+      const filteredCountries2 = filterAndSliceCountries(mockedCountries, searchTerm, filterValue)
       expect(screen.queryAllByTestId('country-card').length).toBe(filteredCountries2.length)
     })
 
@@ -315,7 +307,7 @@ describe('Home Page', () => {
       userEvent.click(screen.getAllByTestId('dropdown-menu-item')[1])
       expect(screen.getByTestId('dropdown-toggle').textContent).toBe(filterValue)
 
-      const filteredCountries1 = filterCountries(mockedCountries, '', filterValue)
+      const filteredCountries1 = filterAndSliceCountries(mockedCountries, '', filterValue)
       const countries1 = screen.getAllByTestId('country-card-name')
       expect(countries1.length).toBe(filteredCountries1.length)
       expect(countries1[0].textContent).toBe(filteredCountries1[0].name.common)
@@ -323,7 +315,7 @@ describe('Home Page', () => {
       const searchBar = screen.getByPlaceholderText('Search for a country...')
       userEvent.type(searchBar, searchTerm)
 
-      const filteredCountries2 = filterCountries(mockedCountries, searchTerm, filterValue)
+      const filteredCountries2 = filterAndSliceCountries(mockedCountries, searchTerm, filterValue)
       const countries2 = screen.getAllByTestId('country-card-name')
       expect(countries2.length).toBe(filteredCountries2.length)
       expect(countries2[0].textContent).toBe(filteredCountries2[0].name.common)
@@ -342,7 +334,7 @@ describe('Home Page', () => {
       userEvent.click(screen.getAllByTestId('dropdown-menu-item')[1])
       expect(screen.getByTestId('dropdown-toggle').textContent).toBe(filterValue)
 
-      const filteredCountries1 = filterCountries(mockedCountries, '', filterValue)
+      const filteredCountries1 = filterAndSliceCountries(mockedCountries, '', filterValue)
       const countries1 = screen.getAllByTestId('country-card-name')
       expect(countries1.length).toBe(filteredCountries1.length)
       expect(countries1[0].textContent).toBe(filteredCountries1[0].name.common)
@@ -350,7 +342,7 @@ describe('Home Page', () => {
       const searchBar = screen.getByPlaceholderText('Search for a country...')
       userEvent.type(searchBar, searchTerm)
 
-      const filteredCountries2 = filterCountries(mockedCountries, searchTerm, filterValue)
+      const filteredCountries2 = filterAndSliceCountries(mockedCountries, searchTerm, filterValue)
       expect(screen.queryAllByTestId('country-card').length).toBe(filteredCountries2.length)
     })
   })

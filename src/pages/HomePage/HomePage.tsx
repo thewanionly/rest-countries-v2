@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 
-import { RESOURCES } from '../../utilities/constants'
+import { Country, RESOURCES } from '../../utilities/constants'
 import { useResource } from '../../utilities/hooks'
 
 import { StoreContext } from '../../store/StoreProvider'
@@ -32,13 +32,7 @@ const HomePage = () => {
         value: region.toLowerCase()
       })) || []
 
-  const filteredCountries = countries
-    ?.filter(
-      (country) =>
-        (!searchTerm || country.name.common.toLowerCase().includes(searchTerm.toLowerCase())) &&
-        (!filterValue || country.region.toLowerCase() === filterValue.toLowerCase())
-    )
-    .sort((country1, country2) => country1.name.common.localeCompare(country2.name.common))
+  const filteredCountries = filterCountries(countries, searchTerm, filterValue)
 
   useEffect(() => {
     let placeholder = DEFAULT_FILTER_DROPDOWN_PLACEHOLDER
@@ -84,5 +78,18 @@ const HomePage = () => {
     </div>
   )
 }
+
+export const filterCountries = (
+  countries: Country[],
+  searchTerm: string,
+  filterValue: string
+): Country[] =>
+  countries
+    ?.filter(
+      (country) =>
+        (!searchTerm || country.name.common.toLowerCase().includes(searchTerm.toLowerCase())) &&
+        (!filterValue || country.region.toLowerCase() === filterValue.toLowerCase())
+    )
+    .sort((country1, country2) => country1.name.common.localeCompare(country2.name.common))
 
 export default HomePage
