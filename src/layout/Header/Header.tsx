@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useDarkMode } from '../../utilities/hooks'
@@ -13,6 +14,14 @@ const Header = () => {
   const handleGoHome = () => {
     navigate('/')
   }
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode')
+    } else {
+      document.body.classList.remove('dark-mode')
+    }
+  }, [isDarkMode])
 
   return (
     <div className='header' data-testid='header'>

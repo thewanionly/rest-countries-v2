@@ -6,7 +6,6 @@
 
   --text-color-primary: #{$color-blue-darkest};
   --text-color-primary-hover: #{rgba($color-blue-darkest, 0.7)};
-  --text-color-secondary: #{$color-gray-dark};
 
   --box-shadow-header: #{0 2px 4px $color-black-fade-06};
   --box-shadow-component: #{0 2px 9px $color-black-fade-05};
@@ -17,8 +16,8 @@
   --search-bar-icons-color: #{$color-gray-dark};
   --search-bar-icons-color-hover: #{rgba($color-gray-dark, 0.7)};
 
-  --skeleton-loading-bg-color-start: #{$color-gray-lighter};
-  --skeleton-loading-bg-color-end: #{$color-gray-light};
+  --skeleton-loading-bg-color-start: #{$color-gray-light};
+  --skeleton-loading-bg-color-end: #{$color-gray};
 
   //Typography
   --font-family: #{$font-primary};
@@ -53,4 +52,17 @@ textarea {
   font-family: var(--font-family);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-light);
+}
+
+.dark-mode {
+  --bg-color-primary: #{$color-blue-darker};
+  --bg-color-secondary: #{$color-blue-dark};
+
+  --text-color-primary: #{$color-white};
+  --text-color-primary-hover: #{rgba($color-white, 0.7)};
+
+  --box-shadow-component-hover: #{0 2px 9px $color-gray-light-fade};
+
+  --skeleton-loading-bg-color-start: #{$color-gray-dark};
+  --skeleton-loading-bg-color-end: #{$color-gray};
 }
