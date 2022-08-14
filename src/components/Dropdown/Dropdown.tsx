@@ -115,7 +115,7 @@ const DropdownToggle = ({ className = '', label }: DropdownToggleProps) => {
 
   useEffect(() => {
     handleSetMenuTopValue?.(dropdownToggleRef.current?.['offsetHeight'] || 0)
-  }, [handleSetMenuTopValue, isLoading])
+  }, [isMenuOpen, handleSetMenuTopValue, isLoading])
 
   useClickOutside(dropdownToggleRef, handleCloseMenu)
 
