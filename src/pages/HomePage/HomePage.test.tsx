@@ -6,7 +6,7 @@ import { mockedCountries, mockedRegions } from '../../mocks/data'
 import { server } from '../../mocks/server'
 import { fetchAllRegionsError, fetchAllRegionsEmpty } from '../../mocks/handlers'
 
-import { Country, PAGE_LIMIT } from '../../utilities/constants'
+import { Country, INITIAL_ITEMS } from '../../utilities/constants'
 
 import HomePage from './HomePage'
 
@@ -26,7 +26,7 @@ const filterCountries = (
         (!filterValue || country.region.toLowerCase() === filterValue.toLowerCase())
     )
     .sort((country1, country2) => country1.name.common.localeCompare(country2.name.common))
-    .slice(0, PAGE_LIMIT)
+    .slice(0, INITIAL_ITEMS)
 
 beforeEach(() => {
   localStorage.clear()
@@ -204,7 +204,7 @@ describe('Home Page', () => {
       expect(screen.getByTestId('empty-section')).toBeInTheDocument()
     })
 
-    it(`shows the first ${PAGE_LIMIT} countries after clearing search term`, async () => {
+    it(`shows the first ${INITIAL_ITEMS} countries after clearing search term`, async () => {
       setup()
       await screen.findAllByTestId('country-card')
 
@@ -215,7 +215,7 @@ describe('Home Page', () => {
 
       userEvent.click(screen.getByTestId('icon-close'))
 
-      expect(screen.getAllByTestId('country-card').length).toBe(PAGE_LIMIT)
+      expect(screen.getAllByTestId('country-card').length).toBe(INITIAL_ITEMS)
     })
 
     it('can filter a country by region', async () => {
@@ -228,11 +228,12 @@ describe('Home Page', () => {
       expect(screen.getByTestId('dropdown-toggle').textContent).toBe('Africa')
 
       const countries = screen.getAllByTestId('country-card-name')
-      expect(countries.length).toBe(1)
-      expect(countries[0].textContent).toBe('Morocco')
+      expect(countries.length).toBe(
+        mockedCountries.filter(({ region }) => region === 'Africa')?.length || 0
+      )
     })
 
-    it(`shows the first ${PAGE_LIMIT} countries after clearing filter value`, async () => {
+    it(`shows the first ${INITIAL_ITEMS} countries after clearing filter value`, async () => {
       setup()
       await screen.findAllByTestId('country-card')
       await screen.findByText('Filter by Region')
@@ -246,7 +247,7 @@ describe('Home Page', () => {
       expect(screen.getByTestId('dropdown-toggle').textContent).toBe('Filter by Region')
 
       const countries = screen.getAllByTestId('country-card')
-      expect(countries.length).toBe(PAGE_LIMIT)
+      expect(countries.length).toBe(INITIAL_ITEMS)
     })
 
     it(`displays the target country after searching then choosing a region that matches the country's region`, async () => {

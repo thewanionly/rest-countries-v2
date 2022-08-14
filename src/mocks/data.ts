@@ -242,6 +242,316 @@ const mockedCountries: Country[] = [
     capital: ['Mexico City'],
     region: 'Americas',
     population: 128932753
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/fr.png',
+      svg: 'https://flagcdn.com/fr.svg'
+    },
+    name: {
+      common: 'France',
+      official: 'French Republic',
+      nativeName: {
+        fra: {
+          official: 'République française',
+          common: 'France'
+        }
+      }
+    },
+    cca2: 'FR',
+    cca3: 'FRA',
+    capital: ['Paris'],
+    region: 'Europe',
+    population: 67391582
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/cf.png',
+      svg: 'https://flagcdn.com/cf.svg'
+    },
+    name: {
+      common: 'Central African Republic',
+      official: 'Central African Republic',
+      nativeName: {
+        fra: {
+          official: 'République centrafricaine',
+          common: 'République centrafricaine'
+        },
+        sag: {
+          official: 'Ködörösêse tî Bêafrîka',
+          common: 'Bêafrîka'
+        }
+      }
+    },
+    cca2: 'CF',
+    cca3: 'CAF',
+    capital: ['Bangui'],
+    region: 'Africa',
+    population: 4829764
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/is.png',
+      svg: 'https://flagcdn.com/is.svg'
+    },
+    name: {
+      common: 'Iceland',
+      official: 'Iceland',
+      nativeName: {
+        isl: {
+          official: 'Ísland',
+          common: 'Ísland'
+        }
+      }
+    },
+    cca2: 'IS',
+    cca3: 'ISL',
+    capital: ['Reykjavik'],
+    region: 'Europe',
+    population: 366425
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/np.png',
+      svg: 'https://flagcdn.com/np.svg'
+    },
+    name: {
+      common: 'Nepal',
+      official: 'Federal Democratic Republic of Nepal',
+      nativeName: {
+        nep: {
+          official: 'नेपाल संघीय लोकतान्त्रिक गणतन्त्र',
+          common: 'नेपाल'
+        }
+      }
+    },
+    cca2: 'NP',
+    cca3: 'NPL',
+    capital: ['Kathmandu'],
+    region: 'Asia',
+    population: 29136808
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/gh.png',
+      svg: 'https://flagcdn.com/gh.svg'
+    },
+    name: {
+      common: 'Ghana',
+      official: 'Republic of Ghana',
+      nativeName: {
+        eng: {
+          official: 'Republic of Ghana',
+          common: 'Ghana'
+        }
+      }
+    },
+    cca2: 'GH',
+    cca3: 'GHA',
+    capital: ['Accra'],
+    region: 'Africa',
+    population: 31072945
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/iq.png',
+      svg: 'https://flagcdn.com/iq.svg'
+    },
+    name: {
+      common: 'Iraq',
+      official: 'Republic of Iraq',
+      nativeName: {
+        ara: {
+          official: 'جمهورية العراق',
+          common: 'العراق'
+        },
+        arc: {
+          official: 'ܩܘܼܛܢܵܐ ܐܝܼܪܲܩ',
+          common: 'ܩܘܼܛܢܵܐ'
+        },
+        ckb: {
+          official: 'کۆماری عێراق',
+          common: 'کۆماری'
+        }
+      }
+    },
+    cca2: 'IQ',
+    cca3: 'IRQ',
+    capital: ['Baghdad'],
+    region: 'Asia',
+    population: 40222503
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/th.png',
+      svg: 'https://flagcdn.com/th.svg'
+    },
+    name: {
+      common: 'Thailand',
+      official: 'Kingdom of Thailand',
+      nativeName: {
+        tha: {
+          official: 'ราชอาณาจักรไทย',
+          common: 'ประเทศไทย'
+        }
+      }
+    },
+    cca2: 'TH',
+    cca3: 'THA',
+    capital: ['Bangkok'],
+    region: 'Asia',
+    population: 69799978
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/dk.png',
+      svg: 'https://flagcdn.com/dk.svg'
+    },
+    name: {
+      common: 'Denmark',
+      official: 'Kingdom of Denmark',
+      nativeName: {
+        dan: {
+          official: 'Kongeriget Danmark',
+          common: 'Danmark'
+        }
+      }
+    },
+    cca2: 'DK',
+    cca3: 'DNK',
+    capital: ['Copenhagen'],
+    region: 'Europe',
+    population: 5831404
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/rs.png',
+      svg: 'https://flagcdn.com/rs.svg'
+    },
+    name: {
+      common: 'Serbia',
+      official: 'Republic of Serbia',
+      nativeName: {
+        srp: {
+          official: 'Република Србија',
+          common: 'Србија'
+        }
+      }
+    },
+    cca2: 'RS',
+    cca3: 'SRB',
+    capital: ['Belgrade'],
+    region: 'Europe',
+    population: 6908224
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/ug.png',
+      svg: 'https://flagcdn.com/ug.svg'
+    },
+    name: {
+      common: 'Uganda',
+      official: 'Republic of Uganda',
+      nativeName: {
+        eng: {
+          official: 'Republic of Uganda',
+          common: 'Uganda'
+        },
+        swa: {
+          official: 'Republic of Uganda',
+          common: 'Uganda'
+        }
+      }
+    },
+    cca2: 'UG',
+    cca3: 'UGA',
+    capital: ['Kampala'],
+    region: 'Africa',
+    population: 45741000
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/cc.png',
+      svg: 'https://flagcdn.com/cc.svg'
+    },
+    name: {
+      common: 'Cocos (Keeling) Islands',
+      official: 'Territory of the Cocos (Keeling) Islands',
+      nativeName: {
+        eng: {
+          official: 'Territory of the Cocos (Keeling) Islands',
+          common: 'Cocos (Keeling) Islands'
+        }
+      }
+    },
+    cca2: 'CC',
+    cca3: 'CCK',
+    capital: ['West Island'],
+    region: 'Oceania',
+    population: 544
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/me.png',
+      svg: 'https://flagcdn.com/me.svg'
+    },
+    name: {
+      common: 'Montenegro',
+      official: 'Montenegro',
+      nativeName: {
+        cnr: {
+          official: 'Црна Гора',
+          common: 'Црна Гора'
+        }
+      }
+    },
+    cca2: 'ME',
+    cca3: 'MNE',
+    capital: ['Podgorica'],
+    region: 'Europe',
+    population: 621718
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/sa.png',
+      svg: 'https://flagcdn.com/sa.svg'
+    },
+    name: {
+      common: 'Saudi Arabia',
+      official: 'Kingdom of Saudi Arabia',
+      nativeName: {
+        ara: {
+          official: 'المملكة العربية السعودية',
+          common: 'العربية السعودية'
+        }
+      }
+    },
+    cca2: 'SA',
+    cca3: 'SAU',
+    capital: ['Riyadh'],
+    region: 'Asia',
+    population: 34813867
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/jo.png',
+      svg: 'https://flagcdn.com/jo.svg'
+    },
+    name: {
+      common: 'Jordan',
+      official: 'Hashemite Kingdom of Jordan',
+      nativeName: {
+        ara: {
+          official: 'المملكة الأردنية الهاشمية',
+          common: 'الأردن'
+        }
+      }
+    },
+    cca2: 'JO',
+    cca3: 'JOR',
+    capital: ['Amman'],
+    region: 'Asia',
+    population: 10203140
   }
 ]
 

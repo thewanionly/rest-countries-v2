@@ -9,4 +9,5 @@ export const COUNTRIES_DETAIL_FIELDS = `cca2,flags,name,capital,region,subregion
 
 /** Other constants */
 export const PAGE_LIMIT = 8
+export const INITIAL_ITEMS = PAGE_LIMIT * 2
 export const TIMEOUT_SEC = 20

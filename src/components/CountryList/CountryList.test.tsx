@@ -3,7 +3,7 @@ import '@testing-library/jest-dom'
 
 import { fetchAllCountriesEmpty, fetchAllCountriesError } from '../../mocks/handlers'
 import { server } from '../../mocks/server'
-import { PAGE_LIMIT } from '../../utilities/constants'
+import { INITIAL_ITEMS } from '../../utilities/constants'
 
 import HomePage from '../../pages/HomePage'
 
@@ -17,17 +17,17 @@ beforeEach(() => {
 
 describe('Country List', () => {
   describe('Interactions', () => {
-    it('displays all countries in the list', async () => {
+    it(`displays ${INITIAL_ITEMS} countries in the list`, async () => {
       setup()
 
       const countries = await screen.findAllByTestId('country-card')
-      expect(countries.length).toBe(PAGE_LIMIT)
+      expect(countries.length).toBe(INITIAL_ITEMS)
     })
 
     it('displays skeleton loading in the country card when the api call is still in progress', async () => {
       setup()
 
-      expect(screen.getAllByTestId('country-card-skeleton').length).toBe(PAGE_LIMIT)
+      expect(screen.getAllByTestId('country-card-skeleton').length).toBe(INITIAL_ITEMS)
       await screen.findAllByTestId('country-card')
 
       expect(screen.queryAllByTestId('country-card-skeleton').length).toBe(0)

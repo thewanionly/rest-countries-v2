@@ -6,7 +6,7 @@ import { mockedCountries, mockedCountryDetail } from '../../mocks/data'
 
 import App from './App'
 import { getBorders } from '../../pages/DetailPage/DetailPage'
-import { PAGE_LIMIT } from '../../utilities/constants'
+import { INITIAL_ITEMS } from '../../utilities/constants'
 
 const setup = (path: string = '/') => {
   window.history.pushState({}, '', path)
@@ -108,7 +108,7 @@ describe('Caching', () => {
 
     // Go to Home page
     setup()
-    expect(screen.getAllByTestId('country-card-skeleton').length).toBe(PAGE_LIMIT)
+    expect(screen.getAllByTestId('country-card-skeleton').length).toBe(INITIAL_ITEMS)
 
     // Go to Detail page
     const countries = await screen.findAllByTestId('country-card')
@@ -119,7 +119,7 @@ describe('Caching', () => {
     userEvent.click(screen.getByRole('button', { name: 'Back' }))
 
     expect(screen.queryAllByTestId('country-card-skeleton').length).toBe(0)
-    expect(screen.getAllByTestId('country-card').length).toBe(PAGE_LIMIT)
+    expect(screen.getAllByTestId('country-card').length).toBe(INITIAL_ITEMS)
   })
 
   it(`doesn't fetch from the API again after going back to previously opened Detail page from Home page`, async () => {
