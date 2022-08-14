@@ -12,7 +12,9 @@ const Header = () => {
   return (
     <div className='header' data-testid='header'>
       <div className='container header__container'>
-        <h2 onClick={handleGoHome}>Where in the world?</h2>
+        <h2 className='header__title' onClick={handleGoHome}>
+          Where in the world?
+        </h2>
         {/* <button>Dark Mode</button> */}
       </div>
     </div>

@@ -1,10 +1,14 @@
 .header {
-  padding: 3.75rem 0;
+  padding: 2.4rem 0;
   background-color: var(--bg-color-secondary);
   box-shadow: var(--box-shadow-header);
 
   &__container {
     display: flex;
     justify-content: space-between;
+  }
+
+  &__title {
+    cursor: pointer;
   }
 }
