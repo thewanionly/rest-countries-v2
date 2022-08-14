@@ -12,6 +12,10 @@ const setup = (isError?: boolean) => {
   render(<App />)
 }
 
+beforeEach(() => {
+  localStorage.clear()
+})
+
 describe('Detail Page', () => {
   describe('Layout', () => {
     it('displays Back button', () => {

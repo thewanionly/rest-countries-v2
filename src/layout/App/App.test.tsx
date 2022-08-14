@@ -1,4 +1,4 @@
-import { render, screen, waitFor, waitForElementToBeRemoved } from '../../mocks/setup'
+import { render, screen, waitForElementToBeRemoved } from '../../mocks/setup'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 
@@ -6,6 +6,7 @@ import { mockedCountries, mockedCountryDetail } from '../../mocks/data'
 
 import App from './App'
 import { getBorders } from '../../pages/DetailPage/DetailPage'
+import { PAGE_LIMIT } from '../../utilities/constants'
 
 const setup = (path: string = '/') => {
   window.history.pushState({}, '', path)
@@ -98,5 +99,48 @@ describe('Routing', () => {
 
     userEvent.click(screen.getByRole('heading', { name: 'Where in the world?' }))
     expect(await screen.findByTestId('home-page')).toBeInTheDocument()
+  })
+})
+
+describe('Caching', () => {
+  it(`doesn't fetch from the API again after going back to Home page from Detail page`, async () => {
+    localStorage.clear()
+
+    // Go to Home page
+    setup()
+    expect(screen.getAllByTestId('country-card-skeleton').length).toBe(PAGE_LIMIT)
+
+    // Go to Detail page
+    const countries = await screen.findAllByTestId('country-card')
+    userEvent.click(countries[0])
+    await screen.findByTestId('detail-page')
+
+    // Go back to Home page
+    userEvent.click(screen.getByRole('button', { name: 'Back' }))
+
+    expect(screen.queryAllByTestId('country-card-skeleton').length).toBe(0)
+    expect(screen.getAllByTestId('country-card').length).toBe(PAGE_LIMIT)
+  })
+
+  it(`doesn't fetch from the API again after going back to previously opened Detail page from Home page`, async () => {
+    localStorage.clear()
+
+    // Go to Detail page
+    setup(`/${mockedCountryDetail.cca2.toLowerCase()}`)
+    await screen.findByTestId('detail-page')
+    expect(screen.getByTestId('country-detail-skeleton')).toBeInTheDocument()
+    await screen.findByRole('heading', { name: mockedCountryDetail.name.common })
+
+    // Go to Home page
+    userEvent.click(screen.getByRole('button', { name: 'Back' }))
+
+    // Go back to Detail page
+    const countries = screen.getAllByTestId('country-card')
+    userEvent.click(countries[0])
+
+    expect(screen.queryByTestId('country-detail-skeleton')).not.toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { name: mockedCountryDetail.name.common })
+    ).toBeInTheDocument()
   })
 })

@@ -11,6 +11,10 @@ const setup = () => {
   render(<HomePage />)
 }
 
+beforeEach(() => {
+  localStorage.clear()
+})
+
 describe('Country List', () => {
   describe('Interactions', () => {
     it('displays all countries in the list', async () => {

@@ -4,7 +4,7 @@ import { fetchData } from '../helpers'
 /**
  * Fetches data using the native Fetch API through the `fetchData` helper function.
  */
-const useFetchData = <T>(url: string): [T, boolean, undefined] => {
+const useFetchData = <T>(url: string, cacheResults?: boolean): [T, boolean, undefined] => {
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState<T>()
   const [error, setError] = useState()
@@ -17,7 +17,21 @@ const useFetchData = <T>(url: string): [T, boolean, undefined] => {
       setError(undefined)
 
       try {
-        const data = await fetchData<T>(url)
+        let data: T
+
+        // Get cachced data from localStorage
+        const cachedData = localStorage.getItem(url)
+
+        if (cachedData) {
+          // Parse data from localStorage
+          data = JSON.parse(cachedData)
+        } else {
+          // Fetch data from url
+          data = await fetchData<T>(url)
+
+          // Cache data by storing in localStorage
+          cacheResults && localStorage.setItem(url, JSON.stringify(data))
+        }
 
         // Success
         setIsLoading(false)
@@ -32,7 +46,7 @@ const useFetchData = <T>(url: string): [T, boolean, undefined] => {
     }
 
     loadData()
-  }, [url])
+  }, [url, cacheResults])
 
   return [data as T, isLoading, error]
 }

@@ -22,7 +22,7 @@ const useResource = <T extends keyof ResourceType>(resource: T, id?: string) => 
   let url: string = RESOURCE_ENDPOINTS[resource]
   if (id) url = url.replace(':id', id)
 
-  return useFetchData<typeof resourceSampleValue>(url)
+  return useFetchData<typeof resourceSampleValue>(url, true)
 }
 
 export default useResource

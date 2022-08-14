@@ -28,6 +28,10 @@ const filterCountries = (
     .sort((country1, country2) => country1.name.common.localeCompare(country2.name.common))
     .slice(0, PAGE_LIMIT)
 
+beforeEach(() => {
+  localStorage.clear()
+})
+
 describe('Home Page', () => {
   describe('Layout', () => {
     it('has a search bar component', () => {
