@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .header {
   padding: 2.4rem 0;
   background-color: var(--bg-color-secondary);
@@ -10,5 +12,19 @@
 
   &__title {
     cursor: pointer;
+    font-size: 1.75rem;
+
+    @media only screen and (min-width: $bp-desktop) {
+      font-size: revert;
+    }
+  }
+
+  &__dark-mode-toggle {
+    cursor: pointer;
+    user-select: none;
+
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
   }
 }
