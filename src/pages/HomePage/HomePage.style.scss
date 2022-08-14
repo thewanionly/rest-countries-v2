@@ -12,6 +12,11 @@
     flex: 1;
     min-width: 30rem;
     max-width: 48rem;
+    transition: all 0.2s;
+
+    &:hover {
+      box-shadow: var(--box-shadow-component-hover);
+    }
   }
 
   &__filter-dropdown {
@@ -19,6 +24,11 @@
     min-width: max-content;
     max-width: 25rem;
     min-width: 17rem;
+    transition: all 0.2s;
+
+    &:hover {
+      box-shadow: var(--box-shadow-component-hover);
+    }
   }
 
   &__country-list {

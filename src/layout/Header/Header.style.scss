@@ -13,6 +13,12 @@
   &__title {
     cursor: pointer;
     font-size: 1.75rem;
+    transition: all 0.2s;
+    color: var(--text-color-primary);
+
+    &:hover {
+      color: var(--text-color-primary-hover);
+    }
 
     @media only screen and (min-width: $bp-desktop) {
       font-size: revert;
@@ -26,5 +32,11 @@
     display: flex;
     align-items: center;
     gap: 0.7em;
+    transition: all 0.2s;
+    color: var(--text-color-primary);
+
+    &:hover {
+      color: var(--text-color-primary-hover);
+    }
   }
 }
