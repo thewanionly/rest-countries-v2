@@ -71,10 +71,12 @@ const CountryCard = ({
                     {titleCase(label)}
                   </span>
                   <span
-                    className='description-value country-card__description-value'
+                    className={`description-value ${
+                      !value ? 'description-value--empty' : ''
+                    } country-card__description-value `}
                     data-testid='country-card-description-value'
                   >
-                    {value}
+                    {value || '-'}
                   </span>
                 </>
               ) : (

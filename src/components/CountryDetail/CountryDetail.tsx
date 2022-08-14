@@ -90,8 +90,11 @@ const CountryDetail = ({
                     <span className='description-label' id={label}>
                       {camelCaseToStandardFormat(label)}
                     </span>
-                    <span className='description-value' aria-labelledby={label}>
-                      {value}
+                    <span
+                      className={`description-value ${!value ? 'description-value--empty' : ''}`}
+                      aria-labelledby={label}
+                    >
+                      {value || '-'}
                     </span>
                   </>
                 ) : (
@@ -110,8 +113,11 @@ const CountryDetail = ({
                     <span className='description-label' id={label}>
                       {camelCaseToStandardFormat(label)}
                     </span>
-                    <span className='description-value' aria-labelledby={label}>
-                      {value}
+                    <span
+                      className={`description-value ${!value ? 'description-value--empty' : ''}`}
+                      aria-labelledby={label}
+                    >
+                      {value || '-'}
                     </span>
                   </>
                 ) : (

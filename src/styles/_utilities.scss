@@ -32,5 +32,9 @@
 
   &-value {
     margin-left: 0.8rem;
+
+    &--empty {
+      font-style: italic;
+    }
   }
 }
