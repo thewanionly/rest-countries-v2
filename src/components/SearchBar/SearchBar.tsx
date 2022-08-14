@@ -37,6 +37,7 @@ const SearchBar = ({ value, onChange: changeHandler = () => {}, ...props }: Sear
             }
           : undefined
       }
+      autoComplete='off'
       {...props}
     />
   )

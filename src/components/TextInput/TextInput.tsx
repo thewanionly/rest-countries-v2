@@ -11,6 +11,7 @@ type TextInputProps = {
   onChange?: (event: React.FormEvent<HTMLInputElement>) => void
   required?: boolean
   disabled?: boolean
+  autoComplete?: 'on' | 'off'
   iconLeft?: IconProps
   iconRight?: IconProps
 }
