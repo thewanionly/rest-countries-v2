@@ -12,3 +12,9 @@ Here are the complete set of technologies that I used for building this app:
 - React Router (routing)
 - SASS/SCSS (css pre-processor)
 - Create React App aka CRA (tooling)
+
+## How to run the application
+
+1. Install the packages listed in package.json by running `npm install`
+2. In the project's root directory, run `npm start` to start the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. In the project's root directory, you can also run `npm test` to launch the test runner in the interactive watch mode. This will execute the written unit tests.
