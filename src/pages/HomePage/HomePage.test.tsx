@@ -142,13 +142,6 @@ describe('Home Page', () => {
       expect(countryList).toBeInTheDocument()
     })
 
-    xit('displays the pagination area when countries length is more than 8', async () => {
-      setup()
-      await screen.findAllByTestId('country-card')
-
-      expect(screen.getByTestId('pagination')).toBeInTheDocument()
-    })
-
     it('does not display the pagination area when countries length is less than or equal to 8', async () => {
       setup()
       await screen.findAllByTestId('country-card')
