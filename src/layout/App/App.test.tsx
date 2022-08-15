@@ -94,9 +94,11 @@ describe('Routing', () => {
 })
 
 describe('Caching', () => {
-  it(`doesn't fetch from the API again after going back to Home page from Detail page`, async () => {
+  beforeEach(() => {
     localStorage.clear()
+  })
 
+  it(`doesn't fetch from the API again for the countries data after going back to Home page from Detail page`, async () => {
     // Go to Home page
     setup()
     expect(screen.getAllByTestId('country-card-skeleton').length).toBe(INITIAL_ITEMS)
@@ -113,9 +115,7 @@ describe('Caching', () => {
     expect(screen.getAllByTestId('country-card').length).toBe(INITIAL_ITEMS)
   })
 
-  it(`doesn't fetch from the API again after going back to previously opened Detail page from Home page`, async () => {
-    localStorage.clear()
-
+  it(`doesn't fetch from the API again for the country detail data after going back to previously opened Detail page from Home page`, async () => {
     // Go to Detail page
     setup(`/${mockedCountryDetail.cca2.toLowerCase()}`)
     await screen.findByTestId('detail-page')
@@ -133,5 +133,23 @@ describe('Caching', () => {
     expect(
       screen.getByRole('heading', { name: mockedCountryDetail.name.common })
     ).toBeInTheDocument()
+  })
+
+  it(`doesn't fetch from the API again for the regions data after going back to Home page from Detail page`, async () => {
+    // Go to Home page
+    setup()
+    expect(screen.getAllByTestId('country-card-skeleton').length).toBe(INITIAL_ITEMS)
+    expect(screen.getByTestId('dropdown-skeleton')).toBeInTheDocument()
+    await screen.findByText('Filter by Region')
+
+    // Go to Detail page
+    const countries = await screen.findAllByTestId('country-card')
+    userEvent.click(countries[0])
+    await screen.findByTestId('detail-page')
+
+    // Go back to Home page
+    userEvent.click(screen.getByRole('button', { name: 'Back' }))
+
+    expect(screen.queryByText('dropdown-skeleton')).not.toBeInTheDocument()
   })
 })
