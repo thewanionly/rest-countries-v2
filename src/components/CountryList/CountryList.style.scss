@@ -4,4 +4,12 @@
   gap: 5rem;
   justify-items: center;
   color: var(--text-color-primary);
+  position: relative;
+
+  &__loader {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+  }
 }

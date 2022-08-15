@@ -12,5 +12,10 @@ afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
 beforeEach(() => {
+  const intersectionObserverMock = () => ({
+    observe: () => null
+  })
+  window.IntersectionObserver = jest.fn().mockImplementation(intersectionObserverMock)
+
   mockedMatchMedia()
 })

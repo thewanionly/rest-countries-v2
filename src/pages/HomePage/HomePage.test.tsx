@@ -346,8 +346,4 @@ describe('Home Page', () => {
       expect(screen.queryAllByTestId('country-card').length).toBe(filteredCountries2.length)
     })
   })
-
-  describe('Infinite Scrolling', () => {
-    xit(`loads the next ${PAGE_LIMIT} countries when user scrolls down to the bottom`, () => {})
-  })
 })
