@@ -54,6 +54,10 @@ textarea {
   font-weight: var(--font-weight-light);
 }
 
+body {
+  color: var(--text-color-primary);
+}
+
 .dark-mode {
   --bg-color-primary: #{$color-blue-darker};
   --bg-color-secondary: #{$color-blue-dark};
