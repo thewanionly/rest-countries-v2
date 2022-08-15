@@ -57,7 +57,7 @@ describe('Routing', () => {
     ).toBeInTheDocument()
   })
 
-  xit('displays another Detail page after clicking a border country in the current Detail page', async () => {
+  it('displays another Detail page after clicking a border country in the current Detail page', async () => {
     setup('/us')
 
     await screen.findByTestId('detail-page')
@@ -65,26 +65,17 @@ describe('Routing', () => {
       await screen.findByRole('heading', { name: mockedCountryDetail.name.common })
     ).toBeInTheDocument()
 
-    // const borderCountriesDetails = getBorders(mockedCountryDetail.borders, mockedCountries)
-    // const borderList = screen.getByTestId('border-list')
-    // const borderCountries = borderList.childNodes
+    const borderCountriesDetails = getBorders(mockedCountryDetail.borders, mockedCountries)
+    const borderList = screen.getByTestId('border-list')
+    const borderCountries = borderList.childNodes
 
-    // expect(borderCountries[0].textContent).toBe(borderCountriesDetails[0].name)
-    // userEvent.click(borderCountries[0] as Element)
+    expect(borderCountries[0].textContent).toBe(borderCountriesDetails[0].name)
+    userEvent.click(borderCountries[0] as Element)
 
-    // await screen.findByTestId('country-detail')
-    // const borderList2 = screen.getByTestId('border-list')
-    // const borderCountries2 = borderList2.childNodes
-    // console.log('text  content', borderCountries2[0].textContent)
-    // await screen.findByRole('heading', { name: borderCountriesDetails[0].name })
-
-    // const border = screen.getByRole('button', { name: 'Canada' })
-    // console.log('border', border)
-    // userEvent.click(border)
-
-    userEvent.click(screen.getByRole('button', { name: 'Canada' }))
     await waitForElementToBeRemoved(screen.queryAllByText('Loading...'))
-    expect(screen.getByRole('heading', { name: 'Tae' })).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { name: borderCountriesDetails[0].name })
+    ).toBeInTheDocument()
   })
 
   it('displays the Home page after clicking Back button in the Detail page', async () => {

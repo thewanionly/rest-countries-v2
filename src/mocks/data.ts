@@ -604,4 +604,43 @@ const mockedCountryDetail: CountryDetail = {
   subregion: 'North America'
 }
 
-export { mockedCountries, mockedCountryDetail, mockedRegions }
+const mockedCountryDetail2: CountryDetail = {
+  name: {
+    common: 'Canada',
+    official: 'Canada',
+    nativeName: {
+      eng: {
+        official: 'Canada',
+        common: 'Canada'
+      },
+      fra: {
+        official: 'Canada',
+        common: 'Canada'
+      }
+    }
+  },
+  cca2: 'CA',
+  cca3: 'CAN',
+  capital: ['Ottawa'],
+  region: 'Americas',
+  flags: {
+    png: 'https://flagcdn.com/w320/ca.png',
+    svg: 'https://flagcdn.com/ca.svg'
+  },
+  population: 38005238,
+  tld: ['.ca'],
+  currencies: {
+    CAD: {
+      name: 'Canadian dollar',
+      symbol: '$'
+    }
+  },
+  languages: {
+    eng: 'English',
+    fra: 'French'
+  },
+  borders: ['USA'],
+  subregion: 'North America'
+}
+
+export { mockedCountries, mockedCountryDetail, mockedCountryDetail2, mockedRegions }

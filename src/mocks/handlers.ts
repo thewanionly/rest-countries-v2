@@ -2,7 +2,7 @@
 import { rest } from 'msw'
 
 import { COUNTRIES_ALL, COUNTRIES_DETAIL } from '../utilities/constants'
-import { mockedCountries, mockedRegions, mockedCountryDetail } from './data'
+import { mockedCountries, mockedRegions, mockedCountryDetail, mockedCountryDetail2 } from './data'
 
 export const fetchAll = () => {
   return rest.get(`${COUNTRIES_ALL}`, (req, res, ctx) => {
@@ -16,8 +16,19 @@ export const fetchAll = () => {
 
 export const fetchCountryDetail = () => {
   return rest.get(`${COUNTRIES_DETAIL}:code`, (req, res, ctx) => {
-    // const { code } = req.params
-    return res(ctx.status(200), ctx.json(mockedCountryDetail))
+    const { code } = req.params
+
+    let countryDetail = mockedCountryDetail
+
+    if (code === 'us') {
+      countryDetail = mockedCountryDetail
+    }
+
+    if (code === 'ca') {
+      countryDetail = mockedCountryDetail2
+    }
+
+    return res(ctx.status(200), ctx.json(countryDetail))
   })
 }
 
