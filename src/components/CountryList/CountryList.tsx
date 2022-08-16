@@ -1,7 +1,7 @@
 import { memo, useCallback, useContext, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { Country, INITIAL_ITEMS, PAGE_LIMIT } from '../../utilities/constants'
+import { Country, INITIAL_ITEMS } from '../../utilities/constants'
 
 import { StoreContext } from '../../store/StoreProvider'
 
