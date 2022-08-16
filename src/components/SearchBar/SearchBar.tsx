@@ -23,8 +23,6 @@ const SearchBar = memo(
       changeHandler('')
     }
 
-    console.log('SearchBar')
-
     return (
       <TextInput
         name='search-bar'

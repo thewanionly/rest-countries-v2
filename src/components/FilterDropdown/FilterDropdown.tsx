@@ -26,8 +26,6 @@ const FilterDropdown = memo(
   }: FilterDropdownProps) => {
     const [toggleLabel, setToggleLabel] = useState('')
 
-    console.log('FilterDropdown')
-
     const filterMenuItems = menuItems.length
       ? [
           ...menuItems,
