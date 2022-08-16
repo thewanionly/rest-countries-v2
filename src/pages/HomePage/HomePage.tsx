@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from 'react'
 
+import { StoreContext } from 'store/StoreProvider'
 import { Country, RESOURCES } from 'utilities/constants'
 import { useResource } from 'utilities/hooks'
 
-import { StoreContext } from 'store/StoreProvider'
-import SearchBar from 'components/SearchBar'
-import FilterDropdown from 'components/FilterDropdown'
 import CountryList from 'components/CountryList'
+import FilterDropdown from 'components/FilterDropdown'
+import SearchBar from 'components/SearchBar'
 
 import './HomePage.style.scss'
 

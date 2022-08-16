@@ -1,11 +1,10 @@
-import { render, screen } from 'mocks/setup'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 
 import { mockedCountries, mockedRegions } from 'mocks/data'
-import { server } from 'mocks/server'
 import { fetchAllRegionsError, fetchAllRegionsEmpty } from 'mocks/handlers'
-
+import { server } from 'mocks/server'
+import { render, screen } from 'mocks/setup'
 import { Country, INITIAL_ITEMS } from 'utilities/constants'
 
 import HomePage, { filterCountries } from './HomePage'

@@ -3,9 +3,8 @@ import { useNavigate } from 'react-router-dom'
 
 import { Country, INITIAL_ITEMS } from 'utilities/constants'
 
-import { StoreContext } from 'store/StoreProvider'
-
 import CountryCard from 'components/CountryCard'
+import { StoreContext } from 'store/StoreProvider'
 
 import './CountryList.style.scss'
 

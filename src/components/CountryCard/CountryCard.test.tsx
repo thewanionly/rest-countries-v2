@@ -1,8 +1,8 @@
-import { render, screen } from 'mocks/setup'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 
 import { mockedCountries } from 'mocks/data'
+import { render, screen } from 'mocks/setup'
 import { formatNumber } from 'utilities/helpers'
 
 import CountryCard from './CountryCard'

@@ -1,5 +1,6 @@
-import { render, RenderOptions, RenderResult } from '@testing-library/react'
 import { BrowserRouter as Router } from 'react-router-dom'
+
+import { render, RenderOptions, RenderResult } from '@testing-library/react'
 
 import StoreProvider from 'store/StoreProvider'
 

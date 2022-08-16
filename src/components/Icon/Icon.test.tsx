@@ -1,5 +1,6 @@
-import { render, screen } from 'mocks/setup'
 import '@testing-library/jest-dom'
+
+import { render, screen } from 'mocks/setup'
 
 import Icon from './Icon'
 

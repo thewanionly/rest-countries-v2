@@ -1,8 +1,8 @@
-import { render, screen } from 'mocks/setup'
 import '@testing-library/jest-dom'
 
-import { server } from 'mocks/server'
 import { fetchCountryDetail, fetchCountryDetailsError } from 'mocks/handlers'
+import { server } from 'mocks/server'
+import { render, screen } from 'mocks/setup'
 
 import App from 'layout/App'
 

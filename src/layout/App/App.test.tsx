@@ -1,12 +1,13 @@
-import { render, screen, waitForElementToBeRemoved } from 'mocks/setup'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 
 import { mockedCountries, mockedCountryDetail } from 'mocks/data'
+import { render, screen, waitForElementToBeRemoved } from 'mocks/setup'
+import { INITIAL_ITEMS } from 'utilities/constants'
+
+import { getBorders } from 'pages/DetailPage/DetailPage'
 
 import App from './App'
-import { getBorders } from 'pages/DetailPage/DetailPage'
-import { INITIAL_ITEMS } from 'utilities/constants'
 
 const setup = (path: string = '/') => {
   window.history.pushState({}, '', path)

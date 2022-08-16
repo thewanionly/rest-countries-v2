@@ -4,11 +4,11 @@ import { Country, RESOURCES } from 'utilities/constants'
 import { useResource } from 'utilities/hooks'
 
 import Button from 'components/Button'
-import Icon from 'components/Icon'
 import CountryDetail from 'components/CountryDetail'
+import { BorderCountry } from 'components/CountryDetail/CountryDetail'
+import Icon from 'components/Icon'
 
 import './DetailPage.style.scss'
-import { BorderCountry } from 'components/CountryDetail/CountryDetail'
 
 const DetailPage = () => {
   const { code } = useParams()
