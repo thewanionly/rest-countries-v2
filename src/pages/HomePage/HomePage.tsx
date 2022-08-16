@@ -1,10 +1,11 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 
 import { StoreContext } from 'store/StoreProvider'
-import { Country, RESOURCES } from 'utilities/constants'
+import { Country, Region, RESOURCES } from 'utilities/constants'
 import { useResource } from 'utilities/hooks'
 
 import CountryList from 'components/CountryList'
+import { DropdownMenuItem } from 'components/Dropdown/Dropdown'
 import FilterDropdown from 'components/FilterDropdown'
 import SearchBar from 'components/SearchBar'
 
@@ -21,16 +22,7 @@ const HomePage = () => {
     DEFAULT_FILTER_DROPDOWN_PLACEHOLDER
   )
 
-  const regions = Array.isArray(regionData)
-    ? Array.from(new Set(regionData.map(({ region }) => region)))
-    : regionData
-  const regionOptions =
-    regions
-      ?.sort((region1, region2) => region1.localeCompare(region2))
-      .map((region) => ({
-        label: region,
-        value: region.toLowerCase()
-      })) || []
+  const regionOptions = useMemo(() => getRegionOptions(regionData), [regionData])
 
   const filteredCountries = filterCountries(countries, searchTerm, filterValue)
 
@@ -76,6 +68,21 @@ const HomePage = () => {
         </div>
       </div>
     </div>
+  )
+}
+
+const getRegionOptions = (regionData: Region[]): DropdownMenuItem[] => {
+  const regions = Array.isArray(regionData)
+    ? Array.from(new Set(regionData.map(({ region }) => region)))
+    : regionData
+
+  return (
+    regions
+      ?.sort((region1, region2) => region1.localeCompare(region2))
+      .map((region) => ({
+        label: region,
+        value: region.toLowerCase()
+      })) || []
   )
 }
 

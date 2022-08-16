@@ -20,7 +20,7 @@ const CountryList = memo(({ isLoading = false, error, data }: CountryListProps) 
   const loader = useRef(null)
   const { limit, handleIncreaseLimit } = useContext(StoreContext)
   const navigate = useNavigate()
-
+  console.log('CountryList')
   const handleViewCountryDetail = (code: string) => {
     navigate(`/${code.toLowerCase()}`)
   }
