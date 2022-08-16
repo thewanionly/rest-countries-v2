@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo, useState } from 'react'
+import { useContext, useDeferredValue, useEffect, useMemo, useState } from 'react'
 
 import { StoreContext } from 'store/StoreProvider'
 import { Country, Region, RESOURCES } from 'utilities/constants'
@@ -18,13 +18,13 @@ const HomePage = () => {
   const [regionData, isLoadingRegion, errorRegion] = useResource(RESOURCES.REGIONS)
   const [countries = [], isLoadingCountries, errorCountries] = useResource(RESOURCES.COUNTRIES)
 
+  const deferredSearchTerm = useDeferredValue(searchTerm)
   const [filterDropdownPlaceholder, setFilterDropdownPlaceholder] = useState(
     DEFAULT_FILTER_DROPDOWN_PLACEHOLDER
   )
 
   const regionOptions = useMemo(() => getRegionOptions(regionData), [regionData])
-
-  const filteredCountries = filterCountries(countries, searchTerm, filterValue)
+  const filteredCountries = filterCountries(countries, deferredSearchTerm, filterValue)
 
   useEffect(() => {
     let placeholder = DEFAULT_FILTER_DROPDOWN_PLACEHOLDER
