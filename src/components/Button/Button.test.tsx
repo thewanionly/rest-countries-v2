@@ -1,9 +1,10 @@
-import { render, screen } from '../../mocks/setup'
+import { render, screen } from 'mocks/setup'
 import '@testing-library/jest-dom'
+import userEvent from '@testing-library/user-event'
+
+import Icon from 'components/Icon'
 
 import Button from './Button'
-import Icon from '../Icon'
-import userEvent from '@testing-library/user-event'
 
 describe('Button component', () => {
   it('displays the label passed to the button', () => {

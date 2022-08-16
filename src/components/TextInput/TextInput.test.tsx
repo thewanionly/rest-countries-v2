@@ -1,6 +1,7 @@
-import { render, screen } from '../../mocks/setup'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
+
+import { render, screen } from 'mocks/setup'
 
 import TextInput from './TextInput'
 

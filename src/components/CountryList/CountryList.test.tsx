@@ -1,11 +1,11 @@
-import { render, screen } from '../../mocks/setup'
+import { render, screen } from 'mocks/setup'
 import '@testing-library/jest-dom'
 
-import { fetchAllCountriesEmpty, fetchAllCountriesError } from '../../mocks/handlers'
-import { server } from '../../mocks/server'
-import { INITIAL_ITEMS } from '../../utilities/constants'
+import { fetchAllCountriesEmpty, fetchAllCountriesError } from 'mocks/handlers'
+import { server } from 'mocks/server'
+import { INITIAL_ITEMS } from 'utilities/constants'
 
-import HomePage from '../../pages/HomePage'
+import HomePage from 'pages/HomePage'
 
 const setup = () => {
   render(<HomePage />)

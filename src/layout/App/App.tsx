@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
 
-import Header from '../Header'
-import HomePage from '../../pages/HomePage'
-import DetailPage from '../../pages/DetailPage'
+import Header from 'layout/Header'
+import HomePage from 'pages/HomePage'
+import DetailPage from 'pages/DetailPage'
 
 import './App.style.scss'
 

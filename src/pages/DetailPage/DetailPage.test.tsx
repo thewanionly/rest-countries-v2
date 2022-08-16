@@ -1,10 +1,10 @@
-import { render, screen } from '../../mocks/setup'
+import { render, screen } from 'mocks/setup'
 import '@testing-library/jest-dom'
 
-import { server } from '../../mocks/server'
-import { fetchCountryDetail, fetchCountryDetailsError } from '../../mocks/handlers'
+import { server } from 'mocks/server'
+import { fetchCountryDetail, fetchCountryDetailsError } from 'mocks/handlers'
 
-import App from '../../layout/App'
+import App from 'layout/App'
 
 const setup = (isError?: boolean) => {
   server.use(!isError ? fetchCountryDetail() : fetchCountryDetailsError())

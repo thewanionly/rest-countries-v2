@@ -1,10 +1,11 @@
-import { render, screen } from '../../mocks/setup'
+import { render, screen } from 'mocks/setup'
 import '@testing-library/jest-dom'
-
-import { mockedCountries } from '../../mocks/data'
-import CountryCard from './CountryCard'
-import { formatNumber } from '../../utilities/helpers'
 import userEvent from '@testing-library/user-event'
+
+import { mockedCountries } from 'mocks/data'
+import { formatNumber } from 'utilities/helpers'
+
+import CountryCard from './CountryCard'
 
 const { cca2, name, flags, population, region, capital } = mockedCountries[0]
 

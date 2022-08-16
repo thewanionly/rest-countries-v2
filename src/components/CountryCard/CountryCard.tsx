@@ -1,5 +1,7 @@
-import { formatNumber, titleCase } from '../../utilities/helpers'
-import Skeleton from '../Skeleton'
+import { formatNumber, titleCase } from 'utilities/helpers'
+
+import Skeleton from 'components/Skeleton'
+
 import './CountryCard.style.scss'
 
 type CountryCardProps = {

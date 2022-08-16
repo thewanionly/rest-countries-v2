@@ -1,6 +1,7 @@
 import { forwardRef } from 'react'
 
-import Icon, { IconProps } from '../Icon'
+import Icon, { IconProps } from 'components/Icon'
+
 import './TextInput.style.scss'
 
 type TextInputProps = {

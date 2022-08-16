@@ -1,8 +1,9 @@
-import { render, screen } from '../../mocks/setup'
+import { render, screen } from 'mocks/setup'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 
-import { DropdownMenuItem } from '../Dropdown/Dropdown'
+import { DropdownMenuItem } from 'components/Dropdown/Dropdown'
+
 import FilterDropdown from './FilterDropdown'
 
 const defaultLabel = 'Pick a color'

@@ -1,7 +1,7 @@
 import { render, RenderOptions, RenderResult } from '@testing-library/react'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-import StoreProvider from '../store/StoreProvider'
+import StoreProvider from 'store/StoreProvider'
 
 type RootWrapperProps = {
   children?: React.ReactNode

@@ -1,4 +1,4 @@
-import { Country, CountryDetail, Region } from '../utilities/constants'
+import { Country, CountryDetail, Region } from 'utilities/constants'
 
 const mockedCountries: Country[] = [
   {

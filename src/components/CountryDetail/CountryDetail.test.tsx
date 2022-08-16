@@ -1,10 +1,12 @@
-import { render, screen } from '../../mocks/setup'
+import { render, screen } from 'mocks/setup'
 import '@testing-library/jest-dom'
 
-import { mockedCountries, mockedCountryDetail } from '../../mocks/data'
+import { mockedCountries, mockedCountryDetail } from 'mocks/data'
+import { formatNumber } from 'utilities/helpers'
+
+import { getBorders, getNativeNames } from 'pages/DetailPage/DetailPage'
+
 import CountryDetail from './CountryDetail'
-import { formatNumber } from '../../utilities/helpers'
-import { getBorders, getNativeNames } from '../../pages/DetailPage/DetailPage'
 
 const {
   cca2,

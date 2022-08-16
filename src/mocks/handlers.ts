@@ -1,7 +1,7 @@
 // src/mocks/handlers.js
 import { rest } from 'msw'
 
-import { COUNTRIES_ALL, COUNTRIES_DETAIL } from '../utilities/constants'
+import { COUNTRIES_ALL, COUNTRIES_DETAIL } from 'utilities/constants'
 import { mockedCountries, mockedRegions, mockedCountryDetail, mockedCountryDetail2 } from './data'
 
 export const fetchAll = () => {

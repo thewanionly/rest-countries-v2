@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
 
-import Dropdown from '../Dropdown'
-import { DropdownMenuItem } from '../Dropdown/Dropdown'
-import Icon from '../Icon'
+import Dropdown from 'components/Dropdown'
+import { DropdownMenuItem } from 'components/Dropdown/Dropdown'
+import Icon from 'components/Icon'
 
 import './FilterDropdown.style.scss'
 

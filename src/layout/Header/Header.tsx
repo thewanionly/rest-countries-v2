@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { useDarkMode } from '../../utilities/hooks'
+import { useDarkMode } from 'utilities/hooks'
 
-import Icon from '../../components/Icon'
+import Icon from 'components/Icon'
 
 import './Header.style.scss'
 

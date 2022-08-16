@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 
-import { camelCaseToStandardFormat, formatNumber } from '../../utilities/helpers'
-import Button from '../Button'
-import Skeleton from '../Skeleton'
+import { camelCaseToStandardFormat, formatNumber } from 'utilities/helpers'
+
+import Button from 'components/Button'
+import Skeleton from 'components/Skeleton'
 
 import './CountryDetail.style.scss'
 

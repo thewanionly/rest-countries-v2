@@ -1,6 +1,6 @@
 import { createContext, useCallback, useState } from 'react'
 
-import { INITIAL_ITEMS, PAGE_LIMIT } from '../utilities/constants'
+import { INITIAL_ITEMS, PAGE_LIMIT } from 'utilities/constants'
 
 type StoreProviderProps = {
   children: React.ReactNode

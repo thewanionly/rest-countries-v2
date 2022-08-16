@@ -1,7 +1,6 @@
-import useFetchData from './useFetchData'
-
-import { RESOURCES, RESOURCE_ENDPOINTS, ResourceType } from '../constants'
-import { mockedCountries, mockedCountryDetail, mockedRegions } from '../../mocks/data'
+import { mockedCountries, mockedCountryDetail, mockedRegions } from 'mocks/data'
+import { RESOURCES, RESOURCE_ENDPOINTS, ResourceType } from 'utilities/constants'
+import { useFetchData } from 'utilities/hooks'
 
 const RESOURCE_SAMPLE_VALUES = {
   [RESOURCES.COUNTRIES]: mockedCountries,

@@ -1,5 +1,5 @@
-import { mockedMatchMedia } from './mocks/handlers'
-import { server } from './mocks/server'
+import { mockedMatchMedia } from 'mocks/handlers'
+import { server } from 'mocks/server'
 
 // Establish API mocking before all tests.
 beforeAll(() => server.listen())

@@ -10,6 +10,7 @@ import {
   FaSearch,
   FaTimes
 } from 'react-icons/fa'
+
 import './Icon.style.scss'
 
 export type IconProps = {

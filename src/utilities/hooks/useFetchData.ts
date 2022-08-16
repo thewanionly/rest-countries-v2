@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { fetchData } from '../helpers'
+
+import { fetchData } from 'utilities/helpers'
 
 /**
  * Fetches data using the native Fetch API through the `fetchData` helper function.

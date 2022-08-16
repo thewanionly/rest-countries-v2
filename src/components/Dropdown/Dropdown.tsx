@@ -1,7 +1,9 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react'
-import { useClickOutside } from '../../utilities/hooks'
 
-import Skeleton from '../Skeleton'
+import { useClickOutside } from 'utilities/hooks'
+
+import Skeleton from 'components/Skeleton'
+
 import './Dropdown.style.scss'
 
 export type DropdownMenuItem = {
