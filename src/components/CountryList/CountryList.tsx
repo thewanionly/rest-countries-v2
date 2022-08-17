@@ -4,20 +4,18 @@ import { useNavigate } from 'react-router-dom'
 import { Country, INITIAL_ITEMS } from 'utilities/constants'
 
 import CountryCard from 'components/CountryCard'
-import EmptyState from 'components/EmptyState'
 import { StoreContext } from 'store/StoreProvider'
 
 import './CountryList.style.scss'
 
 type CountryListProps = {
   isLoading?: boolean
-  error?: string
-  data: Country[]
+  data?: Country[]
 }
 
 const DUMMY_COUNTRIES: undefined[] = [...new Array(INITIAL_ITEMS)]
 
-const CountryList = memo(({ isLoading = false, error, data }: CountryListProps) => {
+const CountryList = memo(({ isLoading = false, data }: CountryListProps) => {
   const loader = useRef(null)
   const { limit, handleIncreaseLimit } = useContext(StoreContext)
   const navigate = useNavigate()
@@ -51,43 +49,22 @@ const CountryList = memo(({ isLoading = false, error, data }: CountryListProps) 
 
   return (
     <div className='country-list'>
-      {isLoading ? (
-        <div className='country-list__card-grid'>
-          {DUMMY_COUNTRIES.map((_, index) => (
-            <CountryCard key={index} isLoading />
-          ))}
-        </div>
-      ) : error ? (
-        <EmptyState
-          className='country-list__empty-state'
-          variant='error'
-          primaryMessage='Oops, something went wrong'
-        >
-          <p>{`Error message: ${error}`}</p>
-          <p> Please check your console for more information.</p>
-        </EmptyState>
-      ) : !data.length ? (
-        <EmptyState
-          className='country-list__empty-state'
-          variant='empty'
-          primaryMessage='No countries found'
-        />
-      ) : (
-        <div className='country-list__card-grid'>
-          {data.slice(0, limit).map(({ cca2, flags, name, population, region, capital }) => (
-            <CountryCard
-              key={cca2}
-              code={cca2}
-              flag={flags.svg}
-              name={name.common}
-              population={population}
-              region={region}
-              capital={capital}
-              onClick={handleViewCountryDetail}
-            />
-          ))}
-        </div>
-      )}
+      {isLoading
+        ? DUMMY_COUNTRIES.map((_, index) => <CountryCard key={index} isLoading />)
+        : data
+            ?.slice(0, limit)
+            .map(({ cca2, flags, name, population, region, capital }) => (
+              <CountryCard
+                key={cca2}
+                code={cca2}
+                flag={flags.svg}
+                name={name.common}
+                population={population}
+                region={region}
+                capital={capital}
+                onClick={handleViewCountryDetail}
+              />
+            ))}
       <span ref={loader} className='country-list__loader' aria-hidden />
     </div>
   )

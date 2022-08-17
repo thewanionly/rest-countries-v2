@@ -1,17 +1,11 @@
 .country-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(20%, 25rem), 1fr));
+  gap: 5rem;
+  justify-items: center;
+
   color: var(--text-color-primary);
   position: relative;
-
-  &__card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(max(20%, 25rem), 1fr));
-    gap: 5rem;
-    justify-items: center;
-  }
-
-  &__empty-state {
-    margin-top: 10rem;
-  }
 
   &__loader {
     position: absolute;
