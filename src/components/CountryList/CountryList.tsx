@@ -2,6 +2,7 @@ import { memo, useCallback, useContext, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { ReactComponent as EmptyImg } from 'assets/images/undraw_lost.svg'
+import { ReactComponent as ErrorImg } from 'assets/images/undraw_road_sign.svg'
 import { Country, INITIAL_ITEMS } from 'utilities/constants'
 
 import CountryCard from 'components/CountryCard'
@@ -58,11 +59,22 @@ const CountryList = memo(({ isLoading = false, error, data }: CountryListProps) 
           ))}
         </div>
       ) : error ? (
-        <div data-testid='error-section'>{error}</div>
+        <div className='country-list__empty-section' data-testid='error-section'>
+          <ErrorImg className='country-list__empty-image' />
+          <div className='country-list__empty-message'>
+            <h3 className='country-list__empty-message-title'>Oops, something went wrong</h3>
+            <div className='country-list__empty-message-detail'>
+              <p>{`Error message: ${error}`}</p>
+              <p> Please check your console for more information.</p>
+            </div>
+          </div>
+        </div>
       ) : !data.length ? (
         <div className='country-list__empty-section' data-testid='empty-section'>
           <EmptyImg className='country-list__empty-image' />
-          <h4 className='country-list__empty-message'>No countries found</h4>
+          <div className='country-list__empty-message'>
+            <h3 className='country-list__empty-message-title'>No countries found</h3>
+          </div>
         </div>
       ) : (
         <div className='country-list__card-grid'>
