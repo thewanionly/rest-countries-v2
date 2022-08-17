@@ -10,28 +10,4 @@
   &__country-detail {
     margin-top: 7rem;
   }
-
-  &__empty {
-    &-section {
-      margin-top: 10rem;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3rem;
-    }
-
-    &-image {
-      width: max(35%, 34rem);
-      height: auto;
-    }
-
-    &-message {
-      text-align: center;
-
-      &-detail {
-        margin-top: 2rem;
-      }
-    }
-  }
 }

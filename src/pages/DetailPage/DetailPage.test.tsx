@@ -37,7 +37,7 @@ describe('Detail Page', () => {
     })
 
     it('displays error message when error occurs when fetching the country detail', async () => {
-      const message = 'Error fetching (Bad Request)'
+      const message = 'Oops, something went wrong'
 
       setup(true)
 

@@ -1,11 +1,10 @@
 import { memo, useCallback, useContext, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { ReactComponent as EmptyImg } from 'assets/images/undraw_lost.svg'
-import { ReactComponent as ErrorImg } from 'assets/images/undraw_road_sign.svg'
 import { Country, INITIAL_ITEMS } from 'utilities/constants'
 
 import CountryCard from 'components/CountryCard'
+import EmptyState from 'components/EmptyState'
 import { StoreContext } from 'store/StoreProvider'
 
 import './CountryList.style.scss'
@@ -59,23 +58,20 @@ const CountryList = memo(({ isLoading = false, error, data }: CountryListProps) 
           ))}
         </div>
       ) : error ? (
-        <div className='country-list__empty-section' data-testid='error-section'>
-          <ErrorImg className='country-list__empty-image' />
-          <div className='country-list__empty-message'>
-            <h3 className='country-list__empty-message-title'>Oops, something went wrong</h3>
-            <div className='country-list__empty-message-detail'>
-              <p>{`Error message: ${error}`}</p>
-              <p> Please check your console for more information.</p>
-            </div>
-          </div>
-        </div>
+        <EmptyState
+          className='country-list__empty-state'
+          variant='error'
+          primaryMessage='Oops, something went wrong'
+        >
+          <p>{`Error message: ${error}`}</p>
+          <p> Please check your console for more information.</p>
+        </EmptyState>
       ) : !data.length ? (
-        <div className='country-list__empty-section' data-testid='empty-section'>
-          <EmptyImg className='country-list__empty-image' />
-          <div className='country-list__empty-message'>
-            <h3 className='country-list__empty-message-title'>No countries found</h3>
-          </div>
-        </div>
+        <EmptyState
+          className='country-list__empty-state'
+          variant='empty'
+          primaryMessage='No countries found'
+        />
       ) : (
         <div className='country-list__card-grid'>
           {data.slice(0, limit).map(({ cca2, flags, name, population, region, capital }) => (

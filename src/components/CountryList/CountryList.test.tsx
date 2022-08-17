@@ -34,7 +34,7 @@ describe('Country List', () => {
     })
 
     it('displays error message when error occurs when fetching the countries', async () => {
-      const message = 'Error fetching (Bad Request)'
+      const message = 'Oops, something went wrong'
       server.use(fetchAllCountriesError())
       setup()
 
