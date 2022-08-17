@@ -16,7 +16,7 @@ const DEFAULT_FILTER_DROPDOWN_PLACEHOLDER = 'Filter by Region'
 const HomePage = () => {
   const { searchTerm, filterValue, handleSearchTerm, handleFilterValue } = useContext(StoreContext)
   const [regionData, isLoadingRegion, errorRegion] = useResource(RESOURCES.REGIONS)
-  const [countries = [], isLoadingCountries, errorCountries] = useResource(RESOURCES.COUNTRIES)
+  const [countries, isLoadingCountries, errorCountries] = useResource(RESOURCES.COUNTRIES)
 
   const deferredSearchTerm = useDeferredValue(searchTerm)
   const [filterDropdownPlaceholder, setFilterDropdownPlaceholder] = useState(
@@ -24,7 +24,7 @@ const HomePage = () => {
   )
 
   const regionOptions = useMemo(() => getRegionOptions(regionData), [regionData])
-  const filteredCountries = filterCountries(countries, deferredSearchTerm, filterValue)
+  const filteredCountries = countries && filterCountries(countries, deferredSearchTerm, filterValue)
 
   useEffect(() => {
     let placeholder = DEFAULT_FILTER_DROPDOWN_PLACEHOLDER
@@ -60,11 +60,13 @@ const HomePage = () => {
           />
         </div>
         <div className='home-page__country-list' data-testid='country-list'>
-          <CountryList
-            data={filteredCountries}
-            isLoading={isLoadingCountries}
-            error={errorCountries}
-          />
+          {countries && (
+            <CountryList
+              data={filteredCountries}
+              isLoading={isLoadingCountries}
+              error={errorCountries}
+            />
+          )}
         </div>
       </div>
     </div>
