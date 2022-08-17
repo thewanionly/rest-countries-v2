@@ -9,13 +9,18 @@ const EMPTY_STATE_IMAGES = {
 } as const
 
 type EmptyStateProps = {
-  variant: keyof typeof EMPTY_STATE_IMAGES
+  variant?: keyof typeof EMPTY_STATE_IMAGES
   primaryMessage: string
   className?: string
   children?: React.ReactNode
 }
 
-const EmptyState = ({ className = '', variant, primaryMessage, children }: EmptyStateProps) => {
+const EmptyState = ({
+  className = '',
+  variant = 'empty',
+  primaryMessage,
+  children
+}: EmptyStateProps) => {
   const EmptyStateImg = EMPTY_STATE_IMAGES[variant]
 
   return (
