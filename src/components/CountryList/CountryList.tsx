@@ -1,7 +1,7 @@
 import { memo, useCallback, useContext, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { ReactComponent as EmptyImg } from 'assets/images/undraw_moonlight.svg'
+import { ReactComponent as EmptyImg } from 'assets/images/undraw_lost.svg'
 import { Country, INITIAL_ITEMS } from 'utilities/constants'
 
 import CountryCard from 'components/CountryCard'
