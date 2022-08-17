@@ -1,6 +1,7 @@
 import { memo, useCallback, useContext, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import { ReactComponent as EmptyImg } from 'assets/images/undraw_moonlight.svg'
 import { Country, INITIAL_ITEMS } from 'utilities/constants'
 
 import CountryCard from 'components/CountryCard'
@@ -55,11 +56,13 @@ const CountryList = memo(({ isLoading = false, error, data }: CountryListProps) 
       ) : error ? (
         <div data-testid='error-section'>{error}</div>
       ) : !data.length ? (
-        <div data-testid='empty-section'>No countries found</div>
+        <div className='country-list__empty-section' data-testid='empty-section'>
+          <EmptyImg className='country-list__empty-image' />
+          <h4 className='country-list__empty-message'>No countries found</h4>
+        </div>
       ) : (
-        data
-          .slice(0, limit)
-          .map(({ cca2, flags, name, population, region, capital }) => (
+        <div className='country-list__card-grid'>
+          {data.slice(0, limit).map(({ cca2, flags, name, population, region, capital }) => (
             <CountryCard
               key={cca2}
               code={cca2}
@@ -70,7 +73,8 @@ const CountryList = memo(({ isLoading = false, error, data }: CountryListProps) 
               capital={capital}
               onClick={handleViewCountryDetail}
             />
-          ))
+          ))}
+        </div>
       )}
       <span ref={loader} className='country-list__loader' aria-hidden />
     </div>
