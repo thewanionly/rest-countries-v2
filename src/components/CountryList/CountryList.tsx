@@ -52,7 +52,11 @@ const CountryList = memo(({ isLoading = false, error, data }: CountryListProps) 
   return (
     <div className='country-list'>
       {isLoading ? (
-        DUMMY_COUNTRIES.map((_, index) => <CountryCard key={index} isLoading />)
+        <div className='country-list__card-grid'>
+          {DUMMY_COUNTRIES.map((_, index) => (
+            <CountryCard key={index} isLoading />
+          ))}
+        </div>
       ) : error ? (
         <div data-testid='error-section'>{error}</div>
       ) : !data.length ? (
