@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom'
 
+import { ReactComponent as ErrorImg } from 'assets/images/undraw_road_sign.svg'
 import { Country, RESOURCES } from 'utilities/constants'
 import { useResource } from 'utilities/hooks'
 
@@ -47,7 +48,16 @@ const DetailPage = () => {
           {isLoadingCountry || isLoadingCountries ? (
             <CountryDetail isLoading />
           ) : errorCountry || errorCountries ? (
-            <div data-testid='error-section'>{errorCountry || errorCountries}</div>
+            <div className='detail-page__empty-section' data-testid='error-section'>
+              <ErrorImg className='detail-page__empty-image' />
+              <div className='detail-page__empty-message'>
+                <h3 className='detail-page__empty-message-title'>Oops, something went wrong</h3>
+                <div className='detail-page__empty-message-detail'>
+                  <p>{`Error message: ${errorCountry || errorCountries}`}</p>
+                  <p> Please check your console for more information.</p>
+                </div>
+              </div>
+            </div>
           ) : (
             <CountryDetail
               code={cca2}
