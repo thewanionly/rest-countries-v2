@@ -41,7 +41,7 @@ describe('Detail Page', () => {
 
       setup(true)
 
-      expect(await screen.findByTestId('error-section')).toBeInTheDocument()
+      expect(await screen.findByTestId('error-state')).toBeInTheDocument()
       expect(await screen.findByText(message)).toBeInTheDocument()
     })
   })

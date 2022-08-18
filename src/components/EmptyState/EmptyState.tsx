@@ -24,7 +24,7 @@ const EmptyState = ({
   const EmptyStateImg = EMPTY_STATE_IMAGES[variant]
 
   return (
-    <div className={`empty-state ${className}`} data-testid={`${variant}-section`}>
+    <div className={`empty-state ${className}`} data-testid={`${variant}-state`}>
       <EmptyStateImg className='empty-state__image' />
       <div className='empty-state__message'>
         <h3 className='empty-state__title'>{primaryMessage}</h3>

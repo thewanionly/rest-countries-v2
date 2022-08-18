@@ -1,4 +1,4 @@
-import { useContext, useDeferredValue, useEffect, useMemo, useState } from 'react'
+import { lazy, Suspense, useContext, useDeferredValue, useEffect, useMemo, useState } from 'react'
 
 import { StoreContext } from 'store/StoreProvider'
 import { Country, Region, RESOURCES } from 'utilities/constants'
@@ -6,11 +6,13 @@ import { useResource } from 'utilities/hooks'
 
 import CountryList from 'components/CountryList'
 import { DropdownMenuItem } from 'components/Dropdown/Dropdown'
-import EmptyState from 'components/EmptyState'
+
 import FilterDropdown from 'components/FilterDropdown'
 import SearchBar from 'components/SearchBar'
 
 import './HomePage.style.scss'
+
+const EmptyState = lazy(() => import('components/EmptyState'))
 
 const DEFAULT_FILTER_DROPDOWN_PLACEHOLDER = 'Filter by Region'
 
@@ -64,18 +66,25 @@ const HomePage = () => {
           {isLoadingCountries ? (
             <CountryList isLoading />
           ) : errorCountries ? (
-            <EmptyState
-              className='home-page__empty-state'
-              variant='error'
-              primaryMessage='Oops, something went wrong'
-            >
-              <p>{`Error message: ${errorCountries}`}</p>
-              <p> Please check your console for more information.</p>
-            </EmptyState>
+            <Suspense fallback={<h3>Oops, something went wrong</h3>}>
+              <EmptyState
+                className='home-page__empty-state'
+                variant='error'
+                primaryMessage='Oops, something went wrong'
+              >
+                <p>{`Error message: ${errorCountries}`}</p>
+                <p> Please check your console for more information.</p>
+              </EmptyState>
+            </Suspense>
           ) : (
             filteredCountries &&
             (!filteredCountries?.length ? (
-              <EmptyState className='home-page__empty-state' primaryMessage='No countries found' />
+              <Suspense fallback={<h3>No countries found</h3>}>
+                <EmptyState
+                  className='home-page__empty-state'
+                  primaryMessage='No countries found'
+                />
+              </Suspense>
             ) : (
               <CountryList data={filteredCountries} />
             ))

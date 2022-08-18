@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { Country, RESOURCES } from 'utilities/constants'
@@ -6,10 +7,11 @@ import { useResource } from 'utilities/hooks'
 import Button from 'components/Button'
 import CountryDetail from 'components/CountryDetail'
 import { BorderCountry } from 'components/CountryDetail/CountryDetail'
-import EmptyState from 'components/EmptyState'
 import Icon from 'components/Icon'
 
 import './DetailPage.style.scss'
+
+const EmptyState = lazy(() => import('components/EmptyState'))
 
 const DetailPage = () => {
   const { code } = useParams()
@@ -48,10 +50,12 @@ const DetailPage = () => {
           {isLoadingCountry || isLoadingCountries ? (
             <CountryDetail isLoading />
           ) : errorCountry || errorCountries ? (
-            <EmptyState variant='error' primaryMessage='Oops, something went wrong'>
-              <p>{`Error message: ${errorCountry || errorCountries}`}</p>
-              <p> Please check your console for more information.</p>
-            </EmptyState>
+            <Suspense fallback={<h3>Oops, something went wrong</h3>}>
+              <EmptyState variant='error' primaryMessage='Oops, something went wrong'>
+                <p>{`Error message: ${errorCountry || errorCountries}`}</p>
+                <p> Please check your console for more information.</p>
+              </EmptyState>
+            </Suspense>
           ) : (
             <CountryDetail
               code={cca2}

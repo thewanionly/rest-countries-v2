@@ -185,7 +185,7 @@ describe('Home Page', () => {
       userEvent.type(searchBar, 'asd')
 
       expect(screen.queryAllByTestId('country-card-name').length).toBe(0)
-      expect(screen.getByTestId('empty-section')).toBeInTheDocument()
+      expect(await screen.findByTestId('empty-state')).toBeInTheDocument()
     })
 
     it(`shows the first ${INITIAL_ITEMS} countries after clearing search term`, async () => {

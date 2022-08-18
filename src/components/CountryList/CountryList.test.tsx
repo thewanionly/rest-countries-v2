@@ -38,7 +38,7 @@ describe('Country List', () => {
       server.use(fetchAllCountriesError())
       setup()
 
-      expect(await screen.findByTestId('error-section')).toBeInTheDocument()
+      expect(await screen.findByTestId('error-state')).toBeInTheDocument()
       expect(await screen.findByText(message)).toBeInTheDocument()
     })
 
@@ -46,7 +46,7 @@ describe('Country List', () => {
       server.use(fetchAllCountriesEmpty())
       setup()
 
-      const emptySection = await screen.findByTestId('empty-section')
+      const emptySection = await screen.findByTestId('empty-state')
       const countries = screen.queryAllByTestId('country-card')
 
       expect(emptySection).toBeInTheDocument()
