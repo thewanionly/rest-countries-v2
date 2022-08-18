@@ -39,6 +39,10 @@ const useFetchData = <T>(url: string, cacheResults?: boolean): [T, boolean, unde
         setData(data)
         setError(undefined)
       } catch (err: any) {
+        if (typeof jest === 'undefined') {
+          console.error(err)
+        }
+
         // Error
         setIsLoading(false)
         setData(undefined)

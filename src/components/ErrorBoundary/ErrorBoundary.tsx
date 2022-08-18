@@ -26,7 +26,9 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     // Do other sort of things when an error occurs e.g. logging the error
-    console.error('Something went wrong', error, errorInfo)
+    if (typeof jest === 'undefined') {
+      console.error('Something went wrong', error, errorInfo)
+    }
   }
 
   render() {
