@@ -50,8 +50,8 @@ const DetailPage = () => {
           {isLoadingCountry || isLoadingCountries ? (
             <CountryDetail isLoading />
           ) : errorCountry || errorCountries ? (
-            <Suspense fallback={<h3>Oops, something went wrong</h3>}>
-              <EmptyState variant='error' primaryMessage='Oops, something went wrong'>
+            <Suspense fallback={<h3>Something went wrong</h3>}>
+              <EmptyState variant='error' primaryMessage='Something went wrong'>
                 <p>{`Error message: ${errorCountry || errorCountries}`}</p>
                 <p> Please check your console for more information.</p>
               </EmptyState>
