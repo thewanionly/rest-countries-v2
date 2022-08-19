@@ -90,7 +90,9 @@ export const getNativeNames = (
   },
   languages: { [key: string]: string }
 ): string[] => {
-  return Object.keys(languages).map((language) => nativeName[language].common)
+  return Object.keys(languages)
+    .map((language) => nativeName[language]?.common)
+    .filter((n) => n)
 }
 
 export const getBorders = (borders: string[], countries: Country[]): BorderCountry[] =>
