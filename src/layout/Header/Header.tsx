@@ -17,9 +17,9 @@ const Header = () => {
 
   useEffect(() => {
     if (isDarkMode) {
-      document.body.classList.add('dark-mode')
+      document.documentElement.setAttribute('data-theme', 'dark')
     } else {
-      document.body.classList.remove('dark-mode')
+      document.documentElement.setAttribute('data-theme', 'light')
     }
   }, [isDarkMode])
 

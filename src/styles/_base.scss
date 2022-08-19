@@ -29,6 +29,20 @@
   --font-weight-extrabold: #{$font-weight-extrabold};
 }
 
+// dark mode
+[data-theme='dark'] {
+  --bg-color-primary: #{$color-blue-darker};
+  --bg-color-secondary: #{$color-blue-dark};
+
+  --text-color-primary: #{$color-white};
+  --text-color-primary-hover: #{rgba($color-white, 0.7)};
+
+  --box-shadow-component-hover: #{0 2px 9px $color-gray-light-fade};
+
+  --skeleton-loading-bg-color-start: #{$color-gray-dark};
+  --skeleton-loading-bg-color-end: #{$color-gray};
+}
+
 *,
 *::before,
 *::after {
@@ -38,6 +52,7 @@
 }
 
 html {
+  background-color: var(--bg-color-primary);
   box-sizing: border-box;
   font-size: 50%; //1rem = 8px (8px/16px = 50%) - mobile
 
@@ -56,17 +71,4 @@ textarea {
 
 body {
   color: var(--text-color-primary);
-}
-
-.dark-mode {
-  --bg-color-primary: #{$color-blue-darker};
-  --bg-color-secondary: #{$color-blue-dark};
-
-  --text-color-primary: #{$color-white};
-  --text-color-primary-hover: #{rgba($color-white, 0.7)};
-
-  --box-shadow-component-hover: #{0 2px 9px $color-gray-light-fade};
-
-  --skeleton-loading-bg-color-start: #{$color-gray-dark};
-  --skeleton-loading-bg-color-end: #{$color-gray};
 }
